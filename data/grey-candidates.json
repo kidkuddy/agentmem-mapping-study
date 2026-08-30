@@ -1,0 +1,1821 @@
+{
+ "frame_fixed": "2026-08-30",
+ "rule": "named in two or more on-topic secondary studies identified by this study's search",
+ "surveys_used": [
+  {
+   "id": 18748,
+   "title": "Always-OnAgents:A Survey of Persistent Memory, State, and Governance in LLMAgents",
+   "year": 2026
+  },
+  {
+   "id": 15868,
+   "title": "A Survey on Long-Term Memory Security in LLM Agents: Attacks, Defenses, and Governance Across the Memory Lifecycle",
+   "year": 2026
+  },
+  {
+   "id": 13647,
+   "title": "From Storage to Experience: A Survey on the Evolution of LLM Agent Memory Mechanisms",
+   "year": 2026
+  },
+  {
+   "id": 13622,
+   "title": "A Survey of Agent Memory in the Second Half: Towards Self-Evolving and Long-Horizon Agents",
+   "year": 2026
+  },
+  {
+   "id": 18685,
+   "title": "Adaptation of Agentic AI: A Survey of Post-Training, Memory, and Skills",
+   "year": 2025
+  },
+  {
+   "id": 18678,
+   "title": "From Human Memory to AI Memory: A Survey on Memory Mechanisms in the Era of LLMs",
+   "year": 2025
+  },
+  {
+   "id": 13699,
+   "title": "A Survey on the Memory Mechanism of Large Language Model based Agents",
+   "year": 2024
+  },
+  {
+   "id": 19191,
+   "title": "Human-inspired Perspectives: A Survey on AI Long-term Memory",
+   "year": 2024
+  }
+ ],
+ "surveys_unretrievable": [
+  18702,
+  14741
+ ],
+ "candidates": [
+  {
+   "name": "RAG",
+   "surveys": 8,
+   "survey_ids": [
+    13622,
+    13647,
+    13699,
+    15868,
+    18678,
+    18685,
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "LLMs",
+   "surveys": 8,
+   "survey_ids": [
+    13622,
+    13647,
+    13699,
+    15868,
+    18678,
+    18685,
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "LLM",
+   "surveys": 8,
+   "survey_ids": [
+    13622,
+    13647,
+    13699,
+    15868,
+    18678,
+    18685,
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "MemGPT",
+   "surveys": 7,
+   "survey_ids": [
+    13622,
+    13647,
+    13699,
+    15868,
+    18678,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "NeurIPS",
+   "surveys": 7,
+   "survey_ids": [
+    13622,
+    13699,
+    15868,
+    18678,
+    18685,
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "SQL",
+   "surveys": 7,
+   "survey_ids": [
+    13622,
+    13647,
+    13699,
+    18678,
+    18685,
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "McAuley",
+   "surveys": 7,
+   "survey_ids": [
+    13622,
+    13647,
+    13699,
+    15868,
+    18678,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "ACM",
+   "surveys": 7,
+   "survey_ids": [
+    13622,
+    13647,
+    13699,
+    15868,
+    18678,
+    18685,
+    19191
+   ]
+  },
+  {
+   "name": "AAAI",
+   "surveys": 7,
+   "survey_ids": [
+    13622,
+    13647,
+    13699,
+    15868,
+    18678,
+    18685,
+    19191
+   ]
+  },
+  {
+   "name": "IEEE",
+   "surveys": 7,
+   "survey_ids": [
+    13622,
+    13647,
+    13699,
+    15868,
+    18678,
+    18685,
+    19191
+   ]
+  },
+  {
+   "name": "EMNLP",
+   "surveys": 6,
+   "survey_ids": [
+    13622,
+    15868,
+    18678,
+    18685,
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "ACL",
+   "surveys": 6,
+   "survey_ids": [
+    13622,
+    13647,
+    15868,
+    18685,
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "CVF",
+   "surveys": 6,
+   "survey_ids": [
+    13622,
+    13647,
+    13699,
+    18678,
+    18685,
+    19191
+   ]
+  },
+  {
+   "name": "ReAct",
+   "surveys": 5,
+   "survey_ids": [
+    13622,
+    13699,
+    18678,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "ICLR",
+   "surveys": 5,
+   "survey_ids": [
+    13622,
+    13647,
+    15868,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "HippoRAG",
+   "surveys": 5,
+   "survey_ids": [
+    13622,
+    18678,
+    18685,
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "LoRA",
+   "surveys": 5,
+   "survey_ids": [
+    13622,
+    13699,
+    18685,
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "API",
+   "surveys": 5,
+   "survey_ids": [
+    13622,
+    13699,
+    18678,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "CoALA",
+   "surveys": 5,
+   "survey_ids": [
+    13622,
+    15868,
+    18685,
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "MetaGPT",
+   "surveys": 5,
+   "survey_ids": [
+    13622,
+    13699,
+    18678,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "LongMemEval",
+   "surveys": 5,
+   "survey_ids": [
+    13622,
+    13647,
+    15868,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "MemoryBank",
+   "surveys": 5,
+   "survey_ids": [
+    13622,
+    13647,
+    13699,
+    15868,
+    18678
+   ]
+  },
+  {
+   "name": "ChatDB",
+   "surveys": 5,
+   "survey_ids": [
+    13622,
+    13647,
+    13699,
+    18678,
+    18685
+   ]
+  },
+  {
+   "name": "PMLR",
+   "surveys": 5,
+   "survey_ids": [
+    13622,
+    13699,
+    18678,
+    18685,
+    19191
+   ]
+  },
+  {
+   "name": "GPU",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    13699,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "GitHub",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    15868,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "URL",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    18678,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "LeCun",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    18685,
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "HotpotQA",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    13647,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "MADial",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    13647,
+    18678,
+    18748
+   ]
+  },
+  {
+   "name": "Mem0",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    13647,
+    15868,
+    18748
+   ]
+  },
+  {
+   "name": "APIs",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    13699,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "ReasoningBank",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    13647,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "USENIX",
+   "surveys": 4,
+   "survey_ids": [
+    15868,
+    18678,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "LoCoMo",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    13647,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "ChatGPT",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    18678,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "OpenAI",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    18678,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "OpenReview",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    13647,
+    15868,
+    18748
+   ]
+  },
+  {
+   "name": "ICML",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    15868,
+    18685,
+    19191
+   ]
+  },
+  {
+   "name": "Lin1",
+   "surveys": 4,
+   "survey_ids": [
+    13647,
+    15868,
+    18685,
+    19191
+   ]
+  },
+  {
+   "name": "MemoChat",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    13647,
+    13699,
+    18678
+   ]
+  },
+  {
+   "name": "ChatDev",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    13699,
+    18678,
+    18685
+   ]
+  },
+  {
+   "name": "GITM",
+   "surveys": 4,
+   "survey_ids": [
+    13622,
+    13699,
+    18678,
+    18685
+   ]
+  },
+  {
+   "name": "StreamingLLM",
+   "surveys": 3,
+   "survey_ids": [
+    13647,
+    18678,
+    18748
+   ]
+  },
+  {
+   "name": "NAACL",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "GAIA",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "RULER",
+   "surveys": 3,
+   "survey_ids": [
+    13647,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "COLM",
+   "surveys": 3,
+   "survey_ids": [
+    15868,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "MemoryOS",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    15868,
+    18748
+   ]
+  },
+  {
+   "name": "WebArena",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "OSWorld",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "FinMem",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18748
+   ]
+  },
+  {
+   "name": "GUI",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "JSON",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "MIT",
+   "surveys": 3,
+   "survey_ids": [
+    13699,
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "PerLTQA",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13647,
+    18748
+   ]
+  },
+  {
+   "name": "Qwen2",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "BEAM",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13647,
+    18748
+   ]
+  },
+  {
+   "name": "AppWorld",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "ACT",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "SWE",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "PrefEval",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13647,
+    18748
+   ]
+  },
+  {
+   "name": "A-MEM",
+   "surveys": 3,
+   "survey_ids": [
+    15868,
+    18678,
+    18685
+   ]
+  },
+  {
+   "name": "Chen1",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    15868
+   ]
+  },
+  {
+   "name": "III",
+   "surveys": 3,
+   "survey_ids": [
+    15868,
+    18678,
+    19191
+   ]
+  },
+  {
+   "name": "NLP",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    15868,
+    19191
+   ]
+  },
+  {
+   "name": "LEGOMem",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13647,
+    18685
+   ]
+  },
+  {
+   "name": "MemSkill",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13647,
+    18685
+   ]
+  },
+  {
+   "name": "CVPR",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13647,
+    19191
+   ]
+  },
+  {
+   "name": "CHI",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13647,
+    18678
+   ]
+  },
+  {
+   "name": "AWM",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18678,
+    18685
+   ]
+  },
+  {
+   "name": "JARVIS",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18685
+   ]
+  },
+  {
+   "name": "RecAgent",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18678
+   ]
+  },
+  {
+   "name": "RET-LLM",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18678
+   ]
+  },
+  {
+   "name": "SIGIR",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18685,
+    19191
+   ]
+  },
+  {
+   "name": "UPDATE",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18685,
+    19191
+   ]
+  },
+  {
+   "name": "TradingGPT",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18678
+   ]
+  },
+  {
+   "name": "MPC",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18678
+   ]
+  },
+  {
+   "name": "SFT",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18685
+   ]
+  },
+  {
+   "name": "MAC",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18678
+   ]
+  },
+  {
+   "name": "InteRecAgent",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18678
+   ]
+  },
+  {
+   "name": "Zhang1",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18685
+   ]
+  },
+  {
+   "name": "NDCG",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18685,
+    19191
+   ]
+  },
+  {
+   "name": "Memory3",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    18678,
+    18685
+   ]
+  },
+  {
+   "name": "RecMind",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18678
+   ]
+  },
+  {
+   "name": "ToolLLM",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18685
+   ]
+  },
+  {
+   "name": "MetaAgents",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18678
+   ]
+  },
+  {
+   "name": "AutoGen",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18685
+   ]
+  },
+  {
+   "name": "GPT",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18685
+   ]
+  },
+  {
+   "name": "Character-LLM",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18678
+   ]
+  },
+  {
+   "name": "SCM",
+   "surveys": 3,
+   "survey_ids": [
+    13622,
+    13699,
+    18678
+   ]
+  },
+  {
+   "name": "ChatGLM",
+   "surveys": 3,
+   "survey_ids": [
+    13699,
+    18678,
+    18685
+   ]
+  },
+  {
+   "name": "CPU",
+   "surveys": 2,
+   "survey_ids": [
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "CIMemories",
+   "surveys": 2,
+   "survey_ids": [
+    15868,
+    18748
+   ]
+  },
+  {
+   "name": "ZhongZhi",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18748
+   ]
+  },
+  {
+   "name": "InvestorBench",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18748
+   ]
+  },
+  {
+   "name": "LongBench",
+   "surveys": 2,
+   "survey_ids": [
+    13647,
+    18748
+   ]
+  },
+  {
+   "name": "AgentDojo",
+   "surveys": 2,
+   "survey_ids": [
+    15868,
+    18748
+   ]
+  },
+  {
+   "name": "EgoLife",
+   "surveys": 2,
+   "survey_ids": [
+    18678,
+    18748
+   ]
+  },
+  {
+   "name": "LifelongAgentBench",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18748
+   ]
+  },
+  {
+   "name": "EHR",
+   "surveys": 2,
+   "survey_ids": [
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "McNaughton",
+   "surveys": 2,
+   "survey_ids": [
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "MacNeil",
+   "surveys": 2,
+   "survey_ids": [
+    13699,
+    18748
+   ]
+  },
+  {
+   "name": "WorkArena",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18748
+   ]
+  },
+  {
+   "name": "MemoryAgentBench",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18748
+   ]
+  },
+  {
+   "name": "YoungJoon",
+   "surveys": 2,
+   "survey_ids": [
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "McClelland",
+   "surveys": 2,
+   "survey_ids": [
+    18748,
+    19191
+   ]
+  },
+  {
+   "name": "AgentPoison",
+   "surveys": 2,
+   "survey_ids": [
+    15868,
+    18748
+   ]
+  },
+  {
+   "name": "RAM",
+   "surveys": 2,
+   "survey_ids": [
+    18685,
+    18748
+   ]
+  },
+  {
+   "name": "PersonaMem",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18748
+   ]
+  },
+  {
+   "name": "FinCon",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18748
+   ]
+  },
+  {
+   "name": "TheraMind",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18748
+   ]
+  },
+  {
+   "name": "MemOS",
+   "surveys": 2,
+   "survey_ids": [
+    13647,
+    15868
+   ]
+  },
+  {
+   "name": "XiaoFeng",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    15868
+   ]
+  },
+  {
+   "name": "WWW",
+   "surveys": 2,
+   "survey_ids": [
+    15868,
+    18685
+   ]
+  },
+  {
+   "name": "GraphRAG",
+   "surveys": 2,
+   "survey_ids": [
+    15868,
+    18685
+   ]
+  },
+  {
+   "name": "MemBench",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    15868
+   ]
+  },
+  {
+   "name": "ArXiv",
+   "surveys": 2,
+   "survey_ids": [
+    13647,
+    15868
+   ]
+  },
+  {
+   "name": "MemGen",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13647
+   ]
+  },
+  {
+   "name": "StoryBench",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13647
+   ]
+  },
+  {
+   "name": "MemoryBench",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13647
+   ]
+  },
+  {
+   "name": "Mem-PAL",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13647
+   ]
+  },
+  {
+   "name": "CoRR",
+   "surveys": 2,
+   "survey_ids": [
+    13647,
+    18678
+   ]
+  },
+  {
+   "name": "LightMem",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13647
+   ]
+  },
+  {
+   "name": "BABILong",
+   "surveys": 2,
+   "survey_ids": [
+    13647,
+    18678
+   ]
+  },
+  {
+   "name": "MPR",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13647
+   ]
+  },
+  {
+   "name": "CASCADE",
+   "surveys": 2,
+   "survey_ids": [
+    13647,
+    18685
+   ]
+  },
+  {
+   "name": "DialSim",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13647
+   ]
+  },
+  {
+   "name": "Qwen3",
+   "surveys": 2,
+   "survey_ids": [
+    13647,
+    18685
+   ]
+  },
+  {
+   "name": "LOCCO",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13647
+   ]
+  },
+  {
+   "name": "ToolMem",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13647
+   ]
+  },
+  {
+   "name": "AriGraph",
+   "surveys": 2,
+   "survey_ids": [
+    13647,
+    18685
+   ]
+  },
+  {
+   "name": "AgentFold",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13647
+   ]
+  },
+  {
+   "name": "Mem1",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13647
+   ]
+  },
+  {
+   "name": "SAGE",
+   "surveys": 2,
+   "survey_ids": [
+    13647,
+    18685
+   ]
+  },
+  {
+   "name": "MIRIX",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13647
+   ]
+  },
+  {
+   "name": "HaluMem",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13647
+   ]
+  },
+  {
+   "name": "WenTao",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "MMLU",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "SAM",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "MemReasoner",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "VLM",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "WebShop",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "MCP",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "MATH",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "AgentFlow",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "JiaLi",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "TAMU",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "Yang1",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "AgentCF",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13699
+   ]
+  },
+  {
+   "name": "McKinney",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "ALFWorld",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "ROUGE",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13699
+   ]
+  },
+  {
+   "name": "WebVoyager",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "WISE",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "EMG-RAG",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "Wang1",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "DELETE",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    19191
+   ]
+  },
+  {
+   "name": "MemoRAG",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "RoleLLM",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13699
+   ]
+  },
+  {
+   "name": "ChatHaruhi",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13699
+   ]
+  },
+  {
+   "name": "RMM",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "IALP",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    19191
+   ]
+  },
+  {
+   "name": "HaoSheng",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13699
+   ]
+  },
+  {
+   "name": "MSC",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "ChunkKV",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "UCSD",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "ACE",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "MemInsight",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "APP",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13699
+   ]
+  },
+  {
+   "name": "COMEDY",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "QuantAgent",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13699
+   ]
+  },
+  {
+   "name": "MemoryLLM",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "RAP",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "HNSW",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    19191
+   ]
+  },
+  {
+   "name": "WarAgent",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13699
+   ]
+  },
+  {
+   "name": "ChemDFM",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13699
+   ]
+  },
+  {
+   "name": "MAP",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "GameGPT",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    13699
+   ]
+  },
+  {
+   "name": "SIGKDD",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    19191
+   ]
+  },
+  {
+   "name": "NIPS",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    19191
+   ]
+  },
+  {
+   "name": "HumanEval",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "ISSN",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "UIUC",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "BrowseComp",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "MemoCRS",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18678
+   ]
+  },
+  {
+   "name": "EACL",
+   "surveys": 2,
+   "survey_ids": [
+    13622,
+    18685
+   ]
+  },
+  {
+   "name": "SELECT",
+   "surveys": 2,
+   "survey_ids": [
+    18685,
+    19191
+   ]
+  },
+  {
+   "name": "PEFT",
+   "surveys": 2,
+   "survey_ids": [
+    18678,
+    18685
+   ]
+  },
+  {
+   "name": "AlfWorld",
+   "surveys": 2,
+   "survey_ids": [
+    13699,
+    18685
+   ]
+  },
+  {
+   "name": "CLIP",
+   "surveys": 2,
+   "survey_ids": [
+    18685,
+    19191
+   ]
+  },
+  {
+   "name": "DeepSeek",
+   "surveys": 2,
+   "survey_ids": [
+    18678,
+    18685
+   ]
+  },
+  {
+   "name": "LLaMA",
+   "surveys": 2,
+   "survey_ids": [
+    13699,
+    18685
+   ]
+  },
+  {
+   "name": "INSERT",
+   "surveys": 2,
+   "survey_ids": [
+    18685,
+    19191
+   ]
+  },
+  {
+   "name": "FAISS",
+   "surveys": 2,
+   "survey_ids": [
+    13699,
+    18678
+   ]
+  },
+  {
+   "name": "TPTU",
+   "surveys": 2,
+   "survey_ids": [
+    13699,
+    18678
+   ]
+  },
+  {
+   "name": "LSH",
+   "surveys": 2,
+   "survey_ids": [
+    13699,
+    19191
+   ]
+  },
+  {
+   "name": "AGI",
+   "surveys": 2,
+   "survey_ids": [
+    13699,
+    19191
+   ]
+  }
+ ]
+}

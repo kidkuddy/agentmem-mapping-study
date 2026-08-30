@@ -1,0 +1,15 @@
+{
+ "checked": 171,
+ "passed": 170,
+ "flagged": 1,
+ "threshold": 0.5,
+ "flagged_records": [
+  {
+   "id": 19017,
+   "title": "Four Governance Invariants for Organisational Agent Memory: A Specification",
+   "share": 0.286,
+   "contiguous": false,
+   "ok": false
+  }
+ ]
+}

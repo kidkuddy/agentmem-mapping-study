@@ -1,0 +1,405 @@
+[
+ {
+  "title": "Remember Me, Refine Me: A Dynamic Procedural Memory Framework for Experience-Driven Agent Evolution",
+  "kept_id": 20020,
+  "dropped_ids": [
+   20514
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "EngramaBench: Evaluating Long-Term Conversational Memory with Structured Graph Retrieval",
+  "kept_id": 15768,
+  "dropped_ids": [
+   19066
+  ],
+  "years": [
+   2026
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "Control-Plane Placement Shapes Forgetting: An Architectural Study of Agent Memory Across Thirteen System Configurations",
+  "kept_id": 18617,
+  "dropped_ids": [
+   19012
+  ],
+  "years": [
+   2026
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "Text2Mem: A Unified Memory Operation Language for Memory Operating System",
+  "kept_id": 18197,
+  "dropped_ids": [
+   18995
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "Self-Improvements in Modern Agentic Systems: A Survey",
+  "kept_id": 18757,
+  "dropped_ids": [
+   18835
+  ],
+  "years": [
+   2026
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "Structured Distillation for Personalized Agent Memory: 11x Token Reduction with Retrieval Preservation",
+  "kept_id": 14048,
+  "dropped_ids": [
+   17002
+  ],
+  "years": [
+   2026
+  ],
+  "sources": [
+   "arxiv",
+   "semantic"
+  ]
+ },
+ {
+  "title": "How Memory Management Impacts LLM Agents: An Empirical Study of Experience-Following Behavior",
+  "kept_id": 13689,
+  "dropped_ids": [
+   15607
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "MiTa: A Hierarchical Multi-Agent Collaboration Framework with Memory-integrated and Task Allocation",
+  "kept_id": 14653,
+  "dropped_ids": [
+   14825
+  ],
+  "years": [
+   2026
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "Memory-R1: Enhancing Large Language Model Agents to Manage and Utilize Memories via Reinforcement Learning",
+  "kept_id": 14200,
+  "dropped_ids": [
+   14794
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "Hierarchical Long-Term Semantic Memory for LinkedIn's Hiring Agent",
+  "kept_id": 14074,
+  "dropped_ids": [
+   14182
+  ],
+  "years": [
+   2026
+  ],
+  "sources": [
+   "arxiv",
+   "semantic"
+  ]
+ },
+ {
+  "title": "Beyond Static Summarization: Proactive Memory Extraction for LLM Agents",
+  "kept_id": 13725,
+  "dropped_ids": [
+   14057
+  ],
+  "years": [
+   2026
+  ],
+  "sources": [
+   "arxiv",
+   "semantic"
+  ]
+ },
+ {
+  "title": "LLM-empowered knowledge graph construction: A survey",
+  "kept_id": 17447,
+  "dropped_ids": [
+   17601
+  ],
+  "years": [
+   2025
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "MemoRAG: Boosting Long Context Processing with Global Memory-Enhanced Retrieval Augmentation",
+  "kept_id": 17128,
+  "dropped_ids": [
+   17226
+  ],
+  "years": [
+   2024,
+   2025
+  ],
+  "sources": [
+   "openalex"
+  ]
+ },
+ {
+  "title": "Episodic Memory Verbalization using Hierarchical Representations of Life-Long Robot Experience",
+  "kept_id": 14773,
+  "dropped_ids": [
+   14822
+  ],
+  "years": [
+   2024,
+   2025
+  ],
+  "sources": [
+   "openalex"
+  ]
+ },
+ {
+  "title": "AriGraph: Learning Knowledge Graph World Models with Episodic Memory for LLM Agents",
+  "kept_id": 13695,
+  "dropped_ids": [
+   14777
+  ],
+  "years": [
+   2024,
+   2025
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "Planning from Imagination: Episodic Simulation and Episodic Memory for Vision-and-Language Navigation",
+  "kept_id": 14527,
+  "dropped_ids": [
+   14735
+  ],
+  "years": [
+   2024,
+   2025
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "Hello Again! LLM-powered Personalized Agent for Long-term Dialogue",
+  "kept_id": 13990,
+  "dropped_ids": [
+   14004
+  ],
+  "years": [
+   2024,
+   2025
+  ],
+  "sources": [
+   "openalex"
+  ]
+ },
+ {
+  "title": "HiAgent: Hierarchical Working Memory Management for Solving Long-Horizon Agent Tasks with Large Language Model",
+  "kept_id": 14053,
+  "dropped_ids": [
+   13920
+  ],
+  "years": [
+   2024,
+   2025
+  ],
+  "sources": [
+   "openalex",
+   "semantic"
+  ]
+ },
+ {
+  "title": "KG-Agent: An Efficient Autonomous Agent Framework for Complex Reasoning over Knowledge Graph",
+  "kept_id": 13626,
+  "dropped_ids": [
+   13882
+  ],
+  "years": [
+   2024,
+   2025
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "Recommender AI Agent: Integrating Large Language Models for Interactive Recommendations",
+  "kept_id": 13845,
+  "dropped_ids": [
+   16399
+  ],
+  "years": [
+   2023,
+   2025
+  ],
+  "sources": [
+   "openalex"
+  ]
+ },
+ {
+  "title": "A Survey on the Memory Mechanism of Large Language Model based Agents",
+  "kept_id": 13699,
+  "dropped_ids": [
+   13816
+  ],
+  "years": [
+   2024,
+   2025
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "ExpeL: LLM Agents Are Experiential Learners",
+  "kept_id": 13926,
+  "dropped_ids": [
+   15117
+  ],
+  "years": [
+   2023,
+   2024
+  ],
+  "sources": [
+   "openalex"
+  ]
+ },
+ {
+  "title": "Linking In-context Learning in Transformers to Human Episodic Memory",
+  "kept_id": 14594,
+  "dropped_ids": [
+   14833
+  ],
+  "years": [
+   2024
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "Encode-Store-Retrieve: Augmenting Human Memory through Language-Encoded Egocentric Perception",
+  "kept_id": 14736,
+  "dropped_ids": [
+   14780
+  ],
+  "years": [
+   2023,
+   2024
+  ],
+  "sources": [
+   "openalex"
+  ]
+ },
+ {
+  "title": "ESceme: Vision-and-Language Navigation with Episodic Scene Memory",
+  "kept_id": 14533,
+  "dropped_ids": [
+   14714
+  ],
+  "years": [
+   2023,
+   2024
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "LLaMP: Large Language Model Made Powerful for High-fidelity Materials Knowledge Retrieval and Distillation",
+  "kept_id": 9099,
+  "dropped_ids": [
+   14499
+  ],
+  "years": [
+   2024
+  ],
+  "sources": [
+   "openalex",
+   "semantic"
+  ]
+ },
+ {
+  "title": "AgentPoison: Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases",
+  "kept_id": 13964,
+  "dropped_ids": [
+   13734
+  ],
+  "years": [
+   2024
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ },
+ {
+  "title": "FinMem: A Performance-Enhanced LLM Trading Agent with Layered Memory and Character Design",
+  "kept_id": 13735,
+  "dropped_ids": [
+   13839
+  ],
+  "years": [
+   2023,
+   2024
+  ],
+  "sources": [
+   "arxiv",
+   "openalex"
+  ]
+ }
+]

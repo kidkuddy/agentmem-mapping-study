@@ -1,0 +1,107 @@
+[
+ {
+  "id": 19006,
+  "title": "Reception Infrastructure for Conversational Agents: Consent, Memory Provenance, and Runtime Governance in Local LLM Systems",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14078,
+  "title": "Memory Non-Sharing and Context Fragmentation in Multi-Agent Systems: Problems and Solutions",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14075,
+  "title": "LatticeMind: A Conflict-Aware Memory Primitive for Multi-Agent Systems",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14068,
+  "title": "Learning What to Remember and What to Internalize in LLM Self-Evolution via Adaptive Memory-Parameter Coordination",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14047,
+  "title": "ChronoMem: Version Control and Semantic Rollback for Large Language Model Agent Memory",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14044,
+  "title": "MemAdapter: Fast Alignment across Agent Memory Paradigms via Generative Subgraph Retrieval",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14032,
+  "title": "Compositional Threat Analysis of Latent Compromise in LLM Agent Systems: The Order 66 Scenario",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14028,
+  "title": "Agentic Unlearning: When LLM Agent Meets Machine Unlearning",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 20655,
+  "title": "Procedural Memory Is Not All You Need",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 19811,
+  "title": "Memory-Augmented Large Language Model for Enhanced Chatbot Services in University Learning Management Systems",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 15131,
+  "title": "SagaLLM: Context Management, Validation, and Transaction Guarantees for Multi-Agent LLM Planning",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14087,
+  "title": "SCOPE: Prompt Evolution for Enhancing Agent Effectiveness",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14083,
+  "title": "An LLM Framework for Inferring Household Energy Consumption Through Behaviour Simulation",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14038,
+  "title": "Multi-Agent LLM Collaboration for Adaptive Code Review, Debugging, and Security Analysis",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 13845,
+  "title": "Recommender AI Agent: Integrating Large Language Models for Interactive Recommendations",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 13840,
+  "title": "Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14893,
+  "title": "A Novel Model of Narrative Memory for Conscious Agents",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14761,
+  "title": "Episodic Question Answering for Cognitive Agents",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14736,
+  "title": "Encode-Store-Retrieve: Augmenting Human Memory through Language-Encoded Egocentric Perception",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 14094,
+  "title": "Compound AI System for Personalized Learning: Integrating LLM Agents with Knowledge Graphs",
+  "reason": "no retrievable pdf url"
+ },
+ {
+  "id": 13867,
+  "title": "CASIT: Collective Intelligent Agent System for Internet of Things",
+  "reason": "no retrievable pdf url"
+ }
+]

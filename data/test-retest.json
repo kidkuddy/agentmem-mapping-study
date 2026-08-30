@@ -1,0 +1,33 @@
+{
+ "n_scored": 50,
+ "raw_agreement": 0.98,
+ "cohens_kappa": 0.9561,
+ "pre_amendment_includes": 33,
+ "post_amendment_includes": 32,
+ "rule_shifts": {
+  "T2->T6": 1,
+  "T5->T2": 2,
+  "D2->T2": 2,
+  "T2->T4": 1,
+  "T4->T1": 1
+ },
+ "disagreements": [
+  {
+   "paper_id": 18742,
+   "pre": {
+    "decision": "include",
+    "rule": "T4",
+    "criteria": [],
+    "reason": "Leyline lets an agent 'policy... actively remove or replace a span of cached content' via directives including 'prefix-trimmed re-prefill for semantic forgetting', directly implementing what conversational state survives into subsequent turns rather than merely raising throughput."
+   },
+   "post": {
+    "decision": "exclude",
+    "rule": "T1",
+    "criteria": [
+     "E1"
+    ],
+    "reason": "Leyline is 'a serving-side primitive' for 'KV cache' editing during inference, addressing 'exact-prefix caches,' 'position-independent caching,' and 're-prefill' cost; this is inference-time cache-serving optimisation, matching the guide's own E1 example of 'KV-cache compression that raises tokens per second.'"
+   }
+  }
+ ]
+}

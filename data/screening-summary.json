@@ -1,0 +1,24 @@
+{
+ "written": 300,
+ "already_correct_left_alone": 0,
+ "decisions_reversed_in_db": 0,
+ "superseded_by_rereview": 0,
+ "decisions_dropped_record_no_longer_in_corpus": 0,
+ "corpus_records_without_a_decision": 985,
+ "stale_decisions_superseded": 0,
+ "include": 192,
+ "exclude": 108,
+ "include_rate": 64.0,
+ "exclusions_by_criterion": {
+  "E5": 27,
+  "E4": 22,
+  "E6": 20,
+  "E1": 19,
+  "E3": 14,
+  "E2": 6,
+  "E7": 3
+ },
+ "problems": [
+  "985 corpus records have no decision: [275, 7933, 8322, 8331, 8412, 8433, 8444, 8582, 8936, 8962]"
+ ]
+}

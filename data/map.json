@@ -1,0 +1,2342 @@
+{
+ "topic": "2",
+ "maps": {
+  "substrate_x_write_policy": {
+   "assignments_counted": 58,
+   "cells": {
+    "filesystem": {
+     "agent_tool_invoked": 0,
+     "append_only": 1,
+     "edit_in_place": 1,
+     "none_declared": 0,
+     "reflect_synthesize": 2,
+     "summarize_compress": 0
+    },
+    "graph_store": {
+     "agent_tool_invoked": 0,
+     "append_only": 2,
+     "edit_in_place": 6,
+     "none_declared": 0,
+     "reflect_synthesize": 1,
+     "summarize_compress": 2
+    },
+    "kv_cache": {
+     "agent_tool_invoked": 0,
+     "append_only": 0,
+     "edit_in_place": 0,
+     "none_declared": 0,
+     "reflect_synthesize": 0,
+     "summarize_compress": 0
+    },
+    "multi_store": {
+     "agent_tool_invoked": 0,
+     "append_only": 3,
+     "edit_in_place": 4,
+     "none_declared": 0,
+     "reflect_synthesize": 5,
+     "summarize_compress": 1
+    },
+    "other": {
+     "agent_tool_invoked": 1,
+     "append_only": 1,
+     "edit_in_place": 1,
+     "none_declared": 1,
+     "reflect_synthesize": 0,
+     "summarize_compress": 2
+    },
+    "prompt_resident": {
+     "agent_tool_invoked": 0,
+     "append_only": 1,
+     "edit_in_place": 2,
+     "none_declared": 0,
+     "reflect_synthesize": 2,
+     "summarize_compress": 3
+    },
+    "relational_db": {
+     "agent_tool_invoked": 0,
+     "append_only": 1,
+     "edit_in_place": 1,
+     "none_declared": 0,
+     "reflect_synthesize": 0,
+     "summarize_compress": 0
+    },
+    "vector_store": {
+     "agent_tool_invoked": 0,
+     "append_only": 4,
+     "edit_in_place": 2,
+     "none_declared": 0,
+     "reflect_synthesize": 4,
+     "summarize_compress": 4
+    }
+   },
+   "empty_cells": [
+    "filesystem x agent_tool_invoked",
+    "filesystem x none_declared",
+    "filesystem x summarize_compress",
+    "graph_store x agent_tool_invoked",
+    "graph_store x none_declared",
+    "kv_cache x agent_tool_invoked",
+    "kv_cache x append_only",
+    "kv_cache x edit_in_place",
+    "kv_cache x none_declared",
+    "kv_cache x reflect_synthesize",
+    "kv_cache x summarize_compress",
+    "multi_store x agent_tool_invoked",
+    "multi_store x none_declared",
+    "other x reflect_synthesize",
+    "prompt_resident x agent_tool_invoked",
+    "prompt_resident x none_declared",
+    "relational_db x agent_tool_invoked",
+    "relational_db x none_declared",
+    "relational_db x reflect_synthesize",
+    "relational_db x summarize_compress",
+    "vector_store x agent_tool_invoked",
+    "vector_store x none_declared"
+   ],
+   "topic_ids": [
+    "2"
+   ],
+   "x": "write_policy",
+   "x_values": [
+    "agent_tool_invoked",
+    "append_only",
+    "edit_in_place",
+    "none_declared",
+    "reflect_synthesize",
+    "summarize_compress"
+   ],
+   "y": "substrate",
+   "y_values": [
+    "filesystem",
+    "graph_store",
+    "kv_cache",
+    "multi_store",
+    "other",
+    "prompt_resident",
+    "relational_db",
+    "vector_store"
+   ]
+  },
+  "substrate_x_retrieval_policy": {
+   "assignments_counted": 56,
+   "cells": {
+    "filesystem": {
+     "agent_directed": 1,
+     "always_in_context": 1,
+     "hybrid": 2,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 0,
+     "structured_query": 0
+    },
+    "graph_store": {
+     "agent_directed": 0,
+     "always_in_context": 1,
+     "hybrid": 6,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 0,
+     "structured_query": 5
+    },
+    "kv_cache": {
+     "agent_directed": 0,
+     "always_in_context": 0,
+     "hybrid": 0,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 0,
+     "structured_query": 0
+    },
+    "multi_store": {
+     "agent_directed": 1,
+     "always_in_context": 0,
+     "hybrid": 11,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 0,
+     "structured_query": 1
+    },
+    "other": {
+     "agent_directed": 1,
+     "always_in_context": 0,
+     "hybrid": 1,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 1,
+     "structured_query": 1
+    },
+    "prompt_resident": {
+     "agent_directed": 1,
+     "always_in_context": 6,
+     "hybrid": 0,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 0,
+     "structured_query": 0
+    },
+    "relational_db": {
+     "agent_directed": 1,
+     "always_in_context": 0,
+     "hybrid": 1,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 1,
+     "structured_query": 0
+    },
+    "vector_store": {
+     "agent_directed": 0,
+     "always_in_context": 0,
+     "hybrid": 3,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 10,
+     "structured_query": 0
+    }
+   },
+   "empty_cells": [
+    "filesystem x none_declared",
+    "filesystem x recency_window",
+    "filesystem x similarity_topk",
+    "filesystem x structured_query",
+    "graph_store x agent_directed",
+    "graph_store x none_declared",
+    "graph_store x recency_window",
+    "graph_store x similarity_topk",
+    "kv_cache x agent_directed",
+    "kv_cache x always_in_context",
+    "kv_cache x hybrid",
+    "kv_cache x none_declared",
+    "kv_cache x recency_window",
+    "kv_cache x similarity_topk",
+    "kv_cache x structured_query",
+    "multi_store x always_in_context",
+    "multi_store x none_declared",
+    "multi_store x recency_window",
+    "multi_store x similarity_topk",
+    "other x always_in_context",
+    "other x none_declared",
+    "other x recency_window",
+    "prompt_resident x hybrid",
+    "prompt_resident x none_declared",
+    "prompt_resident x recency_window",
+    "prompt_resident x similarity_topk",
+    "prompt_resident x structured_query",
+    "relational_db x always_in_context",
+    "relational_db x none_declared",
+    "relational_db x recency_window",
+    "relational_db x structured_query",
+    "vector_store x agent_directed",
+    "vector_store x always_in_context",
+    "vector_store x none_declared",
+    "vector_store x recency_window",
+    "vector_store x structured_query"
+   ],
+   "topic_ids": [
+    "2"
+   ],
+   "x": "retrieval_policy",
+   "x_values": [
+    "agent_directed",
+    "always_in_context",
+    "hybrid",
+    "none_declared",
+    "recency_window",
+    "similarity_topk",
+    "structured_query"
+   ],
+   "y": "substrate",
+   "y_values": [
+    "filesystem",
+    "graph_store",
+    "kv_cache",
+    "multi_store",
+    "other",
+    "prompt_resident",
+    "relational_db",
+    "vector_store"
+   ]
+  },
+  "substrate_x_research_type": {
+   "assignments_counted": 61,
+   "cells": {
+    "filesystem": {
+     "evaluation": 0,
+     "experience": 0,
+     "opinion": 0,
+     "philosophical": 0,
+     "solution": 0,
+     "validation": 5
+    },
+    "graph_store": {
+     "evaluation": 0,
+     "experience": 0,
+     "opinion": 0,
+     "philosophical": 0,
+     "solution": 0,
+     "validation": 12
+    },
+    "kv_cache": {
+     "evaluation": 0,
+     "experience": 0,
+     "opinion": 0,
+     "philosophical": 0,
+     "solution": 0,
+     "validation": 0
+    },
+    "multi_store": {
+     "evaluation": 0,
+     "experience": 0,
+     "opinion": 0,
+     "philosophical": 0,
+     "solution": 1,
+     "validation": 12
+    },
+    "other": {
+     "evaluation": 0,
+     "experience": 0,
+     "opinion": 0,
+     "philosophical": 0,
+     "solution": 0,
+     "validation": 6
+    },
+    "prompt_resident": {
+     "evaluation": 0,
+     "experience": 0,
+     "opinion": 0,
+     "philosophical": 0,
+     "solution": 0,
+     "validation": 8
+    },
+    "relational_db": {
+     "evaluation": 0,
+     "experience": 0,
+     "opinion": 0,
+     "philosophical": 0,
+     "solution": 1,
+     "validation": 2
+    },
+    "vector_store": {
+     "evaluation": 0,
+     "experience": 0,
+     "opinion": 0,
+     "philosophical": 0,
+     "solution": 0,
+     "validation": 14
+    }
+   },
+   "empty_cells": [
+    "filesystem x evaluation",
+    "filesystem x experience",
+    "filesystem x opinion",
+    "filesystem x philosophical",
+    "filesystem x solution",
+    "graph_store x evaluation",
+    "graph_store x experience",
+    "graph_store x opinion",
+    "graph_store x philosophical",
+    "graph_store x solution",
+    "kv_cache x evaluation",
+    "kv_cache x experience",
+    "kv_cache x opinion",
+    "kv_cache x philosophical",
+    "kv_cache x solution",
+    "kv_cache x validation",
+    "multi_store x evaluation",
+    "multi_store x experience",
+    "multi_store x opinion",
+    "multi_store x philosophical",
+    "other x evaluation",
+    "other x experience",
+    "other x opinion",
+    "other x philosophical",
+    "other x solution",
+    "prompt_resident x evaluation",
+    "prompt_resident x experience",
+    "prompt_resident x opinion",
+    "prompt_resident x philosophical",
+    "prompt_resident x solution",
+    "relational_db x evaluation",
+    "relational_db x experience",
+    "relational_db x opinion",
+    "relational_db x philosophical",
+    "vector_store x evaluation",
+    "vector_store x experience",
+    "vector_store x opinion",
+    "vector_store x philosophical",
+    "vector_store x solution"
+   ],
+   "topic_ids": [
+    "2"
+   ],
+   "x": "research_type",
+   "x_values": [
+    "evaluation",
+    "experience",
+    "opinion",
+    "philosophical",
+    "solution",
+    "validation"
+   ],
+   "y": "substrate",
+   "y_values": [
+    "filesystem",
+    "graph_store",
+    "kv_cache",
+    "multi_store",
+    "other",
+    "prompt_resident",
+    "relational_db",
+    "vector_store"
+   ]
+  },
+  "substrate_x_research_method": {
+   "assignments_counted": 61,
+   "cells": {
+    "filesystem": {
+     "benchmark_evaluation": 4,
+     "case_study": 0,
+     "controlled_experiment": 1,
+     "none": 0,
+     "proof_of_concept": 0,
+     "simulation": 0
+    },
+    "graph_store": {
+     "benchmark_evaluation": 10,
+     "case_study": 1,
+     "controlled_experiment": 1,
+     "none": 0,
+     "proof_of_concept": 0,
+     "simulation": 0
+    },
+    "kv_cache": {
+     "benchmark_evaluation": 0,
+     "case_study": 0,
+     "controlled_experiment": 0,
+     "none": 0,
+     "proof_of_concept": 0,
+     "simulation": 0
+    },
+    "multi_store": {
+     "benchmark_evaluation": 11,
+     "case_study": 0,
+     "controlled_experiment": 1,
+     "none": 0,
+     "proof_of_concept": 1,
+     "simulation": 0
+    },
+    "other": {
+     "benchmark_evaluation": 6,
+     "case_study": 0,
+     "controlled_experiment": 0,
+     "none": 0,
+     "proof_of_concept": 0,
+     "simulation": 0
+    },
+    "prompt_resident": {
+     "benchmark_evaluation": 7,
+     "case_study": 0,
+     "controlled_experiment": 1,
+     "none": 0,
+     "proof_of_concept": 0,
+     "simulation": 0
+    },
+    "relational_db": {
+     "benchmark_evaluation": 1,
+     "case_study": 0,
+     "controlled_experiment": 1,
+     "none": 0,
+     "proof_of_concept": 1,
+     "simulation": 0
+    },
+    "vector_store": {
+     "benchmark_evaluation": 12,
+     "case_study": 0,
+     "controlled_experiment": 2,
+     "none": 0,
+     "proof_of_concept": 0,
+     "simulation": 0
+    }
+   },
+   "empty_cells": [
+    "filesystem x case_study",
+    "filesystem x none",
+    "filesystem x proof_of_concept",
+    "filesystem x simulation",
+    "graph_store x none",
+    "graph_store x proof_of_concept",
+    "graph_store x simulation",
+    "kv_cache x benchmark_evaluation",
+    "kv_cache x case_study",
+    "kv_cache x controlled_experiment",
+    "kv_cache x none",
+    "kv_cache x proof_of_concept",
+    "kv_cache x simulation",
+    "multi_store x case_study",
+    "multi_store x none",
+    "multi_store x simulation",
+    "other x case_study",
+    "other x controlled_experiment",
+    "other x none",
+    "other x proof_of_concept",
+    "other x simulation",
+    "prompt_resident x case_study",
+    "prompt_resident x none",
+    "prompt_resident x proof_of_concept",
+    "prompt_resident x simulation",
+    "relational_db x case_study",
+    "relational_db x none",
+    "relational_db x simulation",
+    "vector_store x case_study",
+    "vector_store x none",
+    "vector_store x proof_of_concept",
+    "vector_store x simulation"
+   ],
+   "topic_ids": [
+    "2"
+   ],
+   "x": "research_method",
+   "x_values": [
+    "benchmark_evaluation",
+    "case_study",
+    "controlled_experiment",
+    "none",
+    "proof_of_concept",
+    "simulation"
+   ],
+   "y": "substrate",
+   "y_values": [
+    "filesystem",
+    "graph_store",
+    "kv_cache",
+    "multi_store",
+    "other",
+    "prompt_resident",
+    "relational_db",
+    "vector_store"
+   ]
+  },
+  "substrate_x_contribution": {
+   "assignments_counted": 61,
+   "cells": {
+    "filesystem": {
+     "dataset": 1,
+     "framework": 3,
+     "method": 1,
+     "metric": 0,
+     "model": 0,
+     "tool": 0
+    },
+    "graph_store": {
+     "dataset": 0,
+     "framework": 8,
+     "method": 4,
+     "metric": 0,
+     "model": 0,
+     "tool": 0
+    },
+    "kv_cache": {
+     "dataset": 0,
+     "framework": 0,
+     "method": 0,
+     "metric": 0,
+     "model": 0,
+     "tool": 0
+    },
+    "multi_store": {
+     "dataset": 0,
+     "framework": 13,
+     "method": 0,
+     "metric": 0,
+     "model": 0,
+     "tool": 0
+    },
+    "other": {
+     "dataset": 0,
+     "framework": 4,
+     "method": 2,
+     "metric": 0,
+     "model": 0,
+     "tool": 0
+    },
+    "prompt_resident": {
+     "dataset": 2,
+     "framework": 1,
+     "method": 5,
+     "metric": 0,
+     "model": 0,
+     "tool": 0
+    },
+    "relational_db": {
+     "dataset": 0,
+     "framework": 2,
+     "method": 1,
+     "metric": 0,
+     "model": 0,
+     "tool": 0
+    },
+    "vector_store": {
+     "dataset": 0,
+     "framework": 5,
+     "method": 8,
+     "metric": 1,
+     "model": 0,
+     "tool": 0
+    }
+   },
+   "empty_cells": [
+    "filesystem x metric",
+    "filesystem x model",
+    "filesystem x tool",
+    "graph_store x dataset",
+    "graph_store x metric",
+    "graph_store x model",
+    "graph_store x tool",
+    "kv_cache x dataset",
+    "kv_cache x framework",
+    "kv_cache x method",
+    "kv_cache x metric",
+    "kv_cache x model",
+    "kv_cache x tool",
+    "multi_store x dataset",
+    "multi_store x method",
+    "multi_store x metric",
+    "multi_store x model",
+    "multi_store x tool",
+    "other x dataset",
+    "other x metric",
+    "other x model",
+    "other x tool",
+    "prompt_resident x metric",
+    "prompt_resident x model",
+    "prompt_resident x tool",
+    "relational_db x dataset",
+    "relational_db x metric",
+    "relational_db x model",
+    "relational_db x tool",
+    "vector_store x dataset",
+    "vector_store x model",
+    "vector_store x tool"
+   ],
+   "topic_ids": [
+    "2"
+   ],
+   "x": "contribution",
+   "x_values": [
+    "dataset",
+    "framework",
+    "method",
+    "metric",
+    "model",
+    "tool"
+   ],
+   "y": "substrate",
+   "y_values": [
+    "filesystem",
+    "graph_store",
+    "kv_cache",
+    "multi_store",
+    "other",
+    "prompt_resident",
+    "relational_db",
+    "vector_store"
+   ]
+  },
+  "substrate_x_venue_type": {
+   "assignments_counted": 58,
+   "cells": {
+    "filesystem": {
+     "conference": 0,
+     "grey": 0,
+     "journal": 0,
+     "preprint": 5,
+     "workshop": 0
+    },
+    "graph_store": {
+     "conference": 0,
+     "grey": 0,
+     "journal": 0,
+     "preprint": 12,
+     "workshop": 0
+    },
+    "kv_cache": {
+     "conference": 0,
+     "grey": 0,
+     "journal": 0,
+     "preprint": 0,
+     "workshop": 0
+    },
+    "multi_store": {
+     "conference": 0,
+     "grey": 0,
+     "journal": 0,
+     "preprint": 12,
+     "workshop": 0
+    },
+    "other": {
+     "conference": 0,
+     "grey": 0,
+     "journal": 0,
+     "preprint": 6,
+     "workshop": 0
+    },
+    "prompt_resident": {
+     "conference": 0,
+     "grey": 0,
+     "journal": 0,
+     "preprint": 7,
+     "workshop": 0
+    },
+    "relational_db": {
+     "conference": 0,
+     "grey": 0,
+     "journal": 0,
+     "preprint": 3,
+     "workshop": 0
+    },
+    "vector_store": {
+     "conference": 0,
+     "grey": 0,
+     "journal": 0,
+     "preprint": 13,
+     "workshop": 0
+    }
+   },
+   "empty_cells": [
+    "filesystem x conference",
+    "filesystem x grey",
+    "filesystem x journal",
+    "filesystem x workshop",
+    "graph_store x conference",
+    "graph_store x grey",
+    "graph_store x journal",
+    "graph_store x workshop",
+    "kv_cache x conference",
+    "kv_cache x grey",
+    "kv_cache x journal",
+    "kv_cache x preprint",
+    "kv_cache x workshop",
+    "multi_store x conference",
+    "multi_store x grey",
+    "multi_store x journal",
+    "multi_store x workshop",
+    "other x conference",
+    "other x grey",
+    "other x journal",
+    "other x workshop",
+    "prompt_resident x conference",
+    "prompt_resident x grey",
+    "prompt_resident x journal",
+    "prompt_resident x workshop",
+    "relational_db x conference",
+    "relational_db x grey",
+    "relational_db x journal",
+    "relational_db x workshop",
+    "vector_store x conference",
+    "vector_store x grey",
+    "vector_store x journal",
+    "vector_store x workshop"
+   ],
+   "topic_ids": [
+    "2"
+   ],
+   "x": "venue_type",
+   "x_values": [
+    "conference",
+    "grey",
+    "journal",
+    "preprint",
+    "workshop"
+   ],
+   "y": "substrate",
+   "y_values": [
+    "filesystem",
+    "graph_store",
+    "kv_cache",
+    "multi_store",
+    "other",
+    "prompt_resident",
+    "relational_db",
+    "vector_store"
+   ]
+  },
+  "substrate_x_stratum": {
+   "assignments_counted": 61,
+   "cells": {
+    "filesystem": {
+     "grey": 0,
+     "peer_reviewed": 5
+    },
+    "graph_store": {
+     "grey": 0,
+     "peer_reviewed": 12
+    },
+    "kv_cache": {
+     "grey": 0,
+     "peer_reviewed": 0
+    },
+    "multi_store": {
+     "grey": 0,
+     "peer_reviewed": 13
+    },
+    "other": {
+     "grey": 0,
+     "peer_reviewed": 6
+    },
+    "prompt_resident": {
+     "grey": 0,
+     "peer_reviewed": 8
+    },
+    "relational_db": {
+     "grey": 0,
+     "peer_reviewed": 3
+    },
+    "vector_store": {
+     "grey": 0,
+     "peer_reviewed": 14
+    }
+   },
+   "empty_cells": [
+    "filesystem x grey",
+    "graph_store x grey",
+    "kv_cache x grey",
+    "kv_cache x peer_reviewed",
+    "multi_store x grey",
+    "other x grey",
+    "prompt_resident x grey",
+    "relational_db x grey",
+    "vector_store x grey"
+   ],
+   "topic_ids": [
+    "2"
+   ],
+   "x": "stratum",
+   "x_values": [
+    "grey",
+    "peer_reviewed"
+   ],
+   "y": "substrate",
+   "y_values": [
+    "filesystem",
+    "graph_store",
+    "kv_cache",
+    "multi_store",
+    "other",
+    "prompt_resident",
+    "relational_db",
+    "vector_store"
+   ]
+  },
+  "write_x_retrieval": {
+   "assignments_counted": 55,
+   "cells": {
+    "agent_tool_invoked": {
+     "agent_directed": 1,
+     "always_in_context": 0,
+     "hybrid": 0,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 0,
+     "structured_query": 0
+    },
+    "append_only": {
+     "agent_directed": 2,
+     "always_in_context": 1,
+     "hybrid": 6,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 3,
+     "structured_query": 1
+    },
+    "edit_in_place": {
+     "agent_directed": 1,
+     "always_in_context": 3,
+     "hybrid": 5,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 2,
+     "structured_query": 4
+    },
+    "none_declared": {
+     "agent_directed": 0,
+     "always_in_context": 0,
+     "hybrid": 0,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 1,
+     "structured_query": 0
+    },
+    "reflect_synthesize": {
+     "agent_directed": 0,
+     "always_in_context": 1,
+     "hybrid": 8,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 3,
+     "structured_query": 0
+    },
+    "summarize_compress": {
+     "agent_directed": 1,
+     "always_in_context": 3,
+     "hybrid": 4,
+     "none_declared": 0,
+     "recency_window": 0,
+     "similarity_topk": 3,
+     "structured_query": 2
+    }
+   },
+   "empty_cells": [
+    "agent_tool_invoked x always_in_context",
+    "agent_tool_invoked x hybrid",
+    "agent_tool_invoked x none_declared",
+    "agent_tool_invoked x recency_window",
+    "agent_tool_invoked x similarity_topk",
+    "agent_tool_invoked x structured_query",
+    "append_only x none_declared",
+    "append_only x recency_window",
+    "edit_in_place x none_declared",
+    "edit_in_place x recency_window",
+    "none_declared x agent_directed",
+    "none_declared x always_in_context",
+    "none_declared x hybrid",
+    "none_declared x none_declared",
+    "none_declared x recency_window",
+    "none_declared x structured_query",
+    "reflect_synthesize x agent_directed",
+    "reflect_synthesize x none_declared",
+    "reflect_synthesize x recency_window",
+    "reflect_synthesize x structured_query",
+    "summarize_compress x none_declared",
+    "summarize_compress x recency_window"
+   ],
+   "topic_ids": [
+    "2"
+   ],
+   "x": "retrieval_policy",
+   "x_values": [
+    "agent_directed",
+    "always_in_context",
+    "hybrid",
+    "none_declared",
+    "recency_window",
+    "similarity_topk",
+    "structured_query"
+   ],
+   "y": "write_policy",
+   "y_values": [
+    "agent_tool_invoked",
+    "append_only",
+    "edit_in_place",
+    "none_declared",
+    "reflect_synthesize",
+    "summarize_compress"
+   ]
+  }
+ },
+ "nulls_by_axis": {
+  "retrieval_policy": 8,
+  "substrate": 5,
+  "write_policy": 5,
+  "venue_type": 3
+ },
+ "value_counts": {
+  "substrate": {
+   "vector_store": 14,
+   "multi_store": 13,
+   "graph_store": 12,
+   "prompt_resident": 8,
+   "other": 6,
+   "filesystem": 5,
+   "relational_db": 3
+  },
+  "write_policy": {
+   "edit_in_place": 17,
+   "reflect_synthesize": 15,
+   "append_only": 14,
+   "summarize_compress": 13,
+   "agent_tool_invoked": 1,
+   "none_declared": 1
+  },
+  "retrieval_policy": {
+   "hybrid": 25,
+   "similarity_topk": 12,
+   "always_in_context": 8,
+   "structured_query": 7,
+   "agent_directed": 6
+  },
+  "research_type": {
+   "validation": 64,
+   "solution": 2
+  },
+  "research_method": {
+   "benchmark_evaluation": 55,
+   "controlled_experiment": 8,
+   "proof_of_concept": 2,
+   "case_study": 1
+  },
+  "contribution": {
+   "framework": 39,
+   "method": 21,
+   "dataset": 5,
+   "metric": 1
+  },
+  "stratum": {
+   "peer_reviewed": 66
+  },
+  "venue_type": {
+   "preprint": 62,
+   "conference": 1
+  }
+ },
+ "empty_cells": [
+  {
+   "map": "substrate_x_write_policy",
+   "row": "filesystem",
+   "value": "agent_tool_invoked",
+   "row_total": 4
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "filesystem",
+   "value": "none_declared",
+   "row_total": 4
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "filesystem",
+   "value": "summarize_compress",
+   "row_total": 4
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "graph_store",
+   "value": "agent_tool_invoked",
+   "row_total": 11
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "graph_store",
+   "value": "none_declared",
+   "row_total": 11
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "kv_cache",
+   "value": "agent_tool_invoked",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "kv_cache",
+   "value": "append_only",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "kv_cache",
+   "value": "edit_in_place",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "kv_cache",
+   "value": "none_declared",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "kv_cache",
+   "value": "reflect_synthesize",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "kv_cache",
+   "value": "summarize_compress",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "multi_store",
+   "value": "agent_tool_invoked",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "multi_store",
+   "value": "none_declared",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "other",
+   "value": "reflect_synthesize",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "prompt_resident",
+   "value": "agent_tool_invoked",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "prompt_resident",
+   "value": "none_declared",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "relational_db",
+   "value": "agent_tool_invoked",
+   "row_total": 2
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "relational_db",
+   "value": "none_declared",
+   "row_total": 2
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "relational_db",
+   "value": "reflect_synthesize",
+   "row_total": 2
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "relational_db",
+   "value": "summarize_compress",
+   "row_total": 2
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "vector_store",
+   "value": "agent_tool_invoked",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_write_policy",
+   "row": "vector_store",
+   "value": "none_declared",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "filesystem",
+   "value": "none_declared",
+   "row_total": 4
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "filesystem",
+   "value": "recency_window",
+   "row_total": 4
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "filesystem",
+   "value": "similarity_topk",
+   "row_total": 4
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "filesystem",
+   "value": "structured_query",
+   "row_total": 4
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "graph_store",
+   "value": "agent_directed",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "graph_store",
+   "value": "none_declared",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "graph_store",
+   "value": "recency_window",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "graph_store",
+   "value": "similarity_topk",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "kv_cache",
+   "value": "agent_directed",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "kv_cache",
+   "value": "always_in_context",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "kv_cache",
+   "value": "hybrid",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "kv_cache",
+   "value": "none_declared",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "kv_cache",
+   "value": "recency_window",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "kv_cache",
+   "value": "similarity_topk",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "kv_cache",
+   "value": "structured_query",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "multi_store",
+   "value": "always_in_context",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "multi_store",
+   "value": "none_declared",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "multi_store",
+   "value": "recency_window",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "multi_store",
+   "value": "similarity_topk",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "other",
+   "value": "always_in_context",
+   "row_total": 4
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "other",
+   "value": "none_declared",
+   "row_total": 4
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "other",
+   "value": "recency_window",
+   "row_total": 4
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "prompt_resident",
+   "value": "hybrid",
+   "row_total": 7
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "prompt_resident",
+   "value": "none_declared",
+   "row_total": 7
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "prompt_resident",
+   "value": "recency_window",
+   "row_total": 7
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "prompt_resident",
+   "value": "similarity_topk",
+   "row_total": 7
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "prompt_resident",
+   "value": "structured_query",
+   "row_total": 7
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "relational_db",
+   "value": "always_in_context",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "relational_db",
+   "value": "none_declared",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "relational_db",
+   "value": "recency_window",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "relational_db",
+   "value": "structured_query",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "vector_store",
+   "value": "agent_directed",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "vector_store",
+   "value": "always_in_context",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "vector_store",
+   "value": "none_declared",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "vector_store",
+   "value": "recency_window",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_retrieval_policy",
+   "row": "vector_store",
+   "value": "structured_query",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "filesystem",
+   "value": "evaluation",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "filesystem",
+   "value": "experience",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "filesystem",
+   "value": "opinion",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "filesystem",
+   "value": "philosophical",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "filesystem",
+   "value": "solution",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "graph_store",
+   "value": "evaluation",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "graph_store",
+   "value": "experience",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "graph_store",
+   "value": "opinion",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "graph_store",
+   "value": "philosophical",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "graph_store",
+   "value": "solution",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "kv_cache",
+   "value": "evaluation",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "kv_cache",
+   "value": "experience",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "kv_cache",
+   "value": "opinion",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "kv_cache",
+   "value": "philosophical",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "kv_cache",
+   "value": "solution",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "kv_cache",
+   "value": "validation",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "multi_store",
+   "value": "evaluation",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "multi_store",
+   "value": "experience",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "multi_store",
+   "value": "opinion",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "multi_store",
+   "value": "philosophical",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "other",
+   "value": "evaluation",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "other",
+   "value": "experience",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "other",
+   "value": "opinion",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "other",
+   "value": "philosophical",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "other",
+   "value": "solution",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "prompt_resident",
+   "value": "evaluation",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "prompt_resident",
+   "value": "experience",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "prompt_resident",
+   "value": "opinion",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "prompt_resident",
+   "value": "philosophical",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "prompt_resident",
+   "value": "solution",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "relational_db",
+   "value": "evaluation",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "relational_db",
+   "value": "experience",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "relational_db",
+   "value": "opinion",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "relational_db",
+   "value": "philosophical",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "vector_store",
+   "value": "evaluation",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "vector_store",
+   "value": "experience",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "vector_store",
+   "value": "opinion",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "vector_store",
+   "value": "philosophical",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_research_type",
+   "row": "vector_store",
+   "value": "solution",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "filesystem",
+   "value": "case_study",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "filesystem",
+   "value": "none",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "filesystem",
+   "value": "proof_of_concept",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "filesystem",
+   "value": "simulation",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "graph_store",
+   "value": "none",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "graph_store",
+   "value": "proof_of_concept",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "graph_store",
+   "value": "simulation",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "kv_cache",
+   "value": "benchmark_evaluation",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "kv_cache",
+   "value": "case_study",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "kv_cache",
+   "value": "controlled_experiment",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "kv_cache",
+   "value": "none",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "kv_cache",
+   "value": "proof_of_concept",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "kv_cache",
+   "value": "simulation",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "multi_store",
+   "value": "case_study",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "multi_store",
+   "value": "none",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "multi_store",
+   "value": "simulation",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "other",
+   "value": "case_study",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "other",
+   "value": "controlled_experiment",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "other",
+   "value": "none",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "other",
+   "value": "proof_of_concept",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "other",
+   "value": "simulation",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "prompt_resident",
+   "value": "case_study",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "prompt_resident",
+   "value": "none",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "prompt_resident",
+   "value": "proof_of_concept",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "prompt_resident",
+   "value": "simulation",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "relational_db",
+   "value": "case_study",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "relational_db",
+   "value": "none",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "relational_db",
+   "value": "simulation",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "vector_store",
+   "value": "case_study",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "vector_store",
+   "value": "none",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "vector_store",
+   "value": "proof_of_concept",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_research_method",
+   "row": "vector_store",
+   "value": "simulation",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "filesystem",
+   "value": "metric",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "filesystem",
+   "value": "model",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "filesystem",
+   "value": "tool",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "graph_store",
+   "value": "dataset",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "graph_store",
+   "value": "metric",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "graph_store",
+   "value": "model",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "graph_store",
+   "value": "tool",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "kv_cache",
+   "value": "dataset",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "kv_cache",
+   "value": "framework",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "kv_cache",
+   "value": "method",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "kv_cache",
+   "value": "metric",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "kv_cache",
+   "value": "model",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "kv_cache",
+   "value": "tool",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "multi_store",
+   "value": "dataset",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "multi_store",
+   "value": "method",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "multi_store",
+   "value": "metric",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "multi_store",
+   "value": "model",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "multi_store",
+   "value": "tool",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "other",
+   "value": "dataset",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "other",
+   "value": "metric",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "other",
+   "value": "model",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "other",
+   "value": "tool",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "prompt_resident",
+   "value": "metric",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "prompt_resident",
+   "value": "model",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "prompt_resident",
+   "value": "tool",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "relational_db",
+   "value": "dataset",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "relational_db",
+   "value": "metric",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "relational_db",
+   "value": "model",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "relational_db",
+   "value": "tool",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "vector_store",
+   "value": "dataset",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "vector_store",
+   "value": "model",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_contribution",
+   "row": "vector_store",
+   "value": "tool",
+   "row_total": 14
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "filesystem",
+   "value": "conference",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "filesystem",
+   "value": "grey",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "filesystem",
+   "value": "journal",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "filesystem",
+   "value": "workshop",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "graph_store",
+   "value": "conference",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "graph_store",
+   "value": "grey",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "graph_store",
+   "value": "journal",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "graph_store",
+   "value": "workshop",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "kv_cache",
+   "value": "conference",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "kv_cache",
+   "value": "grey",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "kv_cache",
+   "value": "journal",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "kv_cache",
+   "value": "preprint",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "kv_cache",
+   "value": "workshop",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "multi_store",
+   "value": "conference",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "multi_store",
+   "value": "grey",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "multi_store",
+   "value": "journal",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "multi_store",
+   "value": "workshop",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "other",
+   "value": "conference",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "other",
+   "value": "grey",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "other",
+   "value": "journal",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "other",
+   "value": "workshop",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "prompt_resident",
+   "value": "conference",
+   "row_total": 7
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "prompt_resident",
+   "value": "grey",
+   "row_total": 7
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "prompt_resident",
+   "value": "journal",
+   "row_total": 7
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "prompt_resident",
+   "value": "workshop",
+   "row_total": 7
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "relational_db",
+   "value": "conference",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "relational_db",
+   "value": "grey",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "relational_db",
+   "value": "journal",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "relational_db",
+   "value": "workshop",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "vector_store",
+   "value": "conference",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "vector_store",
+   "value": "grey",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "vector_store",
+   "value": "journal",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_venue_type",
+   "row": "vector_store",
+   "value": "workshop",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_stratum",
+   "row": "filesystem",
+   "value": "grey",
+   "row_total": 5
+  },
+  {
+   "map": "substrate_x_stratum",
+   "row": "graph_store",
+   "value": "grey",
+   "row_total": 12
+  },
+  {
+   "map": "substrate_x_stratum",
+   "row": "kv_cache",
+   "value": "grey",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_stratum",
+   "row": "kv_cache",
+   "value": "peer_reviewed",
+   "row_total": 0
+  },
+  {
+   "map": "substrate_x_stratum",
+   "row": "multi_store",
+   "value": "grey",
+   "row_total": 13
+  },
+  {
+   "map": "substrate_x_stratum",
+   "row": "other",
+   "value": "grey",
+   "row_total": 6
+  },
+  {
+   "map": "substrate_x_stratum",
+   "row": "prompt_resident",
+   "value": "grey",
+   "row_total": 8
+  },
+  {
+   "map": "substrate_x_stratum",
+   "row": "relational_db",
+   "value": "grey",
+   "row_total": 3
+  },
+  {
+   "map": "substrate_x_stratum",
+   "row": "vector_store",
+   "value": "grey",
+   "row_total": 14
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "agent_tool_invoked",
+   "value": "always_in_context",
+   "row_total": 1
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "agent_tool_invoked",
+   "value": "hybrid",
+   "row_total": 1
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "agent_tool_invoked",
+   "value": "none_declared",
+   "row_total": 1
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "agent_tool_invoked",
+   "value": "recency_window",
+   "row_total": 1
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "agent_tool_invoked",
+   "value": "similarity_topk",
+   "row_total": 1
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "agent_tool_invoked",
+   "value": "structured_query",
+   "row_total": 1
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "append_only",
+   "value": "none_declared",
+   "row_total": 13
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "append_only",
+   "value": "recency_window",
+   "row_total": 13
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "edit_in_place",
+   "value": "none_declared",
+   "row_total": 15
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "edit_in_place",
+   "value": "recency_window",
+   "row_total": 15
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "none_declared",
+   "value": "agent_directed",
+   "row_total": 1
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "none_declared",
+   "value": "always_in_context",
+   "row_total": 1
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "none_declared",
+   "value": "hybrid",
+   "row_total": 1
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "none_declared",
+   "value": "none_declared",
+   "row_total": 1
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "none_declared",
+   "value": "recency_window",
+   "row_total": 1
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "none_declared",
+   "value": "structured_query",
+   "row_total": 1
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "reflect_synthesize",
+   "value": "agent_directed",
+   "row_total": 12
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "reflect_synthesize",
+   "value": "none_declared",
+   "row_total": 12
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "reflect_synthesize",
+   "value": "recency_window",
+   "row_total": 12
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "reflect_synthesize",
+   "value": "structured_query",
+   "row_total": 12
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "summarize_compress",
+   "value": "none_declared",
+   "row_total": 13
+  },
+  {
+   "map": "write_x_retrieval",
+   "row": "summarize_compress",
+   "value": "recency_window",
+   "row_total": 13
+  }
+ ]
+}

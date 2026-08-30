@@ -1,0 +1,79 @@
+{
+ "n_scored": 13,
+ "sample_drawn": 13,
+ "missing_recodes": [],
+ "eligibility": {
+  "raw_agreement": 1.0,
+  "cohens_kappa": 1.0
+ },
+ "by_axis": {
+  "substrate": {
+   "raw_agreement": 0.8462,
+   "cohens_kappa": 0.8102,
+   "n": 13,
+   "disagreements": 2
+  },
+  "write_policy": {
+   "raw_agreement": 0.9231,
+   "cohens_kappa": 0.8976,
+   "n": 13,
+   "disagreements": 1
+  },
+  "retrieval_policy": {
+   "raw_agreement": 0.9231,
+   "cohens_kappa": 0.9008,
+   "n": 13,
+   "disagreements": 1
+  },
+  "research_type": {
+   "raw_agreement": 1.0,
+   "cohens_kappa": 1.0,
+   "n": 13,
+   "disagreements": 0
+  },
+  "research_method": {
+   "raw_agreement": 1.0,
+   "cohens_kappa": 1.0,
+   "n": 13,
+   "disagreements": 0
+  },
+  "contribution": {
+   "raw_agreement": 0.9231,
+   "cohens_kappa": 0.8587,
+   "n": 13,
+   "disagreements": 1
+  }
+ },
+ "disagreements": [
+  {
+   "paper_id": 14516,
+   "axis": "substrate",
+   "coder1": null,
+   "coder2": "other"
+  },
+  {
+   "paper_id": 14943,
+   "axis": "write_policy",
+   "coder1": "append_only",
+   "coder2": "agent_tool_invoked"
+  },
+  {
+   "paper_id": 15038,
+   "axis": "substrate",
+   "coder1": "graph_store",
+   "coder2": "relational_db"
+  },
+  {
+   "paper_id": 15055,
+   "axis": "contribution",
+   "coder1": "method",
+   "coder2": "framework"
+  },
+  {
+   "paper_id": 20020,
+   "axis": "retrieval_policy",
+   "coder1": "similarity_topk",
+   "coder2": "hybrid"
+  }
+ ]
+}

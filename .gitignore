@@ -1,0 +1,8 @@
+# Never redistribute publishers' full text. The study fetched PDFs and extracted
+# page text locally; neither belongs in a public package.
+pdf/
+txt/
+batches/
+*.pdf.err
+__pycache__/
+*.pyc

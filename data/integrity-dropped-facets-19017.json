@@ -1,0 +1,40 @@
+{
+  "paper_id": 19017,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "DATA MISMATCH: the 8 pages supplied in this batch file are not pages of this record. Page 1's title/author/venue ('Graph-Native Cognitive Memory for AI Agents: Formal Belief Revision Semantics for Versioned Memory Architectures', Young Bin Park, arXiv:2603.17244v1, Kumiho Inc., Mar 2026) and page 2's LoCoMo/Kumiho content describe an entirely different paper from the one in 'record' ('Four Governance Invariants for Organisational Agent Memory: A Specification', Alexander Bering). Pages 26/28/30/55/56/57 continue that same other paper (Redis/Neo4j hybrid retrieval, AGM belief revision, Kumiho's reference/appendix material). This looks like an extraction-pipeline indexing error upstream of this batch file, not a property of paper 19017. Per instructions I have not fetched anything to correct this and I am not citing any of the 8 supplied pages anywhere below, since none of them are this record's text. The eligibility call below rests only on the abstract given directly in 'record', which is not corrupted by the same error. That abstract specifies obligations an organisational memory system must discharge: authorised-only cross-node recall over a store of records, transitive multi-hop erasure of what was written, a single written oversight record gating delivery ('co-determination'), and a store that keeps conflicting attributed statements and supports per-user erasure. All four presuppose a system that writes state at run time and later reads it back to condition later behaviour (recall, erasure, delivery gating), satisfying I1. Year 2026 and English are given directly in record metadata (I2, I3). I4 is taken as given per the guide's own framing ('already true or you would not have the pages') though I cannot independently confirm it from the pages actually supplied, since they belong to a different paper.",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": null,
+      "justification": "The abstract does not state where the store physically lives (vector index, graph, DB, filesystem, prompt), and none of the 8 supplied pages are this record's text (they are pages of a different paper, 'Graph-Native Cognitive Memory for AI Agents' by Young Bin Park) so they cannot be cited as evidence for this axis. No architecture section for the actual record was supplied."
+    },
+    {
+      "axis": "write_policy",
+      "value": null,
+      "justification": "The abstract describes what must be true of writes (transitive erasure works on them, one oversight record is written before delivery, contradictory writes are both kept and attributed) but not the transformation applied at write time (append/summarize/reflect/edit). None of the supplied pages are this record's text, so there is no page-anchored evidence to choose among the listed values."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": null,
+      "justification": "The abstract discusses a property recall must satisfy (result-count/latency/audit-chain equality between authorised and ground-truth views) but not the retrieval mechanism itself (similarity, recency, structured query, agent-directed, always-in-context). None of the supplied pages belong to this record, so the actual retrieval mechanism section was not available."
+    },
+    {
+      "axis": "research_type",
+      "value": null,
+      "justification": "The abstract reads as a formal specification of invariants with stated obligations and equalities to be discharged, which suggests philosophical/validation framing, but the body sections that would show whether any implementation or evaluation accompanies the specification were not supplied (all 8 pages given belong to a different paper). Coding this without the record's own introduction/evaluation sections would be a guess."
+    },
+    {
+      "axis": "research_method",
+      "value": null,
+      "justification": "No pages of this record were supplied (all 8 given pages are from a different paper, Young Bin Park's 'Graph-Native Cognitive Memory for AI Agents'), so there is no page-anchored evidence of whether the four invariants are backed by a controlled experiment, benchmark, case study, simulation, proof-of-concept, or no empirical component at all."
+    },
+    {
+      "axis": "contribution",
+      "value": null,
+      "justification": "The abstract's own closing line ('Invariants 1 and 2 have classical ancestors; offered here is their combination and formalisation for this setting, not their invention') points toward a method/framework contribution, but confirming method vs. framework vs. tool needs the contribution list, which was not supplied for this record (the 8 given pages belong to a different paper, so no genuine contributions section for paper 19017 was available)."
+    }
+  ]
+}

@@ -1,0 +1,533 @@
+[
+ {
+  "paper_id": 13639,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 4.1 (p. 4) describes the Task Memory Tree (TMT): as the agent progresses through a multi-step task, nodes are 'dynamically created and updated in real time,' each storing action, input/output, status and parent/child relationships. The Prompt Synthesizer then 'traverses the active node path \u2014 from the root to the current leaf \u2014 and generates a concise, contextually-relevant prompt' (p. 4), i.e. state the agent's own execution wrote earlier is read back to condition later steps. This is an externalised, agent-written, cross-step store, not parametric memory or a fixed corpus, so E1\u2013E3 do not apply. It is an original contribution (not E4), memory is the entire contribution (not E5), the system is explicitly an LLM-based agent framework (not E6), and the paper is 16 pages with a full method and appendix (not E7). Published April 2025 (p. 1), English, full text available.",
+  "secondary_substrates": [],
+  "facets": [
+   {
+    "axis": "substrate",
+    "value": "graph_store",
+    "justification": "TMT is a hierarchical node/edge structure: each node holds action, input/output, status, parent/child links and 'dependencies: optional cross-links that describe logical relations among tasks across branches' (Section 4.1, p. 4). TRIM classifies explicit edge types between nodes \u2014 dependency, parallel, replacement, merge, rollback, subtask (Section 4.2.2, p. 5) \u2014 and Section 4.2.3 (p. 5) uses 'tree-based structural update rules to determine parent-child or rollback links.' The paper itself frames the store as en route to a graph: 'TME is designed to be graph-aware... This lays the groundwork for future DAG-based memory architectures' (abstract, p. 1). Coded graph_store over prompt_resident because the Prompt Synthesizer queries this external structure by path traversal rather than the memory simply being the running context."
+   },
+   {
+    "axis": "write_policy",
+    "value": "edit_in_place",
+    "justification": "Beyond node creation, TRIM explicitly rewrites the store as new information arrives: Section 4.2.6 (p. 6) states 'Users may revisit and edit previous steps... Only affected subtrees are updated, avoiding full sequence recomputation,' and Section 4.2.7 (p. 6) describes merging redundant branches ('TRIM merges them into unified nodes to minimize duplication') and pruning invalidated ones. The extracted appendix example (p. 15, Round 5\u20136) shows exactly this: a correction ('Sorry, to correct, my name is John Smith') updates the existing name entry rather than appending a new unrelated fact, and this is the scenario the token-efficiency table evaluates."
+   },
+   {
+    "axis": "retrieval_policy",
+    "value": "structured_query",
+    "justification": "Section 4.1 (p. 4): 'A dedicated Prompt Synthesizer traverses the active node path \u2014 from the root to the current leaf \u2014 and generates a concise, contextually-relevant prompt.' This is a deterministic tree traversal along a defined path, not a similarity ranking, a fixed recency window, or an agent-issued free-form lookup, so it matches structured_query's 'graph traversal... an exact query, not a ranking.'"
+   },
+   {
+    "axis": "research_type",
+    "value": "validation",
+    "justification": "Contribution 5 (p. 2): 'We validate TME's effectiveness through realistic case studies and token efficiency comparisons, demonstrating significant improvements over traditional linear prompt chaining.' The evaluation exhibited in the extracted pages (p. 14\u201315) is a constructed form-filling scenario comparing a Baseline prompt-concatenation condition against TME/TET in a controlled, authors-run setting \u2014 no real users, deployment, or fielded system are described anywhere in the extracted pages. Coded validation, the conservative choice, since no evaluation-in-practice text was found in the given pages."
+   },
+   {
+    "axis": "research_method",
+    "value": "case_study",
+    "justification": "The authors' own term is 'case studies' (p. 2, contribution 5; abstract, p. 1: 'Through case studies and comparative experiments on multi-step agent tasks'). The extracted appendix (p. 14\u201315) walks through one concrete scenario (a multi-round form-filling dialogue) round-by-round, comparing Baseline vs TET prompt construction in Table 3 \u2014 an in-depth worked example rather than a run over a fixed, named benchmark task suite, so benchmark_evaluation was not coded."
+   },
+   {
+    "axis": "contribution",
+    "value": "framework",
+    "justification": "Contribution 1 (p. 2) names the deliverable as 'a novel memory framework composed of the Task Memory Tree (TMT) and the Task Planner'; the introduction (p. 1) likewise calls TME 'a novel memory architecture composed of three core components: the Task Memory Tree (TMT), the Task Relationship Inference Module (TRIM), and the Prompt Synthesizer.' The contribution is this multi-component architecture and how the pieces are organised, not a single algorithm; code is released (p. 1) but the paper's own contribution list foregrounds the framework, not the artefact."
+   }
+  ]
+ },
+ {
+  "paper_id": 13728,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The agent builds a Cognitive Map (a graph of state-action-outcome transitions) at run time via curiosity-driven exploration and LLM-based trajectory-mining, and later queries that same store during task execution to select and simulate actions -- an externalised, agent-written store that conditions future behaviour, not a fixed corpus or parametric-only memory (p. 2, Section 3.3-3.4, pp. 4-6). Workshop paper at NeurIPS 2025, in English, full text available (p. 1).",
+  "secondary_substrates": [
+   "prompt_resident",
+   "other"
+  ],
+  "facets": [
+   {
+    "axis": "substrate",
+    "value": "graph_store",
+    "justification": "Section 3.2-3.3: the Cognitive Map is 'a graph of transitions M = {(o, a, o')}' and is 'represented by tuples (ot, at, ot+1)' encoding state transitions and causal relationships the agent itself writes during exploration (p. 4, p. 5). This is the mechanism named in the title/abstract as 'experience-driven memory' and evaluated in the ablations (p. 1)."
+   },
+   {
+    "axis": "write_policy",
+    "value": "summarize_compress",
+    "justification": "Page 5-6: 'we employ an LLM to convert the trajectories to agentic summaries of the environmental transitions, and store it as a cognitive map'; the memory agent 'produces concise summaries' of each observation-to-observation delta, explicitly 'avoiding HTML bloat' (p. 2, p. 6) -- raw trajectory content is condensed at write time rather than reflected into new abstractions or merely appended verbatim."
+   },
+   {
+    "axis": "retrieval_policy",
+    "value": "structured_query",
+    "justification": "Page 6: 'the cognitive map is queried with (ot, at), returning the next raw observation ot+1, as well as LLM summaries' -- an exact state-action key lookup into the transition graph (also Eq. 4, p. 4: o_hat_{t+1} = M(ot, a)), not a similarity ranking."
+   },
+   {
+    "axis": "research_type",
+    "value": "validation",
+    "justification": "Evaluated on the WebArena-Lite benchmark with a reported success rate (63% vs. prior SOTA 53.9%) and ablation studies (abstract, p. 1); no deployment, real users, or fielded setting appear anywhere in the extracted pages, so this is a lab benchmark comparison, not a real-world evaluation."
+   },
+   {
+    "axis": "research_method",
+    "value": "benchmark_evaluation",
+    "justification": "Abstract and Section 1 (p. 1-2): system is run over the fixed WebArena-Lite task suite and compared to prior systems by success-rate score, with ablations isolating memory, look-ahead simulation, and replanning (p. 1)."
+   },
+   {
+    "axis": "contribution",
+    "value": "framework",
+    "justification": "Contributions list (p. 2) names 'a practical modular architecture that integrates planning, memory, and simulation' as a distinct contribution alongside the actor-critic planner and the multi-layer memory -- the paper argues for a system architecture (Planner/Actor/Critic/Memory) rather than a single algorithmic method."
+   }
+  ]
+ },
+ {
+  "paper_id": 14280,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The paper's contribution centers on ChatAgent and MemoryManager writing conversational state (raw messages and derived semantic entries) into a persistent dual-layer memory bank at run time, and later retrieving that state via tri-path hybrid retrieval to condition future responses across sessions (p. 1 abstract; p. 4, Section 4.1: 'the belief state Mt is instantiated through dual-layer hybrid memory'; p. 14 MemoryManager system prompt showing add/delete/fetch operations). This is an externalised, agent-written store, not a fixed corpus (E3 does not apply) and not parametric-only (E2 does not apply). The work is a 2026 preprint (p. 1, 'Preprint. February 10, 2026'), in English, spans at least 16 pages (footer numbering through p. 16), and is a primary contribution paper, not a survey (E4 does not apply). Memory is the explicit, title-level contribution, not incidental (E5 does not apply), and the system is an LLM/VLM-based agent (ChatAgent, MemoryManager) rather than pure hardware/cache optimisation (E1 does not apply).",
+  "secondary_substrates": [],
+  "facets": [
+   {
+    "axis": "substrate",
+    "value": "multi_store",
+    "justification": "The paper's own contribution list names the tiering itself as the contribution: 'Dual-layer hybrid memory with evidence linking. We propose a two-tier memory architecture with progressive narrowing for efficient and precise retrieval' (p. 2). Section 4.2 (p. 4) describes a RawMessageStore ('append-only database that stores raw conversational messages') coupled via evidence ids to a SemanticMemoryStore (indexed with dense text, BM25 sparse, and cross-modal image embeddings), with retrieval deliberately narrowing from the semantic layer to the raw layer (p. 4-5, p. 14 'Progressive Narrowing Strategy'). The relationship between the two stores, not either store alone, is what the paper argues for."
+   },
+   {
+    "axis": "write_policy",
+    "value": "edit_in_place",
+    "justification": "MemoryManager explicitly updates existing memories rather than only appending: 'analyzes existing memories to decide how to update (create, delete, modify)' (p. 4). The MemoryManager system prompt (p. 14) gives an explicit update workflow: 'Decide strategy: CREATE / DELETE / BOTH' and 'When updating contradictory info: delete old \u2192 create new \u2192 add update record.' Figure 1's caption (p. 2) contrasts M2A against baselines specifically on this axis: it 'updates a unified memory bank during interaction,' unlike systems with 'no write-back to the card.'"
+   },
+   {
+    "axis": "retrieval_policy",
+    "value": "hybrid",
+    "justification": "Section 4.2 (p. 4-5) defines a tri-path retrieval score combining dense text similarity, BM25 sparse matching, and cross-modal image similarity, explicitly fused with a declared rule: 'results from the three paths are fused via Reciprocal Rank Fusion (RRF)' (Eq. 6, p. 5), with hyperparameter k=60 stated. This is a stated combination/fusion rule over multiple retrieval signals, matching the hybrid definition rather than a single similarity_topk path."
+   },
+   {
+    "axis": "research_type",
+    "value": "validation",
+    "justification": "Evaluation is conducted on a synthesized benchmark built by injecting Yo'LLaVA/MC-LLaVA concept sessions into LoCoMo conversations (p. 5, Section on data synthesis; Figure 3), with results reported against baseline models (Qwen3VL-8B, GPT-4o-mini, GLM-4.6V-Flash) and systematic ablations (p. 8, Section 5.3, Table 2, Figure 5). No real users or fielded deployment are reported in the given pages \u2014 this is a controlled, benchmark-style investigation of a novel technique, coded conservatively as validation per the guide's boundary rule."
+   },
+   {
+    "axis": "research_method",
+    "value": "benchmark_evaluation",
+    "justification": "The abstract states 'Experiments show that M2A significantly outperforms baselines' (p. 1), and Section 5.3 (p. 8) reports scores averaged across question categories on the synthesized dataset against named baseline models, with a results table (Table 2) and a supporting figure (Figure 5, p. 8) sweeping context-turn count. The ablation variants ('w/o Dual-layer', 'w/o Iterative', 'w/o Tri-path') are reported as part of this same fixed-task-suite evaluation rather than as an independently manipulated controlled trial outside the benchmark."
+   },
+   {
+    "axis": "contribution",
+    "value": "framework",
+    "justification": "Page 1 states directly: 'we propose M2A, an agentic framework with dual-layer hybrid memory.' The contributions list (p. 2) frames the second contribution as 'a two-tier memory architecture,' i.e., a way of organising the memory system (two collaborating agents plus a layered store), rather than a single algorithm. Code is released (p. 1, GitHub link) but the paper argues for the architecture itself, not the artefact as such."
+   }
+  ]
+ },
+ {
+  "paper_id": 14516,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "GSW's Operator maps sequential incoming observations (3-sentence chunks of a document) to intermediate semantic structures at run time, and the Reconciler integrates these into a persistent workspace enforcing temporal/spatial/logical coherence (p. 1, p. 26). This workspace is not the fixed source corpus itself but derived, agent-written state: at query time a resolution module retrieves entity-specific summaries from that workspace to answer questions, i.e. the written state conditions later behaviour (p. 2, p. 20, Fig. 11). This is the 'run-time writes added to an otherwise classical RAG pipeline' case the guide names as in-scope, not E3 (fixed corpus never written to) \u2014 the corpus is read, but the retrieved object is the agent-constructed workspace representation, not raw corpus text.",
+  "secondary_substrates": [
+   "vector_store"
+  ],
+  "facets": [
+   {
+    "axis": "substrate",
+    "value": "other",
+    "justification": "The workspace holds structured, entity-centric semantic-frame records \u2014 e.g. the p. 2 example 'Carter Stewart: Role: A presenter...; Date: ...; Location: ...; Topic: ...; Implements Used: ...' \u2014 explicitly distinguished by the paper from 'structured knowledge graphs representations' used by prior work (p. 1). No SQL/tabular schema, no filesystem, no KV-cache is described. Retrieval (p. 20-21) shows entity summaries embedded for cosine-similarity reranking, but the primary persistent object is the slot-filled semantic frame per entity per chapter, not the embedding index itself, so it does not cleanly fit vector_store, graph_store or relational_db as defined \u2014 coded other: structured semantic-frame representation. Vector use at retrieval time is captured in secondary_substrates."
+   },
+   {
+    "axis": "write_policy",
+    "value": "summarize_compress",
+    "justification": "Each document is split into short 3-sentence contexts before being passed to the Operator to generate the semantic representation (p. 26), and the resulting entity summaries retrieved in Fig. 11 (p. 20) are condensed narrative summaries (e.g. 'Entity: Carter Stewart - Summary: On January 3, 2026, at Yankee Stadium...') built from the fuller source text. The Operator+Reconciler pipeline condenses sequential input into a coherent persistent representation (p. 1), matching a running-summary/compaction transformation rather than a verbatim append."
+   },
+   {
+    "axis": "retrieval_policy",
+    "value": "hybrid",
+    "justification": "Figure 11's caption (p. 20) gives an explicit two-stage fusion rule: NER on the query plus string matching locates the relevant GSW chapter instances and entity summaries (a structured match), and these are then re-ranked 'based on their semantic similarity to the input query\u2014a score calculated using cosine similarity between their embeddings and the query's embedding' before being passed to the answering LLM (p. 20-21)."
+   },
+   {
+    "axis": "research_type",
+    "value": "validation",
+    "justification": "GSW is assessed on the Episodic Memory Benchmark (EpBench-200 and EpBench-2000) against RAG baselines (Embedding RAG, GraphRAG, HippoRAG2, LightRAG) with F1/precision/recall tables and bootstrap error bars (p. 21, p. 23), plus a controlled human-annotator preference study against SRL baselines (p. 26-27, Table 15). All evidence is benchmark/lab comparison; no deployed system or real users outside the authors' own experiment is reported in the given pages."
+   },
+   {
+    "axis": "research_method",
+    "value": "benchmark_evaluation",
+    "justification": "Table 12 (p. 23) reports precision/recall/F1 for GSW and four baselines across cue-complexity buckets on the fixed EpBench-2000 task suite, and p. 21 describes the shared QA benchmark evaluation protocol (bootstrap resampling, fixed top-k, common answering LLM) used for the main results."
+   },
+   {
+    "axis": "contribution",
+    "value": "framework",
+    "justification": "The paper states 'we propose the Generative Semantic Workspace (GSW), a neuro-inspired generative memory framework' (abstract, p. 1) and 'we introduce the Generative Semantic Workspace (GSW), a unifying computational framework for modeling world knowledge' (p. 1-2), comprising the Operator, Reconciler and persistent workspace as an architecture; code is released but the paper argues for the framework itself, not the artefact as such."
+   }
+  ]
+ },
+ {
+  "paper_id": 14542,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "MERIT is a training-free agent that, after each finalized repair episode, writes an oracle-verified correction or an observed unsuccessful direction into an online dual-polarity memory, and only memories from earlier finalized episodes are eligible for retrieval by a hybrid lexical-dense retriever on later queries (p. 1-2, p. 4 'Episode finalization and memory update'). This is run-time write plus later cross-episode retrieval conditioning future agent behaviour, satisfying I1. The record is 2026, English, and full text is present (I2-I4). No exclusion applies: the store is agent-written, not a fixed corpus (not E3); memory is externalised (JSONL files, FAISS index; not E2); this is a primary study introducing a new method, not a survey (not E4); memory is the paper's central contribution, not incidental (not E5); the repairing system is an LLM-based agent (Qwen2.5-7B-Instruct as semantic parser and repair generator; not E6); and the paper is 15 pages (not E7).",
+  "secondary_substrates": [
+   "filesystem"
+  ],
+  "facets": [
+   {
+    "axis": "substrate",
+    "value": "vector_store",
+    "justification": "Positive and negative memory entries are dense-encoded with BAAI/bge-large-en-v1.5 and 'stored in a FAISS IndexFlatIP index' for similarity retrieval (p. 13, 'Dense retrieval'; Table 7, p. 14). Entries are also persisted as JSONL files (p. 13, 'Memory and generation configuration'), listed here as a secondary substrate since the FAISS embedding index is what the paper's retrieval mechanism operates over."
+   },
+   {
+    "axis": "write_policy",
+    "value": "append_only",
+    "justification": "Page 4, 'Episode finalization and memory update': on success MERIT creates exactly one positive entry from the final confirmed transition, on exhaustion at most one negative entry from the final observed direction, and the update rule is M<(t+1) = M<t \u222a {xt} \u2014 a strict union/append with no rewriting of existing entries. Page 4 also states 'MERIT Full does not generate local reflections,' ruling out reflect_synthesize."
+   },
+   {
+    "axis": "retrieval_policy",
+    "value": "hybrid",
+    "justification": "Page 4 and Table 7 (p. 14) give an explicit fusion rule, r(x,u) = 0.75\u00b7dense(x,u) + 0.25\u00b7BM25(x,u), combining dense similarity and lexical BM25 scores (independently min-max normalized per polarity pool, p. 4 and p. 13) to rank retrieved precedents \u2014 a declared combination rule, matching hybrid rather than similarity_topk alone."
+   },
+   {
+    "axis": "research_type",
+    "value": "validation",
+    "justification": "Evaluated on the development sets of two public academic Text-to-SQL benchmarks, Spider and BIRD, against baselines and ablations (abstract; p. 8 Conclusion). The Limitations section (p. 8) explicitly contrasts this with deployment: the oracle-assisted feedback used here 'is stronger than the feedback available in many deployed databases, where an agent may observe only execution errors, incomplete tests, or delayed user confirmation.' No real users or fielded system are reported, so this is lab validation, not evaluation-in-practice."
+   },
+   {
+    "axis": "research_method",
+    "value": "benchmark_evaluation",
+    "justification": "Execution accuracy is reported on the fixed Spider and BIRD benchmark suites against a frozen Qwen2.5-7B-Instruct backbone, comparing MERIT to stateless iterative repair, Reflexion-style memory, and untyped dynamic retrieval, with per-benchmark accuracy tables (abstract; p. 8). Component ablations (dense rerank, BM25, type filter, schema locality; p. 8) are run within this same fixed-suite comparison rather than as an independently controlled lab experiment."
+   },
+   {
+    "axis": "contribution",
+    "value": "method",
+    "justification": "The contributions list (p. 2) names two techniques: formulating Text-to-SQL correction as causal episodic memory, and an error-guided hybrid retrieval scheme that ranks precedents by outcome, failure type, and lexical/dense signals. No standalone tool, model, metric, or dataset is released as the argued artefact; the paper's own conclusion (p. 8) still frames MERIT as a mechanism ('a training-free framework that learns... through causal cross-query memory'), i.e. a method for organizing and using memory."
+   }
+  ]
+ },
+ {
+  "paper_id": 14856,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 3.1-3.2 (p. 4) describes LLMextract writing episodic memory fragments to a persistent store at run time as each conversation session is observed, and Section 3.2.2/3.3 (p. 5) describes LLMreason writing synthesized cross-session reasoning fragments to a reasoning pool R that is then retrieved by LLMresponse to condition later responses (p. 5, Section 3.3). The store is written and read across sessions by the system's own components, not a fixed corpus, and the paper is an original EMNLP 2025 Findings method paper (p. 1) with dataset/benchmark evaluation (p. 5), so none of E1-E7 apply.",
+  "secondary_substrates": [],
+  "facets": [
+   {
+    "axis": "substrate",
+    "value": "vector_store",
+    "justification": "Section 3.2.1 (p. 4): memory fragments are embedded via femb into vectors and clustered; Section 3.3 (p. 5): inference retrieves from the union of memory store M and reasoning store R by cosine similarity over their embeddings E and E'. Both stores are embedding-indexed collections of agent-written items."
+   },
+   {
+    "axis": "write_policy",
+    "value": "reflect_synthesize",
+    "justification": "Section 3.2.2 (p. 4-5): LLMreason analyzes memory fragments in clusters Mp and Mc and generates new reasoning fragments r^j_{p,c} capturing evolution patterns (extension, accumulation, specification, transformation, connection) that are not present in any single source fragment (p. 5, bullet list). This pre-storage reasoning step is the paper's title contribution and what Section 4 evaluates."
+   },
+   {
+    "axis": "retrieval_policy",
+    "value": "similarity_topk",
+    "justification": "Section 3.3 (p. 5): for a query q, the system selects the top-k items from M \u222a R based on cosine similarity between embedded vectors and femb(q); Algorithm 1 line 22 (p. 18) confirms TopK_k(M \u222a R; sim(femb(\u00b7), e_q))."
+   },
+   {
+    "axis": "research_type",
+    "value": "validation",
+    "justification": "Section 4.1 (p. 5): evaluated on two public QA benchmarks, LoCoMo and LongMemEval, across multiple model families and sizes with standardized prompts and automated/LLM-judge metrics (p. 5, Table 1; p. 17 judge prompt). No deployment or real users are reported anywhere in the given pages, so this is lab-controlled benchmark validation, not evaluation-in-practice."
+   },
+   {
+    "axis": "research_method",
+    "value": "benchmark_evaluation",
+    "justification": "Section 4.1 (p. 5): two fixed benchmark datasets (LoCoMo, LongMemEval) with defined question categories (Table 1, p. 5) are run against baselines/model sizes and scored with BLEU-1, ROUGE-1/L, METEOR, BERTScore, and an LLM-as-a-judge score (p. 5-6)."
+   },
+   {
+    "axis": "contribution",
+    "value": "method",
+    "justification": "Abstract (p. 1) and contributions list (p. 2, item 2) name PREMem as 'a pre-storage reasoning method that shifts complex cross-session synthesis from response time to memory construction'; code and dataset are released (p. 1, GitHub link) but the argued contribution is the reasoning technique itself, per Section 3's algorithmic description (p. 4-5, Algorithm 1 on p. 18)."
+   }
+  ]
+ },
+ {
+  "paper_id": 14943,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 2.1 (p.4) describes a stateful LLM agent that writes to a persistent SQLite memory store at run time via an explicit memory_save_fact tool call in one session (S1), and later retrieves that stored content via a memory_recall_fact tool call in a subsequent session (S4) after the intervening conversation context has been discarded, with the recalled content conditioning the agent's own downstream action (routing an email). This run-time write / cross-session retrieve loop is not incidental scenery: the paper's central contribution is a taxonomy of defenses that intervene at points along exactly this memory write-to-recall-to-action pathway, and its strongest defense (Memory Sandbox) works by structurally severing the recall step (Figure 1 and Table 5, p.17; abstract). 2026, English, full text present, so I2-I4 also hold. Not E3: the memory store the agent writes and reads (the SQLite fact store) is distinct from the fixed RAG document corpus that supplies the injected instruction. Not E5: memory semantics are the explicit object of the contribution, not a passing mention.",
+  "secondary_substrates": [
+   "vector_store"
+  ],
+  "facets": [
+   {
+    "axis": "substrate",
+    "value": "relational_db",
+    "justification": "p.4, Section 2.1: 'The only state that persists across sessions is the memory tool's SQLite database.' Facts are written and read through save_fact/recall_fact tool calls against this schema'd store. The RAG document corpus (a separate, largely fixed collection the agent does not write to, though it is re-queried as a fallback recall channel) is listed as a secondary_substrate (vector_store; p.2, p.14 'RAG-fallback bypass')."
+   },
+   {
+    "axis": "write_policy",
+    "value": "agent_tool_invoked",
+    "justification": "p.4, Section 2.2: injection is measured as 'a run is classified as injected if and only if memory_save_fact was called during S1' \u2014 the agent decides when to write via an explicit tool call. No summarization, reflection, or edit transformation of the stored fact is described anywhere in the given pages; the content saved is the retrieved document's rule as-is."
+   },
+   {
+    "axis": "retrieval_policy",
+    "value": "agent_directed",
+    "justification": "p.4: in S4 'the agent retrieves the stored routing rule' via an explicit memory_recall_fact tool call it chooses to issue. p.14 frames both memory recall and RAG re-query as pathways the model may or may not invoke ('zero explicit memory_recall_fact tool calls...and zero RAG queries in the trigger session'), and p.17/Fig.1 shows Memory Sandbox defending precisely by removing this agent-issued recall action. No similarity ranking, recency window, or declared fusion rule is described for how a stored fact re-enters context."
+   },
+   {
+    "axis": "research_type",
+    "value": "validation",
+    "justification": "Entirely lab-based: a 5,040-run factorial experiment across nine open-source models plus a separate frontier-API evaluation and a Bedrock validation factorial, all against a no-attack baseline and pre-registered comparisons (abstract; p.2: '115 pre-specified comparisons registered before data collection'). No real users, no fielded deployment; the 'enterprise agents' framing in the introduction (p.1) is motivating context, not a studied deployment."
+   },
+   {
+    "axis": "research_method",
+    "value": "controlled_experiment",
+    "justification": "p.2: a factorial design manipulating model x defense x attack condition, with a no-attack control arm reported at p.4 ('Attack success was detected in 0 of 2,520 no-attack runs'), pre-registered comparisons, and an explicit reasoning-mode ablation (abstract, p.1) \u2014 manipulation against a control, not just fixed-suite scoring."
+   },
+   {
+    "axis": "contribution",
+    "value": "method",
+    "justification": "p.2 contribution list opens with 'a layer-structural failure result' characterizing where defenses must sit relative to the attack's authority boundary, and the abstract centers Memory Sandbox, a tool-layer defense technique, plus the Retrieval-Fidelity Criterion (p.14) as a reusable methodological standard \u2014 techniques argued for, not a released tool or dataset artifact being the point of the paper."
+   }
+  ]
+ },
+ {
+  "paper_id": 15038,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "MemTX is middleware between an LLM agent and its persistent memory: the agent stages writes (\"Staging writes an extracted observation into the transaction as tentative\", p.3, \u00a73.1) which pass a validate-and-commit pipeline before becoming action-safe, and later re-enters those records via an explicit read tool scoped to a transaction snapshot (\u00a73.6, p.5: \"reading retrieves under the transaction snapshot, staging writes a draft, committing runs the commit pipeline\"). The agent's own future tool calls are gated on this stored belief state (\u00a73.3, p.3: irreversible calls are blocked when \"some tentative record outside the transaction's snapshot is in flight\"), so the store conditions future behaviour across turns/agents. Backbones are LLMs (Qwen3-8B, Qwen2.5-14B, GLM-4.7-Flash, GPT-5.4-mini, GPT-5.5, p.5), the paper is a 2026 arXiv preprint well over 4 pages (16pp per extraction_note), and text is retrievable. Not E1-E7: the store is written by the agent at run time and is the paper's central contribution, not incidental, not parametric-only, not a fixed corpus, not a survey.",
+  "secondary_substrates": [],
+  "facets": [
+   {
+    "axis": "substrate",
+    "value": "relational_db",
+    "justification": "Each record is schema'd with fixed fields \u2014 entity, attribute, value, a source with authority weight, a permission block, derived-from edges, a type, a validity interval, and confidence (\u00a73.1, p.3) \u2014 and is manipulated through database-style transactional machinery: risk-tiered transactions, five isolation levels, snapshot isolation, and an ordered validate-and-commit pipeline (\u00a73.2, p.3). The paper frames this explicitly as importing \"database machinery into agent systems\" (p.1) and positions itself against systems built on snapshot isolation, serializable isolation and ChatDB's SQL exposure (p.3). No embedding/similarity, graph-database, or filesystem storage is described for the primary store."
+   },
+   {
+    "axis": "write_policy",
+    "value": "edit_in_place",
+    "justification": "New writes can supersede or correct existing committed records rather than only appending: the semantic-conflict check has \"a higher-authority candidate supersedes the old record, a lower-authority one aborts\" (\u00a73.2, p.3), and retracting a belief \"triggers typed cascading repair of its derived records\" (abstract, p.1; \u00a73.1 defines superseded and revoked as lifecycle states, p.3). This is transformation of already-stored content in response to new information, not pure append or synthesis of new higher-level content."
+   },
+   {
+    "axis": "retrieval_policy",
+    "value": "structured_query",
+    "justification": "Reads are scoped/filtered by one of five isolation levels defined by which lifecycle states are exposed, from raw-read (\"exposing everything\") to action-safe-read (\u00a73.1, p.3) \u2014 an exact metadata filter on record state, not a ranking. The worked example likewise has an agent read two specific existing records by identity (p.14, Appendix H.4, Turn one: \"reads both records\"). No embedding similarity, recency decay, or declared multi-method fusion is described."
+   },
+   {
+    "axis": "research_type",
+    "value": "validation",
+    "justification": "MemTX is tested on a constructed conformance suite (90 cases, later a 56-case hardened extension) and formally verified by property-based testing and bounded exhaustive enumeration of ~5.5M protocol states (abstract, p.1; \u00a74/Table caption, p.5), compared against 8 baselines across 5 backbones (p.5). No deployment, real users, or fielded system is reported \u2014 this is a controlled, in-lab investigation, coded conservatively as validation per the guide's tie-break rule."
+   },
+   {
+    "axis": "research_method",
+    "value": "controlled_experiment",
+    "justification": "The evaluation isolates the memory manager as the sole manipulated variable across otherwise-identical baselines (\"so the memory manager is the only variable\", p.2), pairs 60 trap cases against 30 controls, and includes ablation variants that graft exactly one MemTX feature onto a baseline lacking it (\"Cordon + revocation\", \"Verified Conc. + gate\", \"Collaborative + permissions\", p.5) to isolate each component's effect."
+   },
+   {
+    "axis": "contribution",
+    "value": "method",
+    "justification": "The contributions list (p.2) states \"We design MemTX, a belief-commit state model unifying an eight-state lifecycle, five isolation levels, risk-tiered transactions, action gating on in-flight belief state, and typed cascading repair\" \u2014 a technique/protocol, which is what the paper argues for; the conformance suite and formal verification are evidence for the method rather than dataset/tool artefacts being the contribution itself."
+   }
+  ]
+ },
+ {
+  "paper_id": 15055,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The paper's own contribution centers on the 'self-modification loop' of production coding agents: Claude Code, Codex, and OpenClaw persist user preferences, project conventions, and decisions into workspace files (CLAUDE.md, AGENTS.md, SOUL.md, behaviors.md, knowledge/*.md) that the agent itself writes at run time and that are loaded again in later sessions to condition future behaviour (p. 2, Section 2.3; p. 14-15, Supplementary Figures showing behaviors.md instructing the agent to 'persist it to the appropriate project file in the same turn' and that these files are read 'at the start of every conversation'). This is not incidental background (rules out E5): the entire threat model, synthetic workspace, and evaluation are built around this write/read loop. Memory is externalised into files the agent writes, not parametric-only (rules out E2), and the agent itself authors the persisted content rather than merely retrieving a fixed corpus (rules out E3). The systems studied (Claude Code, Codex) are LLM-based agents (rules out E6), this is an original empirical study rather than a survey (rules out E4), it is 2026/English/full-length (I2, I3, I4/E7 all satisfied).",
+  "secondary_substrates": [],
+  "facets": [
+   {
+    "axis": "substrate",
+    "value": "filesystem",
+    "justification": "Memory is implemented as user-curated plain-text files on disk that the agent reads and writes: 'coding agents implement persistence through user-curated plain-text files: Claude Code uses CLAUDE.md, Codex uses AGENTS.md, and OpenClaw uses SOUL.md... loaded at session start and can be updated by the agent itself' (p. 2, Section 2.3). The synthetic workspace mirrors this exactly with a directory tree of CLAUDE.md, core/behaviors.md, and knowledge/*.md files (p. 3, Section 3.2; Figure 1)."
+   },
+   {
+    "axis": "write_policy",
+    "value": "edit_in_place",
+    "justification": "Supplementary Figure 3 (core/behaviors.md, p. 15) instructs the agent to treat 'self-modification' as default behaviour: 'update the authoritative document' when a clearer rule is discovered, and under 'Evolve Your Own Instructions': 'update the authoritative document so future sessions use it... Self-modification is expected behavior, not extraordinary.' This is revision of existing entries as new information arrives, not pure appending -- entries are described as updated/evolved, and the paper's own threat model discusses an adversary who can 'overwrite' these files (p. 2, Section 2.2), consistent with in-place edits rather than append-only logs."
+   },
+   {
+    "axis": "retrieval_policy",
+    "value": "always_in_context",
+    "justification": "Supplementary Figure 3 (p. 14): 'Read this file at the start of every conversation alongside identity.md and any relevant domain files' -- top-level files (CLAUDE.md, core/behaviors.md, identity.md) are unconditionally loaded every session, matching the paper's own framing of an 'auto-loaded CLAUDE.md' (p. 3, Section 3.1). Note: domain knowledge/*.md files are read on the agent's own initiative when relevant ('Read the files in knowledge/... before recommending anything substantive', p. 12) -- an agent_directed pattern -- but no declared fusion rule combines the two, so per the guide the primary, unconditionally-stated policy (auto-load at session start) is coded rather than hybrid."
+   },
+   {
+    "axis": "research_type",
+    "value": "validation",
+    "justification": "The evaluation is run in 'a sandboxed synthetic workspace' built for 'a fictional user' so as to run 'controlled experiments without contaminating any real user's environment' (p. 3, Section 3.2), not a fielded deployment with real users or real stakes. The Limitations section confirms this directly: 'Our experiments were conducted in a synthetic workspace, which may not accurately capture the full complexity of a real-world user workflow... Future work can include... expanding the analysis to real-world environments' (p. 10). Coded conservatively as validation per the guide's default-to-validation rule."
+   },
+   {
+    "axis": "research_method",
+    "value": "controlled_experiment",
+    "justification": "The study systematically manipulates independent variables -- agentic system (Claude Code vs. Codex), model (four models), adversarial goal (credential exfiltration, unauthorized tool use, brand targeting), and session design (single probe, repeated same attack, stacked different attacks) -- and measures attack success and persistence rates across these conditions (p. 2, Section 'Background and Related Work' intro / p. 3, Section 3.2). This factorial manipulation-and-comparison design fits controlled_experiment rather than a fixed-suite benchmark_evaluation."
+   },
+   {
+    "axis": "contribution",
+    "value": "framework",
+    "justification": "The paper's contribution is a sandboxed synthetic workspace plus an accompanying threat model, adversarial-goal taxonomy, and multi-session evaluation methodology for studying memory-based prompt injection ('we build a sandboxed environment populated with behavior files, knowledge files, and a small open-source project... we study three adversarial goals... under three session designs', p. 2, Section 2). This is an organised evaluation framework/methodology rather than a single algorithmic method, a shipped tool, or a released dataset per se."
+   }
+  ]
+ },
+ {
+  "paper_id": 15335,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 4.2 (p.4) describes episodic memory M_ep: agent nodes write experience tuples (t_e, v_e, s_e) from task executions that ultimately succeed, bootstrapped from a small manually collected set and 'gradually expanded through successful runs.' At inference time a later agent node retrieves stored experiences via cosine similarity over its own subgoal embedding to condition its in-context decision-making (p.4). The contributions list on p.2 names 'two memory systems: episodic memory ... and working memory' as one of the paper's three core contributions, and working memory (p.4) is likewise written automatically as agent nodes observe objects and read back via a dedicated recall action shared across nodes within a run. This is agent-authored run-time state read back across turns/executions to shape future behaviour, published 2025/2026 (arXiv v2, AAMAS 2026), in English, with full text available (24-25 pages) -- none of E1-E7 apply.",
+  "secondary_substrates": [
+   "other (in-memory working-memory dictionary mapping object classes to observed locations, shared across agent nodes within a single run; queried via an exact 'recall location of <object>' action, p.4)"
+  ],
+  "facets": [
+   {
+    "axis": "substrate",
+    "value": "vector_store",
+    "justification": "p.4: episodic memory M_ep stores experience tuples per subgoal; each is embedded with a sentence encoder (v_e = f_sen(g_e), Sentence-BERT) and retrieval is by cosine similarity over these embeddings. This is the memory system evaluated by default in the main 'ReAcTree' condition (p.5: 'all experiments include episodic memory unless otherwise specified'), so it is coded as primary; working memory (a plain object-location dictionary, not embedding-based) is recorded as secondary since it is only added in the ReAcTree+WM variant."
+   },
+   {
+    "axis": "write_policy",
+    "value": "append_only",
+    "justification": "p.4: 'Episodic memory M_ep stores experiences from agent nodes involved in task executions that ultimately succeed' -- each successful subgoal trajectory is recorded verbatim as a new tuple (t_e, v_e, s_e); nothing already stored is condensed, synthesised, or rewritten. p.5 confirms this happens by retaining successful executions during a bootstrapping/training phase ('Only successful executions were retained in episodic memory')."
+   },
+   {
+    "axis": "retrieval_policy",
+    "value": "similarity_topk",
+    "justification": "p.4: 'the agent retrieves the top k similar experiences (with k determined by a token limit) as in-context examples,' computed via cosine similarity sim(v_n, v_e) between the current subgoal embedding and stored goal embeddings."
+   },
+   {
+    "axis": "research_type",
+    "value": "validation",
+    "justification": "p.5 (Section 5.1): evaluation is run on WAH-NL (VirtualHome) and ALFRED (AI2THOR), simulated household task-planning benchmarks, comparing ReAcTree/ReAcTree+WM against five baselines across seven LLMs with GSR/SSR metrics. No real users, fielded deployment, or external stakes are reported anywhere in the given pages -- this is a controlled lab investigation of a novel technique, coded conservatively as validation rather than evaluation."
+   },
+   {
+    "axis": "research_method",
+    "value": "benchmark_evaluation",
+    "justification": "Table 1 (p.5) reports GSR and SSR for ReAcTree and ReAcTree+WM against five baselines (ZSP, Tree-Planner N=25/50, ReAct, ReAct+WM) across seven LLMs on the WAH-NL and ALFRED task suites -- a fixed benchmark task suite with scores reported, not a single manipulated variable against one control."
+   },
+   {
+    "axis": "contribution",
+    "value": "framework",
+    "justification": "p.1: 'we introduce ReAcTree, a novel framework that dynamically constructs an agent tree in the subgoal space.' p.2 contribution (1): 'ReAcTree, a hierarchical planning framework for long-horizon tasks that dynamically constructs an LLM agent tree, where each agent node independently solves a subgoal while control flow nodes coordinate their execution into a coherent plan.' The contribution is the overall architecture (agent-tree construction, control-flow coordination, integrated memory systems), not a single algorithmic technique; code is released (p.1) but is not itself what the paper argues for."
+   }
+  ]
+ },
+ {
+  "paper_id": 16583,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 2.2 (p.4) defines the execute-reflect-reuse loop: a reflector module writes distilled experience back into an explicit, model-agnostic memory M = (Mtext, Mcode) after each task rollout ('Mk = Reflect(Mk-1, tau(k))'), and later tasks retrieve entries from that same store via embedding top-k plus LLM-based selection (Section 3.4, p.8) to condition the frozen policy's future behaviour, satisfying I1. The arXiv header dates the work 23 Jun 2026 (p.1), satisfying I2. The paper is in English (I3) and pages were extracted and read (I4).",
+  "secondary_substrates": [],
+  "facets": [
+   {
+    "axis": "substrate",
+    "value": "multi_store",
+    "justification": "Section 3.1 (p.4): 'Metis maintains a hierarchical experience memory M = (Mtext, Mcode), consisting of a structured text memory store and a code memory library.' The paper's contribution is explicitly how the two stores relate: recurring text plans are selectively promoted into the code store (Pattern-Aware Code Generation, p.4), and retrieval/selection is performed jointly across both stores with a dependency-closure mechanism tying them together (Section 3.4-3.5, p.8). This is a deliberate combination-as-contribution, not an incidental second store."
+   },
+   {
+    "axis": "write_policy",
+    "value": "reflect_synthesize",
+    "justification": "Section 3.1 (p.4): Differentiated Text Reflection 'distills completed trajectories into reusable textual experience' as execution plans, environment facts, and common pitfalls \u2014 content abstracted from, not copied verbatim out of, any single trajectory step. Pattern-Aware Code Generation likewise 'invokes a codifier using the plan and related task queries, but not the raw trajectories' to generate new tool code (p.4), i.e. higher-level content synthesized from stored memories rather than appended raw items."
+   },
+   {
+    "axis": "retrieval_policy",
+    "value": "hybrid",
+    "justification": "Section 3.4, Memory Manager (p.8): 'Metis first performs embedding-based top-k retrieval over both text memory entries and code tools ... A lightweight LLM-based Memory Manager then jointly selects useful text memories and tools for the task.' This is a declared two-stage fusion rule (similarity top-k candidate pool, then LLM-based selection over that pool), matching the hybrid definition rather than a single unranked retrieval path."
+   },
+   {
+    "axis": "research_type",
+    "value": "validation",
+    "justification": "Section 4 (p.9): Metis is compared against baselines (No Memory, ACE, SkillX) on AppWorld, a public simulated interactive-agent benchmark, under a controlled train-then-test protocol with fixed random seeds and held-out splits. The text says AppWorld tasks 'mirror deployment scenarios' (p.9), but no real users, fielded system, or external stakes are reported \u2014 it is a benchmark comparison in the lab, so coded validation, the conservative choice given the ambiguity the mirroring language introduces."
+   },
+   {
+    "axis": "research_method",
+    "value": "benchmark_evaluation",
+    "justification": "Section 4.1 (p.9): fixed AppWorld benchmark with multiple baselines (No Memory, ACE, SkillX) run under an identical executor/protocol, scored on accuracy, execution tokens/steps, and cost (also Figure 4/5 tables, p.17-18). The earlier text-vs-code profiling analysis (p.1-2) is a controlled comparison but motivates the design rather than being the evaluated contribution; the benchmark comparison against baselines is what Metis itself is measured against."
+   },
+   {
+    "axis": "contribution",
+    "value": "framework",
+    "justification": "Abstract (p.1) and Section 3.1 (p.4): Metis is introduced as 'a self-evolving agent system built on a hierarchical dual-representation memory,' organized into four named components (Differentiated Text Reflection, Pattern-Aware Code Generation, Memory Manager, Reflection Harness) that together define an architecture for organizing memory, rather than a single algorithmic technique."
+   }
+  ]
+ },
+ {
+  "paper_id": 19936,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 3.1 (p. 4) formalises procedural-memory management as an update operator U that maps a skill configuration \u03a3 and a pool of run-time execution traces D to a new configuration \u03a3' = U(\u03a3, D); skills are versioned SKILL.md artifacts (p. 3, Section 2.1) that persist across tasks and later condition the agent's behaviour on subsequent tasks. Appendix B (p. 10) describes the write mechanism concretely: E VOLUTION's C OLLECT\u2013D IAGNOSE\u2013R EVISE\u2013P ROMOTE cycle executes tasks, aggregates failure traces into error modes, and a reflector proposes a revised skill body that is promoted to a new version s(v+1) and used on later executions \u2014 an externalised store the system writes to at run time and reads from in later episodes.",
+  "secondary_substrates": [],
+  "facets": [
+   {
+    "axis": "substrate",
+    "value": "filesystem",
+    "justification": "Section 2.1 (p. 3): \"Each skill is a self-contained SKILL.md artifact... a versionable, retrievable unit of procedural memory.\" Appendix B (p. 10): \"a SKILL.md file contains YAML metadata and a markdown body\"; skills are stored and versioned as textual files, not embeddings, a graph, or a schema'd DB."
+   },
+   {
+    "axis": "write_policy",
+    "value": "reflect_synthesize",
+    "justification": "Section 3.2 (p. 4) names the reflector \u03c1 as \"the model or procedure that inspects traces, summarizes failure modes, and proposes a revised skill body.\" Appendix B (p. 10): the framework \"aggregates failure traces into recurrent error modes... A revision operator proposes a candidate body conditioned on the current skill and the diagnosis\" \u2014 new content synthesised from a diagnosis over multiple traces, not present verbatim in any single source item."
+   },
+   {
+    "axis": "retrieval_policy",
+    "value": null,
+    "justification": "Section 2.1 (p. 3) explicitly excludes retrieval from what is studied: \"Skill annotations are fixed at task definition rather than retrieved at solve time, separating skill quality from retrieval quality... retrieval can be studied as a separate problem on the same tasks.\" The given pages describe how skills are written and evolved but deliberately do not specify or evaluate a mechanism by which a skill re-enters context at solve time, so none of the listed retrieval values can be assigned without guessing."
+   },
+   {
+    "axis": "research_type",
+    "value": "validation",
+    "justification": "Section 4 (p. 4) and the results in Appendix K (Table K.1, p. 17) report accuracy scores (M1/M2, Section 2.3, p. 4) across model sizes and roles on the AFTER benchmark under controlled splits (local improvement, cross-task, cross-role, cross-model). The given pages describe benchmark tasks and controlled comparisons, not a fielded system with real users or production stakes, so this is validation rather than evaluation."
+   },
+   {
+    "axis": "research_method",
+    "value": "benchmark_evaluation",
+    "justification": "Table K.1 (p. 17) reports M2 accuracy per role and model (Qwen 3.5-9B/35B/122B) before and after a refinement pass on the fixed 111-task AFTER subset; Section 2.3 (p. 4) defines the M1/M2 metrics used throughout Section 4's experiments over the 382-task AFTER suite."
+   },
+   {
+    "axis": "contribution",
+    "value": "dataset",
+    "justification": "The contribution list on p. 2 names \"AFTER, a benchmark for procedural skill transfer in LLM agents\" first, and the abstract (p. 1) opens with \"We introduce AFTER, a benchmark of 382 realistic enterprise tasks spanning six professional roles and 22 procedural skills.\" The E VOLUTION harness and update-operator formalism (p. 4, p. 10) support the benchmark but are described as the evaluation interface around it, not the artefact the paper argues for."
+   }
+  ]
+ },
+ {
+  "paper_id": 20020,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "ReMe distills execution trajectories into structured experiences (success patterns, failure lessons, comparative insights) at run time and stores them in an experience pool (vector database) that is queried on later, new tasks to condition the agent's future behaviour (p. 1 abstract; p. 4, Section 3.2-3.3; p. 13, Appendix). The store is written by the agent's own pipeline, not a fixed corpus (E3 does not apply), memory is externalised rather than parametric (E2 does not apply), this is a primary study proposing a novel framework rather than a survey (E4 does not apply), and the paper is 21 pages with substantial empirical evaluation (E7 does not apply). Year given as 2025, English, full text available.",
+  "secondary_substrates": [],
+  "facets": [
+   {
+    "axis": "substrate",
+    "value": "vector_store",
+    "justification": "p. 4, Section 3.2: 'All retained experiences are indexed by the embedding vector of usage scenario \u03c9 and then stored in a vector database, which we refer to as the experience pool.' p. 13, Appendix: 'Our selected vector database is Elasticsearch.' The framework diagram (Fig. 2, p. 4) shows acquisition, reuse and refinement all operating on this single indexed pool, so this is not a deliberately combined multi_store contribution."
+   },
+   {
+    "axis": "write_policy",
+    "value": "reflect_synthesize",
+    "justification": "p. 1 abstract and p. 4, Section 3.2: the 'multi-faceted distillation' mechanism (LLMsumm) performs 'comparative analysis by jointly examining successful and failed trajectories, identifying critical differences that distinguish effective from ineffective attempts' \u2014 content generated by comparing multiple trajectories, not present in any single source item, matching reflect_synthesize. The framework also prunes low-utility entries ('utility-based deletion', Fig. 2, p. 4), an edit_in_place-like operation, but distillation is named first in the contribution list (p. 2) and is the mechanism whose capability is ablated as the primary driver of gains (Table 5, p. 8), so it is coded as the primary write transformation."
+   },
+   {
+    "axis": "retrieval_policy",
+    "value": "hybrid",
+    "justification": "p. 4, Section 3.3: top-K experiences are retrieved by cosine similarity over embeddings of the task query ('computes cosine similarity scores to rank prior experiences'), then 'we optionally employ a context-aware reranker LLMrerank to further refine the selection.' The abstract (p. 1/2) and intro (p. 2) declare this as one pipeline: 'usage scenario indexing strategy for retrieval, supplemented by reranking and adaptive rewriting.' The reranking prompt (Table 14, p. 19) is a declared second, LLM-judged ranking signal layered on the similarity_topk retrieval, matching the guide's re-ranking-rule criterion for hybrid."
+   },
+   {
+    "axis": "research_type",
+    "value": "validation",
+    "justification": "Evaluated on BFCL-V3 and AppWorld benchmarks with baseline comparisons and ablations across model scales (Qwen3-8B/14B/32B) and retrieval-key variants (p. 8, Table 5, Fig. 4-5; p. 13, Table 8-9). No deployed system, real users, or field setting is reported anywhere in the extracted pages \u2014 conservative validation coding per the guide."
+   },
+   {
+    "axis": "research_method",
+    "value": "benchmark_evaluation",
+    "justification": "Results are reported as scores (Avg@4, Pass@4) over fixed benchmark suites BFCL-V3 and AppWorld against a No-Memory baseline and across backbones (p. 8, Table 5-6; p. 13, Table 8-9), the defining pattern of benchmark_evaluation."
+   },
+   {
+    "axis": "contribution",
+    "value": "framework",
+    "justification": "p. 1 abstract and p. 2 contribution list: 'we propose ReMe ..., a comprehensive framework for experience-driven agent evolution' that 'integrates multi-faceted experience distillation, context-adaptive reuse, and utility-based refinement.' The paper argues for an integrated, multi-mechanism architecture over the memory lifecycle (Fig. 2, p. 4) rather than a single technique; code and a dataset are released but are secondary to the architecture per the contribution list (p. 2)."
+   }
+  ]
+ }
+]

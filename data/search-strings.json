@@ -1,0 +1,28 @@
+{
+ "providers": [
+  "arxiv",
+  "openalex"
+ ],
+ "year_floor": 2023,
+ "max_results_per_run": 200,
+ "queries": [
+  "LLM agent memory mechanism",
+  "long-term memory large language model agent",
+  "episodic memory language agent",
+  "agent memory architecture persistent state",
+  "memory augmented LLM agent long-horizon task",
+  "conversational agent long-term memory personalization",
+  "memory management context window large language model agent",
+  "reflection self-generated memory language agent",
+  "vector store memory retrieval augmented agent",
+  "knowledge graph memory LLM agent",
+  "database symbolic memory large language model agent",
+  "file system external memory language model agent",
+  "memory consolidation forgetting eviction LLM agent",
+  "MemGPT Letta memory operating system agent",
+  "long-term conversational memory benchmark evaluation",
+  "cross-session memory personalization assistant LLM",
+  "procedural memory skill library agent",
+  "experience memory reuse LLM agent learning"
+ ]
+}

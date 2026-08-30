@@ -1,0 +1,9 @@
+{
+ "assessed": 79,
+ "screening_includes": 192,
+ "eligible": 66,
+ "excluded": 13,
+ "rows_written_this_run": {},
+ "already_recorded": 79,
+ "failures": []
+}

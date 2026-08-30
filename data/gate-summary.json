@@ -1,0 +1,10 @@
+{
+ "screening_includes": 192,
+ "text_retrieved": 171,
+ "excluded_at_accessibility_gate": 21,
+ "by_source": {
+  "cached": 55,
+  "direct": 116
+ },
+ "recovered_from_arxiv_by_title": 0
+}

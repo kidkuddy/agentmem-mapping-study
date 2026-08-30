@@ -1,0 +1,16 @@
+{
+ "records_identified": 3862,
+ "title_identical_groups_in_corpus": 54,
+ "abstracts_backfilled_from_db": 3104,
+ "records_with_no_abstract_text": 94,
+ "passed_scope_filter": 1313,
+ "duplicates_removed": 28,
+ "abstracts_cleared_as_another_papers": 0,
+ "kept": 1285,
+ "dropped_by_scope_filter": 2549,
+ "kept_by_branch": {
+  "generic": 280,
+  "named": 164,
+  "both": 869
+ }
+}
