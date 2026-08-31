@@ -1,0 +1,9 @@
+{
+  "paper_id": 14538,
+  "eligible": false,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": ["I1"],
+  "eligibility_reason": "The paper is a position/risk-analysis piece, not a contribution of a run-time write/retrieve mechanism. The abstract (p. 1) states the contribution as outlining risks and benefits and proposing 'four principles to guide the development of episodic memory capabilities' — not a mechanism the authors built. Section II (Related Work, p. 2) discusses other systems (MemGPT, Voyager, RAG-based approaches) only as background citations, not as this paper's own contribution. Section IV (Risks of Episodic Memory, p. 5) analyzes hypothetical deception, privacy, and unpredictability risks of future systems having episodic memory, again without proposing or evaluating an agent-authored store. No externalised store is written to or read from by an agent as part of this record's own claimed contribution, so I1 is not satisfied.",
+  "secondary_substrates": [],
+  "facets": []
+}

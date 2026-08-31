@@ -1,0 +1,40 @@
+{
+  "paper_id": 15417,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "ASM (Anchored State Memory) has the GUI agent maintain a memory bank of state anchors that it writes at run time during task execution and reads back at every subsequent step to condition its next action: 'the agent maintains a memory bank of anchors and interacts with ASM in a retrieve–reason–update manner... At each step, the agent retrieves anchors conditioned on the current UI state and user instruction... After that, the agent analyzes the current step to determine whether new anchors should be created, whether existing anchors should be updated or invalidated' (p. 11). The system is an MLLM-driven GUI agent acting over Android apps (p. 1). No exclusion applies: it is not a hardware/cache optimisation, the store is externalised and agent-written (not parametric-only), the agent writes to the store rather than reading a fixed corpus, this is a primary study (a benchmark plus a proposed mechanism, not a survey), memory is the paper's central contribution, and the paper is 32 pages with full text available.",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "graph_store",
+      "justification": "The memory bank stores discrete state anchors connected by explicit causal links that the agent writes and later traverses: 'ASM explicitly models the causal dependencies between anchors. Each anchor may optionally include a causal link that connects it to a previously generated anchor, forming a lightweight dependency structure... By organizing anchors together with their causal links, ASM forms a structured interaction memory rather than a flat list of events' (p. 24); Figure 1 depicts the anchor bank as linked nodes joined by 'Causal Link' edges (p. 2)."
+    },
+    {
+      "axis": "write_policy",
+      "value": "edit_in_place",
+      "justification": "At each step the agent both creates new anchors/links and revises the existing bank: 'the agent analyzes the current step to determine whether new anchors should be created, whether existing anchors should be updated or invalidated, and whether new dependency links should be added to the memory bank' (p. 11). The paper frames this updateable revision, not mere appending, as ASM's defining advantage over raw replay and summaries: it 'preserves dependency-critical intermediate states in a grounded, structured, and updateable form' (p. 11)."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "structured_query",
+      "justification": "Retrieval is filtered by the causal-dependency structure rather than a similarity ranking: 'the agent can retrieve anchors that are causally relevant to the current subgoal or context' and 'this allows the agent to retrieve only causally relevant anchors instead of processing the entire interaction history' (p. 24), formalized as Â_t = Retrieve(s_t, A_{t-1}) over the anchor bank (p. 11)."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "The evaluation runs 12 GUI agents (5 open-source, 5 closed-source, 2 multi-agent, per Fig. 1, p. 2) on the authors' own AndroTMem-Bench, reporting TCR/AMS against Raw History and Summary baselines (Table 3, p. 9; Figures 4-5, p. 11). This is a controlled lab comparison on an authors'-own benchmark, with no deployment or real users reported in the given pages, so it is coded validation rather than evaluation."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "Table 3 (p. 9) reports per-intent AMS and TCR for 12 agents across seven task categories on the fixed AndroTMem-Bench suite (1,069 tasks, avg. 32.1 steps/task, p. 1), and Figures 4-5 (p. 11) compare Raw History, Summary, and ASM over that same benchmark's step ranges and task categories."
+    },
+    {
+      "axis": "contribution",
+      "value": "method",
+      "justification": "The abstract's headline proposal is the ASM mechanism itself — 'we propose Anchored State Memory (ASM), which represents interaction sequences as a compact set of causally linked intermediate-state anchors' (p. 1) — evaluated for the performance gains the paper reports (TCR +5%-30.16%, p. 1). The paper also releases the AndroTMem-Bench dataset and code (p. 1), but the technique is what the paper argues for, so the dataset is treated as a secondary artifact rather than the primary contribution."
+    }
+  ]
+}

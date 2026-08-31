@@ -1,0 +1,22 @@
+{
+  "paper_id": 18737,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "SLM 4.0 is a memory operating system that agents write to at run time via a governed admission path (HTTP /remember; the atomic write of the canonical fact row and per-projection obligation ledger entries, p. 7) and later query for recall across sessions (as_of recall threaded across the Python recall engine, HTTP /recall, MCP tool, and CLI, p. 7); the store is externalised (six managed SQLite stores plus vector and graph projections, p. 2), not parametric, and it is written by the agent rather than being a fixed corpus, so E2/E3 do not apply. It is 2026 (p. 1), in English, full text is available (55 pages, so E7 does not apply), it is a primary systems contribution rather than a survey (E4 does not apply), and memory is the entire subject of the paper, not incidental (E5 does not apply). No hardware/inference-cache framing (E1) and the system is explicitly built for and adapted to nine agent frameworks (p. 2), so E6 does not apply.",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "multi_store",
+     "justification": "The system is organised as seven operating layers over six managed SQLite stores plus vector and graph projections (p. 2), and the abstract states the central systems contribution is 'a hash-verifiable projection-obligation and completion-manifest protocol across heterogeneous local stores under scoped admission' (p. 3) — the combination of stores under one transactional protocol is itself the claimed contribution, matching multi_store rather than any single store type."},
+    {"axis": "write_policy", "value": "append_only",
+     "justification": "Section 3.1, layer L2 'Queryable Core': 'An atomic SQLite transaction writes the canonical fact row, the operation receipt, and the transactional obligation ledger entries for every required projection owner—all or none' (p. 7). This is the write path the reliability spine (the paper's measured contribution) governs; it describes rows being added, not summarised, synthesised, or edited in place."},
+    {"axis": "retrieval_policy", "value": "hybrid",
+     "justification": "Section 3.2 'Multi-channel retrieval': five parallel candidate producers (dense semantic, BM25 lexical, temporal, Hopfield-associative, spreading-activation) 'feed a single-pass Weighted RRF step (k = 15) with strategy-adaptive channel weights,' with an optional cross-encoder reranker post-fusion (p. 7) — a declared fusion rule combining multiple retrieval mechanisms."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "The evidence is fault-injection scenarios and a three-arm ablation run against the authors' own artifact on a synthetic 1,232 MiB memory-store copy (p. 3), and the authors state directly: 'we are explicit that a controlled ablation is not a deployment result' (p. 2). No real users or fielded deployment are reported in the given pages, so this is coded validation per the guide's conservative default."},
+    {"axis": "research_method", "value": "controlled_experiment",
+     "justification": "Eleven fault-injection and mechanism scenarios each repeated 200 times as a deterministic flakiness check (p. 2), and a three-arm ablation varying only the recall session-identifier namespace with the defect present, the defect absent, and a negative control that 'writes every outcome ticket but supplies no engagement' (pp. 1–2) — manipulated conditions compared against controls."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The paper presents SLM 4.0 as 'one control plane, organized as seven operating layers over six managed SQLite stores plus vector and graph projections,' reachable through a CLI, MCP server, HTTP daemon, dashboard, editor plugin, and nine framework adapters (p. 2); the contribution list (p. 4) frames it as consolidating prior mechanisms into one architected system (the reliability spine, admission gateway, and cross-surface policy registry) rather than a single algorithm, dataset, or metric."}
+  ]
+}

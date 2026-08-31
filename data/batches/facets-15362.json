@@ -1,0 +1,40 @@
+{
+  "paper_id": 15362,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The contribution list defines a source-grounded memory trajectory model with claim-level ADD/REVISE/DEPRECATE operations that the agent writes at run time as dialogue proceeds, plus a Memory Wiki layer incrementally compiled from that dialogue history; at inference time queries are routed hierarchically through wiki pages, trajectories, snapshots and source messages to condition the agent's answer (pp. 2-3). This is an externalised, agent-written, cross-turn store, not a fixed corpus or parametric-only memory, so no exclusion (E1-E7) applies. The record is a 2026 English preprint with retrievable full text (pp. 1, 3).",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "multi_store",
+      "justification": "The contribution is explicitly the combination of three linked layers: immutable episodic snapshots/trajectories, an intermediate Memory Wiki of structured interlinked pages, and hierarchical routing between them down to source messages (p. 2, contributions on p. 3: 'we introduce an intermediate knowledge organization layer, Memory Wiki... We further introduce a hierarchical retrieval mechanism over interlinked memory trajectories'). The ablations on p. 8 (Table 2: removing 'Memory Wiki routing' vs. removing 'Source-grounded trajectory expansion') confirm the paper's evidence is about how these stores relate, not a single store."
+    },
+    {
+      "axis": "write_policy",
+      "value": "edit_in_place",
+      "justification": "Page 3, first contribution bullet: memory is recorded 'through immutable episodic snapshots and claim-level update operations' preserving 'both the current effective memory and the historical path through which it was produced.' The abstract (p. 1) names the operations ADD, REVISE, and DEPRECATE at the claim level, i.e. existing claims are updated or superseded as new dialogue arrives, which is the transformation the paper evaluates via 'Historical snapshot depth' and 'Latest Snapshot Only' ablations (p. 8, Table 2)."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "hybrid",
+      "justification": "Page 2-3: 'queries are routed hierarchically from relevant wiki pages to linked memory trajectories, then to corresponding snapshots and source messages.' Page 8's hyperparameter analysis names this as a declared staged combination: page-routing cutoff t selects wiki pages, trajectory top-k selects trajectories, and snapshot depth m bounds evidence expansion ('wiki routing controls retrieval breadth, trajectory selection controls evidence depth'), i.e. a stated fusion of stages rather than a single ranking or exact query."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "Evidence is produced entirely on public benchmarks (LoCoMo, MedMT-Bench) with counterfactual ablations and hyperparameter sweeps against baselines and backbones (pp. 3, 8, 17); no deployment, fielded system, or real users are reported in the given pages. Coded conservatively as validation per the guide's default."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "Page 3: 'We evaluate TrajWiki on LoCoMo and MedMT-Bench... Experiments with open-source and closed-source LLM backbones show that TrajWiki improves long-horizon dialogue performance over strong memory-augmented baselines.' Tables 2 and 3 (pp. 8, 17) report fixed-metric scores (Gold Ref Cov., Gold Traj. R@15, Ctx. Tokens, Unsup. Risk) across settings and baselines on these two benchmark suites."
+    },
+    {
+      "axis": "contribution",
+      "value": "framework",
+      "justification": "The abstract and introduction repeatedly self-describe the contribution as 'a trajectory-based memory framework' / 'an interlinked, wiki-style, trajectory-based memory framework for long-horizon conversational agents' (p. 1, p. 2), and the fourfold contribution list on p. 3 organizes three distinct architectural layers (trajectory model, Memory Wiki, hierarchical retrieval) rather than a single technique; no released tool/artifact is named as the argued contribution in the given pages."
+    }
+  ]
+}

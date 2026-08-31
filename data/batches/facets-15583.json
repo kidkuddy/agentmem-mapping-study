@@ -1,0 +1,22 @@
+{
+  "paper_id": 15583,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The paper's contribution (Simulated Trial and Error, STE) has the LLM write a long-term memory of past-explored queries and whether they were fulfilled during the exploration stage, and that store is reloaded into context at the start of every subsequent trial to condition what the model imagines next (p. 4: 'the long-term memory records the past-explored queries and whether they were judged as successfully fulfilled ... It is only loaded into the context at the beginning of every new trial'). A short-term memory of recent trial trajectories serves the same run-time write/read role within an episode (p. 2, Figure 1 caption). Published 2024 at ACL (p. 1), in English, and full text was retrievable (22 pages, well over the E7 four-page floor). Memory is not incidental: the abstract names it as one of three orchestrated mechanisms and both memories are separately ablated (Tables 15-16, pp. 21-22).",
+  "secondary_substrates": ["vector_store"],
+  "facets": [
+    {"axis": "substrate", "value": "prompt_resident",
+     "justification": "The long-term memory (past-explored queries + fulfilled status) is not queried by similarity or structure; it is loaded wholesale into the prompt at the start of each new trial, so nothing is queried out of it at retrieval time (p. 4: 'It is only loaded into the context at the beginning of every new trial'). Figure 1c (p. 2) depicts it as a table of 'Explored Queries / Fulfilled?' fed directly into the next trial's context."},
+    {"axis": "write_policy", "value": "append_only",
+     "justification": "P. 4: the long-term memory 'records the past-explored queries and whether they were judged as successfully fulfilled' and 'serves as a growing pool of past successes and failures' as exploration proceeds — new entries accumulate; the text on the given pages does not describe any rewriting, merging, or deletion of prior entries."},
+    {"axis": "retrieval_policy", "value": "always_in_context",
+     "justification": "P. 4: the long-term memory 'is only loaded into the context at the beginning of every new trial' with no stated selection, ranking, or query step over its contents — the whole store re-enters context each trial."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "STE is a novel technique tested via comprehensive experiments on APIs drawn from ToolBench against baselines (ToolLLaMA-v2, GPT-4, Mistral-Instruct-7B) (p. 1 abstract, p. 4 Baselines & exploitation with STE). No deployment, real users, or fielded system is reported on any given page."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "P. 1: 'Comprehensive experiments on Tool-Bench show that STE substantially improves tool learning for LLMs ... bringing a boost of 46.7% to Mistral-Instruct-7B and enabling it to outperform GPT-4' — a fixed API/task suite with correctness-rate scores compared across multiple baseline models (p. 2 bullet findings: GPT-4 60.8%, ToolLLaMA-v2 37.3%)."},
+    {"axis": "contribution", "value": "method",
+     "justification": "The paper's own framing centers on STE as a technique ('a biologically inspired method for tool-augmented LLMs, simulated trial and error (STE)', p. 1 abstract); code/data are released (p. 1 footnote) but the argued contribution is the mechanism, not the artefact itself."}
+  ]
+}

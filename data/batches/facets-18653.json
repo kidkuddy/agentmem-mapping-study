@@ -1,0 +1,22 @@
+{
+  "paper_id": 18653,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 3.1-3.2 (p.3) defines a memory store M whose entries e_i = (\\tau_i, emb_i, meta_i) are written from a source agent's trajectories and later retrieved by a target agent A' to solve new tasks, conditioning its future behaviour (p.2, Example paragraph, p.1-2). Memory is not incidental: the entire contribution (formalization, mechanism decomposition, dose-response analysis, p.2 contributions list) is about what happens when this write/consolidate/retrieve pipeline runs. 2026, English, full text present.",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "vector_store",
+     "justification": "Section 3.2 (p.3): memory entries are e_i = (\\tau_i, emb_i, meta_i); Section 4.3 (p.5) confirms retrieval is 'standard embedding-based retrieval (k = 5)' over these stored embeddings."},
+    {"axis": "write_policy", "value": "summarize_compress",
+     "justification": "Section 3.2 (p.3): 'When new trajectories arrive, M undergoes consolidation: similar entries are merged via LLM-based summarization'; Section 4.1 Phase 2 (p.4) applies oracle or LLM consolidation to stored trajectories before retrieval."},
+    {"axis": "retrieval_policy", "value": "similarity_topk",
+     "justification": "Section 4.3, Step 1 (p.5): 'Target agent A_t retrieves from biased memory M_bias using standard embedding-based retrieval (k = 5)'."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Section 4.1 (p.4): a controlled 4-phase lab pipeline over 20 synthetic open-ended QA tasks with DeepSeek-Chat/V4-Pro/Claude Sonnet 4.6, permutation tests and bootstrap CIs (Table 1-2, p.4-5). No deployed system, real users, or fielded setting is reported in the given pages, so this is a novel phenomenon investigated under controlled lab conditions, not a real-world deployment."},
+    {"axis": "research_method", "value": "controlled_experiment",
+     "justification": "Section 4.1-4.2 (p.4-5): the 4-phase design manipulates bias type, consolidation strategy (oracle vs LLM), model, and contamination rate p against a clean-memory control, with explicit hypothesis testing (H0: Gamma_A = 0 vs H1: Gamma_A > 0, p < 0.01 permutation test, Phase 2.5, p.4)."},
+    {"axis": "contribution", "value": "metric",
+     "justification": "Contribution #1 on p.2: 'Formalization. We define Memory Contagion mathematically, introducing Gamma_temporal — a measure of cross-temporal bias propagation via memory (Section 3)', formalized in Section 3.3 (p.3, Eq. 2) as the core artifact the rest of the paper's experiments are built on."}
+  ]
+}

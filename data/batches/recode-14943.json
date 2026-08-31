@@ -1,0 +1,22 @@
+{
+  "paper_id": 14943,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 2.1 (p.4) describes a stateful LLM agent that writes to a persistent SQLite memory store at run time via an explicit memory_save_fact tool call in one session (S1), and later retrieves that stored content via a memory_recall_fact tool call in a subsequent session (S4) after the intervening conversation context has been discarded, with the recalled content conditioning the agent's own downstream action (routing an email). This run-time write / cross-session retrieve loop is not incidental scenery: the paper's central contribution is a taxonomy of defenses that intervene at points along exactly this memory write-to-recall-to-action pathway, and its strongest defense (Memory Sandbox) works by structurally severing the recall step (Figure 1 and Table 5, p.17; abstract). 2026, English, full text present, so I2-I4 also hold. Not E3: the memory store the agent writes and reads (the SQLite fact store) is distinct from the fixed RAG document corpus that supplies the injected instruction. Not E5: memory semantics are the explicit object of the contribution, not a passing mention.",
+  "secondary_substrates": ["vector_store"],
+  "facets": [
+    {"axis": "substrate", "value": "relational_db",
+     "justification": "p.4, Section 2.1: 'The only state that persists across sessions is the memory tool's SQLite database.' Facts are written and read through save_fact/recall_fact tool calls against this schema'd store. The RAG document corpus (a separate, largely fixed collection the agent does not write to, though it is re-queried as a fallback recall channel) is listed as a secondary_substrate (vector_store; p.2, p.14 'RAG-fallback bypass')."},
+    {"axis": "write_policy", "value": "agent_tool_invoked",
+     "justification": "p.4, Section 2.2: injection is measured as 'a run is classified as injected if and only if memory_save_fact was called during S1' — the agent decides when to write via an explicit tool call. No summarization, reflection, or edit transformation of the stored fact is described anywhere in the given pages; the content saved is the retrieved document's rule as-is."},
+    {"axis": "retrieval_policy", "value": "agent_directed",
+     "justification": "p.4: in S4 'the agent retrieves the stored routing rule' via an explicit memory_recall_fact tool call it chooses to issue. p.14 frames both memory recall and RAG re-query as pathways the model may or may not invoke ('zero explicit memory_recall_fact tool calls...and zero RAG queries in the trigger session'), and p.17/Fig.1 shows Memory Sandbox defending precisely by removing this agent-issued recall action. No similarity ranking, recency window, or declared fusion rule is described for how a stored fact re-enters context."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Entirely lab-based: a 5,040-run factorial experiment across nine open-source models plus a separate frontier-API evaluation and a Bedrock validation factorial, all against a no-attack baseline and pre-registered comparisons (abstract; p.2: '115 pre-specified comparisons registered before data collection'). No real users, no fielded deployment; the 'enterprise agents' framing in the introduction (p.1) is motivating context, not a studied deployment."},
+    {"axis": "research_method", "value": "controlled_experiment",
+     "justification": "p.2: a factorial design manipulating model x defense x attack condition, with a no-attack control arm reported at p.4 ('Attack success was detected in 0 of 2,520 no-attack runs'), pre-registered comparisons, and an explicit reasoning-mode ablation (abstract, p.1) — manipulation against a control, not just fixed-suite scoring."},
+    {"axis": "contribution", "value": "method",
+     "justification": "p.2 contribution list opens with 'a layer-structural failure result' characterizing where defenses must sit relative to the attack's authority boundary, and the abstract centers Memory Sandbox, a tool-layer defense technique, plus the Retrieval-Fidelity Criterion (p.14) as a reusable methodological standard — techniques argued for, not a released tool or dataset artifact being the point of the paper."}
+  ]
+}

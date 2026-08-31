@@ -1,0 +1,22 @@
+{
+  "paper_id": 15390,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The agent itself writes and later conditions on run-time state: p.2 states the agent \"proactively compresses and reorganizes long-horizon historical information for the next step of interaction, making memory management an intrinsic part of its capabilities,\" via an explicit <mem> action alongside <think> and <tool_call>. p.5 gives the mechanism precisely: \"we replace s<t with smem t-1 as the inference context,\" i.e. the memory the model wrote at step t-1 is what conditions the model's behaviour at step t. This is a 2026 English paper with retrievable full text (front matter, tail, and results pages were extracted), and it is a real LLM agent (Qwen2.5-7B in a ReAct-style tool-calling loop, p.6) trained with RL, not a fixed retrieval pipeline (p.6 baselines/ablations) or a survey (p.2 related-work section is comparative, not the paper's contribution).",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "prompt_resident",
+     "justification": "p.5: \"we replace s<t with smem t-1 as the inference context, represented as πθ(st | q, smem t-1)\" — the memory is the token content that stands in for prior context, not an external index. Figure 1's caption on p.2 confirms the inference process \"only uses the previous step interaction for next step input with <mem> action.\" No vector index, graph, DB, filesystem or KV-cache persistence is described in the pages given."},
+    {"axis": "write_policy", "value": "summarize_compress",
+     "justification": "Abstract, p.1: MemPO \"enables the agent (policy model) to autonomously summarize and manage their memory during interaction with environment\" and \"selectively retain crucial information, significantly reducing token consumption.\" The case study on p.15 shows the <mem> content at each step is a condensed restatement of what was learned (e.g. Step 3: \"DJ Khaled graduated from Dr. Phillips High School. Need to find the Olympic diver from this school.\"), not new content absent from the trajectory, so this is compression rather than reflective synthesis."},
+    {"axis": "retrieval_policy", "value": "always_in_context",
+     "justification": "p.5: the memory written at step t-1 directly becomes the inference context at step t (πθ(st | q, smem t-1)) — there is no similarity search, query, or agent-issued lookup described; the compressed memory is simply always the context for the next step, pairing with the prompt_resident substrate."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "p.6, Table 1: MemPO is compared against ReAct, DeepResearcher, ReSearch, A-MEM, MEM1 and a no-memory GRPO baseline on synthesized multi-objective HotpotQA/NQ task sets under local-wiki and web-search conditions, with an ablation on the memory reward (p.6, 'Ablation study' paragraph). This is a controlled lab comparison on constructed benchmarks; no deployment, real users, or fielded system is reported in the pages given."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "p.6, Table 1 reports F1, EM, total tokens (TT) and peak tokens (PT) for MemPO against six baselines across 2/4/6/8/10-objective task suites under two search-engine conditions — a fixed task suite with scores, which is the paper's central evidence (p.5–6, Sections 5.1–5.4)."},
+    {"axis": "contribution", "value": "method",
+     "justification": "p.2 contributions list: \"We propose MemPO, a self-memory policy optimization algorithm, which effectively addresses credit assignment and steers the <mem> action toward retaining the most relevant information.\" Code is released (p.1) but the paper argues for the RL algorithm itself, not the released artefact."}
+  ]
+}

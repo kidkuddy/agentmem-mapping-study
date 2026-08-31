@@ -1,0 +1,75 @@
+{
+  "batch": "03",
+  "decisions": [
+    {
+      "paper_id": 15338,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "Introduces Causal-LoCoMo, 'a causally annotated benchmark derived from long conversational data, where each example contains a user request, a structured memory bank, useful memories, irrelevant distractors, and synthetic harmful memories', and evaluates against 'vector, graph, reflection, summary, full-history, and no-memory baselines' -- a benchmark/methodology characterising agent memory selection, which T6 keeps in scope."
+    },
+    {
+      "paper_id": 18886,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "MemPro's Evolving Agent 'iteratively selects promising versions, diagnoses recurring failures, and creates improved child versions' of the memory construction-retrieval pipeline itself, i.e. the agent writes and revises its own memory system at run time -- T2 keeps it in."
+    },
+    {
+      "paper_id": 14122,
+      "decision": "exclude",
+      "rule": "T4",
+      "criteria": ["E1", "E6"],
+      "reason": "The contribution is enlarging attendable past context ('LongMem can thus memorize long past context... typically enlarge the long-form memory to 65k tokens... to benefit various downstream tasks' via in-context learning), which T4 treats as more room rather than a policy over what persists; the abstract never frames this as an interactive agent, only a language-modeling backbone, so no cross-turn agent state is described (E6)."
+    },
+    {
+      "paper_id": 19071,
+      "decision": "exclude",
+      "rule": "T3",
+      "criteria": ["E2", "E3"],
+      "reason": "Compares only two static substrates -- 'per-user gamma-LoRA (a small LoRA adapter trained on each user's history)', a parametric mechanism with no run-time externalised store (E2), against 'BGE-large dense top-K retrieval', a fixed-corpus classical RAG comparator (E3). No mechanism where an agent itself writes memory at run time is described."
+    },
+    {
+      "paper_id": 17759,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "Hard call: 'The memory stores facts and rules in both natural language and symbolic forms, enabling precise tracking' and the framework 'iteratively performs symbolic rule grounding and LLM-based rule implementation', i.e. the system writes to and reads back from its own memory across the iterative reasoning steps. The abstract does not say whether this persistence extends beyond a single query, so per the uncertainty rule for T2 it is kept in rather than guessed out."
+    },
+    {
+      "paper_id": 18641,
+      "decision": "exclude",
+      "rule": "T4",
+      "criteria": ["E1", "E6"],
+      "reason": "Mela integrates the Hierarchical Memory Module into a Transformer decoder to 'perform online memory consolidation at test time' so that it 'maintains performance on significantly longer contexts, whereas Transformer baselines degrade rapidly' -- an architecture-level context-extension contribution (T4->E1), evaluated purely as a language model with no agent, turns or sessions described (E6)."
+    },
+    {
+      "paper_id": 16606,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "MemSkill's controller and 'LLM-based executor' produce 'skill-guided memories' from interaction traces, and a designer 'evolves the skill set by proposing refinements' after reviewing hard cases -- the agent itself extracts, consolidates and prunes its memory at run time, squarely satisfying T2."
+    },
+    {
+      "paper_id": 14969,
+      "decision": "exclude",
+      "rule": "T3",
+      "criteria": ["E2"],
+      "reason": "The only memory-adjacent content is verifying 'the model retains its general capabilities without significant catastrophic forgetting after training' following knowledge distillation and fine-tuning -- a parametric, weights-only effect with no externalised store an agent reads or writes, and no agent or cross-turn behaviour is described at all."
+    },
+    {
+      "paper_id": 15342,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "MementoCore 'modularizes memory control into specialized operators for step processing, memory compression, episodic writing, and episodic selection', with 'working memory selectively preserves task-relevant interface events' and 'episodic memory retrieves reusable past trajectories' -- the GUI agent explicitly writes and later retrieves its own memory across a long-horizon task."
+    },
+    {
+      "paper_id": 14517,
+      "decision": "exclude",
+      "rule": "T3",
+      "criteria": ["E2"],
+      "reason": "Echo's episodic-memory capability is instilled by training: 'Temporal information is innovatively incorporated into the LLM training process, and Echo is trained using the EM-Train' -- this is a parametric fine-tuning approach baking episodic recall into weights, with no externalised store the deployed agent writes to or reads from at run time."
+    }
+  ]
+}

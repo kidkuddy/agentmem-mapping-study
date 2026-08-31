@@ -1,0 +1,9 @@
+{
+  "paper_id": 13810,
+  "eligible": false,
+  "eligibility_rule": "E3",
+  "eligibility_criteria": ["I1", "E3"],
+  "eligibility_reason": "The evaluated pipelines (SH-CONFLICT and CAR) only read from a fixed, pre-built corpus C = {(s_i, t_i)} of numbered facts via BM25 retrieval and then execute a policy (select the candidate with the largest version serial) over the retrieved evidence (Section 3, p. 4, including the sh_conflict and car pseudocode). The corpus itself is the MemoryAgentBench FactConsolidation benchmark's pre-constructed memory of counterfactual-versioned facts, built by the benchmark rather than written by the agent under test at run time ('FactConsolidation ... builds a memory of numbered facts in which a counterfactual version carries a higher serial than the original', p. 1). Across the sampled pages (1-4, 9-12), no write, update, or persistence operation performed by the agent onto this or any other store is described; the entire contribution is about post-retrieval assembly (evidence extraction plus policy execution) on the read side (Contributions list, p. 3). This fails I1 (no agent-authored write to an externalised store as part of the contribution) and matches E3 (retrieval over a fixed corpus the agent never writes to).",
+  "secondary_substrates": [],
+  "facets": []
+}

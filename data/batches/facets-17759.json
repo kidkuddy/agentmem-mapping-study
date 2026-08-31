@@ -1,0 +1,22 @@
+{
+  "paper_id": 17759,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The framework initializes an external working memory with all input facts and rules, then iteratively performs symbolic rule grounding (a read over the memory) followed by LLM-based rule implementation whose newly inferred facts are written back into the same memory for use in subsequent steps (p. 2, Sec 2.2, 'The workflow begins by writing all input facts and rules into working memory... the new inferred facts with their symbolic notations are written into the working memory. This cycle continues until the inferred facts solve the query'). The store is explicitly read/write ('The working memory supports two operations: read and write', p. 3) and conditions the model's behaviour at later steps, so this is not incidental to the contribution but is the contribution (title and abstract both center on the working-memory mechanism, p. 1). 2024, English, full text present (22 pages, well over the 4-page floor).",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "graph_store",
+     "justification": "The working memory's fact base and rule base store predicate(arg1, arg2, ...) triples over a maintained schema of canonical predicates and objects (p. 2-3, Sec 2.2/'Memory Schema'), i.e. an entity/relation structure the agent writes into (e.g. 'grandson_of(Thomas, James)', p. 2, Figure 2) rather than embeddings, files, or attention state."},
+    {"axis": "write_policy", "value": "edit_in_place",
+     "justification": "p. 3: 'The write operation involves adding new rules or facts to the memory, or updating existing facts. The decision to add or update facts depends on whether the context involves fact updating... If new facts conflict with existing ones, updating occurs; otherwise, new facts are added.' The paper explicitly names conflict-triggered updates alongside additions as the general write behaviour."},
+    {"axis": "retrieval_policy", "value": "structured_query",
+     "justification": "p. 2-3: symbolic rule grounding 'performs predicate and variable matching within the symbolic forms of facts and rules, checking for conflicts to determine the applicable rule with supporting facts' — an exact logic/pattern match against the schema, not a similarity ranking."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "p. 1-2: the framework is tested on four public reasoning benchmarks (CLUTRR, ProofWriter, AR-LSAT, Boxes) against CoT-based and symbolic-based baselines using GPT-4/GPT-3.5, with no mention of deployment or real users — a controlled lab comparison, coded conservatively as validation per the guide's tie-break rule."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "p. 2: 'We conduct experiment on four datasets involving multi-step rule application... Results show our framework outperforms CoT-based and symbolic-based baselines using GPT-4 and GPT-3.5' — fixed task suites with reported comparative results."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "p. 3: 'we introduce a working memory-based neurosymbolic framework for rule application,' built from named components (working memory, symbolic rule grounding, LLM-based rule implementation) — an architecture for organizing the system, which is what the contribution list (p. 1-2) argues for; code is released but is not itself the argued contribution."}
+  ]
+}

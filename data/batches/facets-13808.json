@@ -1,0 +1,40 @@
+{
+  "paper_id": 13808,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Agents play repeated Avalon games and, after each game, write a self-generated reflection (self-assessment plus per-player observations) that persists into subsequent games as memory and is referenced in later strategic reasoning — e.g. role-conditional reputation statements and the quoted 'I'm wary of repeating last game's mistake...' (p. 1 abstract/Figure 1 caption; contributions list, p. 2). The write prompt itself is given in Appendix A.8, 'Post-Game Reflection Prompt' (p. 8). This is an externalised, agent-written, cross-session store conditioning future behaviour, satisfying I1. Year 2026 satisfies I2, the paper is in English (I3), and full text pages were retrievable (I4). No exclusion criterion applies: memory is not incidental but is the paper's central mechanism and one of its three listed contributions (p. 2), the agent writes the store itself rather than reading a fixed corpus, this is a primary empirical study (not a survey), and the paper is well over four pages (10 pages total).",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": null,
+      "justification": "The front matter (p. 1 Figure 1 caption) says reflections 'persist into subsequent games as memory' and the appendix (p. 8, A.8) gives only the write-side JSON prompt (self_assessment, player_observations); neither states the concrete storage mechanism (embedding index, database, file, or plain prompt concatenation). The architecture/methods section that would specify this was not extracted (the extraction note reports 0 middle pages pulled), and none of pages 1, 2, 8, 9, 10 describe it, so this axis is not decidable from what was given."
+    },
+    {
+      "axis": "write_policy",
+      "value": "reflect_synthesize",
+      "justification": "Appendix A.8, 'Post-Game Reflection Prompt' (p. 8): after each game the agent is prompted 'Reflect on your performance in this game' and returns JSON with a self_assessment and player_observations. This generates evaluative, descriptive content about the game and other players (later surfacing as reputational descriptors like 'straightforward' vs 'subtle', p. 2) rather than a verbatim copy of trajectory events."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": null,
+      "justification": "None of the extracted pages show how a stored reflection re-enters context in a later game. The other appendix prompts — discussion, team proposal, vote, mission execution, evil discussion, assassination (A.2–A.7, p. 8) — contain no visible memory-injection content, and no page among 1, 2, 8, 9, 10 states whether retrieval is by similarity, recency, structured query, or agent-directed lookup."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "The study runs 188 simulated games with systematic manipulation of reasoning effort and a memory/no-memory ablation (Table 9, p. 8), reporting condition comparisons such as 46% more team inclusions for high-reputation players and 75% vs 36% sabotage-delay rates by reasoning level (p. 1–2). No real users or deployed/fielded setting appears anywhere in pages 1, 2, 8, 9, or 10 — this is a controlled, lab-simulated investigation."
+    },
+    {
+      "axis": "research_method",
+      "value": "controlled_experiment",
+      "justification": "Table 9 (p. 8) explicitly compares a 'Mem' condition against a 'No Mem' control across player counts, and the contributions list (p. 2) reports a manipulated-condition comparison (sabotage-delay rate at medium/high vs low reasoning effort). These are manipulated variables measured against a control condition, not a fixed benchmark task suite scored against baselines."
+    },
+    {
+      "axis": "contribution",
+      "value": "framework",
+      "justification": "The contributions list (p. 2) frames the work as extending AvalonBench 'in three key directions,' centred on introducing cross-game memory and multi-round structure as the experimental setup for studying repeated-interaction social dynamics — an architecture for organising the study, not a proposed reusable technique for others to apply elsewhere. The 188-game dataset and viewer interface (Appendix C, E, pp. 8–9) are secondary artifacts, not what the contributions list argues for."
+    }
+  ]
+}

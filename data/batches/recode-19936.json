@@ -1,0 +1,22 @@
+{
+ "paper_id": 19936,
+ "eligible": true,
+ "eligibility_rule": "I1",
+ "eligibility_criteria": [],
+ "eligibility_reason": "Section 3.1 (p. 4) formalises procedural-memory management as an update operator U that maps a skill configuration Σ and a pool of run-time execution traces D to a new configuration Σ' = U(Σ, D); skills are versioned SKILL.md artifacts (p. 3, Section 2.1) that persist across tasks and later condition the agent's behaviour on subsequent tasks. Appendix B (p. 10) describes the write mechanism concretely: E VOLUTION's C OLLECT–D IAGNOSE–R EVISE–P ROMOTE cycle executes tasks, aggregates failure traces into error modes, and a reflector proposes a revised skill body that is promoted to a new version s(v+1) and used on later executions — an externalised store the system writes to at run time and reads from in later episodes.",
+ "secondary_substrates": [],
+ "facets": [
+  {"axis": "substrate", "value": "filesystem",
+   "justification": "Section 2.1 (p. 3): \"Each skill is a self-contained SKILL.md artifact... a versionable, retrievable unit of procedural memory.\" Appendix B (p. 10): \"a SKILL.md file contains YAML metadata and a markdown body\"; skills are stored and versioned as textual files, not embeddings, a graph, or a schema'd DB."},
+  {"axis": "write_policy", "value": "reflect_synthesize",
+   "justification": "Section 3.2 (p. 4) names the reflector ρ as \"the model or procedure that inspects traces, summarizes failure modes, and proposes a revised skill body.\" Appendix B (p. 10): the framework \"aggregates failure traces into recurrent error modes... A revision operator proposes a candidate body conditioned on the current skill and the diagnosis\" — new content synthesised from a diagnosis over multiple traces, not present verbatim in any single source item."},
+  {"axis": "retrieval_policy", "value": null,
+   "justification": "Section 2.1 (p. 3) explicitly excludes retrieval from what is studied: \"Skill annotations are fixed at task definition rather than retrieved at solve time, separating skill quality from retrieval quality... retrieval can be studied as a separate problem on the same tasks.\" The given pages describe how skills are written and evolved but deliberately do not specify or evaluate a mechanism by which a skill re-enters context at solve time, so none of the listed retrieval values can be assigned without guessing."},
+  {"axis": "research_type", "value": "validation",
+   "justification": "Section 4 (p. 4) and the results in Appendix K (Table K.1, p. 17) report accuracy scores (M1/M2, Section 2.3, p. 4) across model sizes and roles on the AFTER benchmark under controlled splits (local improvement, cross-task, cross-role, cross-model). The given pages describe benchmark tasks and controlled comparisons, not a fielded system with real users or production stakes, so this is validation rather than evaluation."},
+  {"axis": "research_method", "value": "benchmark_evaluation",
+   "justification": "Table K.1 (p. 17) reports M2 accuracy per role and model (Qwen 3.5-9B/35B/122B) before and after a refinement pass on the fixed 111-task AFTER subset; Section 2.3 (p. 4) defines the M1/M2 metrics used throughout Section 4's experiments over the 382-task AFTER suite."},
+  {"axis": "contribution", "value": "dataset",
+   "justification": "The contribution list on p. 2 names \"AFTER, a benchmark for procedural skill transfer in LLM agents\" first, and the abstract (p. 1) opens with \"We introduce AFTER, a benchmark of 382 realistic enterprise tasks spanning six professional roles and 22 procedural skills.\" The E VOLUTION harness and update-operator formalism (p. 4, p. 10) support the benchmark but are described as the evaluation interface around it, not the artefact the paper argues for."}
+ ]
+}

@@ -1,0 +1,22 @@
+{
+  "paper_id": 19935,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "SkeMex is a medical LLM agent that, at run time, distills interaction trajectories into structured skills, writes them into a skill repository, and retrieves them on later cases to condition its own behaviour, without updating model weights (p. 2, contributions list; p. 31, 'Skill writing and utility valuation'). Published 2026 (arXiv preprint, p. 1), in English, full text available (60 pages). No exclusion applies: the store is written by the agent itself (not a fixed corpus, so not E3), memory is external to the weights (not E2), memory is the paper's central contribution rather than incidental (not E5), the system is an LLM-based agent (not E6), and it is well over four pages (not E7).",
+  "secondary_substrates": ["filesystem"],
+  "facets": [
+    {"axis": "substrate", "value": "vector_store",
+     "justification": "Skill items are semantically indexed with text-embedding-3-large, and retrieval scores candidates by combining semantic similarity with utility and memory-strength terms over a minimum similarity threshold (p. 30, 'Models and execution setup' and 'Skill retrieval'). The multi-branch organization (general / task-specific / action-level) is a partitioning of this same embedding-indexed repository, not a distinct second store, so multi_store was not used."},
+    {"axis": "write_policy", "value": "reflect_synthesize",
+     "justification": "SkeMex 'distills informative interaction trajectories into structured skills that encode reusable procedural knowledge' (p. 2) — the skill is new higher-level content not present in any single trajectory step. At the end of each learning window an encoder 'may propose one of three outcomes: creating a new skill, patching an existing skill, or making no memory update' (p. 31); the paper's headline mechanism and title ('Self-Evolving Skill Memory') centre on the distillation/creation transformation rather than the secondary patching step."},
+    {"axis": "retrieval_policy", "value": "hybrid",
+     "justification": "Page 30 gives a declared fusion rule: 'Candidate skills are scored by combining semantic similarity, utility, and memory strength' with explicit weights lambda_sim=0.4, lambda_u=0.4, lambda_h=0.2 (Eq. 16), plus a minimum similarity threshold and a maturity bonus, retrieved top-K=6."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Despite being framed as a 'post-deployment self-evolution framework,' the evaluation reported in the given pages runs over benchmark task suites (AgentClinic, MediQ, MMMU, HealthBench, LiveClin, LiveMedBench, MedXpertQA with train/test splits, Table 9, p. 30) and a hyperparameter sensitivity analysis (p. 32), not a fielded system with real patients or real-world stakes. Coding validation is the conservative choice per the guide since no deployment or real users are described in the pages provided."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Multiple fixed benchmarks with in-domain/out-of-domain splits and reported scores (Table 9, p. 30; default configuration scores of 27.65 on HealthBench and 57.95 on LiveMedBench, and a K-sweep in Figure 5, p. 32)."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The contributions list (p. 2) names SkeMex itself as 'a post-deployment self-evolution framework,' organizing a multi-branch repository, retrieval, utility estimation, and the Read-Write-Assess-Govern governance lifecycle as one architecture, rather than a single algorithm; code release is mentioned in the abstract (p. 1) but is not what the paper argues for."}
+  ]
+}

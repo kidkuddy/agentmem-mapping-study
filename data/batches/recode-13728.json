@@ -1,0 +1,22 @@
+{
+  "paper_id": 13728,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The agent builds a Cognitive Map (a graph of state-action-outcome transitions) at run time via curiosity-driven exploration and LLM-based trajectory-mining, and later queries that same store during task execution to select and simulate actions -- an externalised, agent-written store that conditions future behaviour, not a fixed corpus or parametric-only memory (p. 2, Section 3.3-3.4, pp. 4-6). Workshop paper at NeurIPS 2025, in English, full text available (p. 1).",
+  "secondary_substrates": ["prompt_resident", "other"],
+  "facets": [
+    {"axis": "substrate", "value": "graph_store",
+     "justification": "Section 3.2-3.3: the Cognitive Map is 'a graph of transitions M = {(o, a, o')}' and is 'represented by tuples (ot, at, ot+1)' encoding state transitions and causal relationships the agent itself writes during exploration (p. 4, p. 5). This is the mechanism named in the title/abstract as 'experience-driven memory' and evaluated in the ablations (p. 1)."},
+    {"axis": "write_policy", "value": "summarize_compress",
+     "justification": "Page 5-6: 'we employ an LLM to convert the trajectories to agentic summaries of the environmental transitions, and store it as a cognitive map'; the memory agent 'produces concise summaries' of each observation-to-observation delta, explicitly 'avoiding HTML bloat' (p. 2, p. 6) -- raw trajectory content is condensed at write time rather than reflected into new abstractions or merely appended verbatim."},
+    {"axis": "retrieval_policy", "value": "structured_query",
+     "justification": "Page 6: 'the cognitive map is queried with (ot, at), returning the next raw observation ot+1, as well as LLM summaries' -- an exact state-action key lookup into the transition graph (also Eq. 4, p. 4: o_hat_{t+1} = M(ot, a)), not a similarity ranking."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Evaluated on the WebArena-Lite benchmark with a reported success rate (63% vs. prior SOTA 53.9%) and ablation studies (abstract, p. 1); no deployment, real users, or fielded setting appear anywhere in the extracted pages, so this is a lab benchmark comparison, not a real-world evaluation."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Abstract and Section 1 (p. 1-2): system is run over the fixed WebArena-Lite task suite and compared to prior systems by success-rate score, with ablations isolating memory, look-ahead simulation, and replanning (p. 1)."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "Contributions list (p. 2) names 'a practical modular architecture that integrates planning, memory, and simulation' as a distinct contribution alongside the actor-critic planner and the multi-layer memory -- the paper argues for a system architecture (Planner/Actor/Critic/Memory) rather than a single algorithmic method."}
+  ]
+}

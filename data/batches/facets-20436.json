@@ -1,0 +1,9 @@
+{
+  "paper_id": 20436,
+  "eligible": false,
+  "eligibility_rule": "E3",
+  "eligibility_criteria": ["E3"],
+  "eligibility_reason": "MemChain's own contribution is explicitly scoped to post-retrieval processing of an already-retrieved candidate set, not to writing the memory store. Section 2.1 states 'MemChain instead leaves M unchanged and learns the temporary mapping (q, Cq) -> E' (p. 3), and the introduction states 'MemChain leaves retrieval and memory writing fixed; it learns the post-retrieval transformation from Cq to E' (p. 2). The memory pool M is treated as a fixed store the mediator reads from but never writes to; its output E ('active memory') is 'exposed only to the frozen answer model' for the current query (p. 3), with no mechanism shown for E or any agent-authored content to persist into later turns or sessions. The Conclusion/Limitations even flag this as future work: 'Future work will... extend MemChain to richer, continually updated memory stores' (p. 9), confirming the present contribution does not update the store. This is retrieval/post-retrieval transformation over a fixed candidate pool (E3); it does not meet I1, since the claimed contribution contains no mechanism by which the agent itself writes state at run time for later cross-turn or cross-session retrieval.",
+  "secondary_substrates": [],
+  "facets": []
+}

@@ -1,0 +1,8 @@
+{
+  "paper_id": 14586,
+  "eligible": false,
+  "eligibility_rule": "E1",
+  "eligibility_criteria": ["E1"],
+  "eligibility_reason": "MemVLN's 'episodic memory' is a pyramidal-resolution rescaling function applied deterministically to the entire raw observation history Ht={v0,...,vt-1} by temporal distance (Eq. 1, Sec. 3.2, p. 5): recent frames keep full resolution, older frames are spatially downsampled, but nothing is ever selectively written or queried out of an addressable store — the whole history is always processed, just at reduced fidelity. Section 3.1 (p. 4) confirms the architecture simply 'selects a subset St ⊂ Ht' via this fixed function before every LVLM forward pass, and Section 5/'Preliminary: Why not Token Merging?' (p. 5) explicitly positions pyramidal resolution as a substitute for token-merging 'sequence compression and memory control' techniques (Uni-Navid, StreamVLN) used purely to fit long visual context into a fixed budget for real-time inference (14 FPS, p. 1 abstract; p. 2 intro). This is an inference-time context/cache compression technique with no genuine agent-authored write or query semantics beyond ordinary causal history. The 'procedural memory' (Sec. 3.1, p. 4; augmented action vocabulary, Appendix E and Table 8, p. 14-15) is likewise not a store: it is a fixed, pre-defined atomic-action vocabulary substituted for auto-regressive decoding to cut latency (~70ms vs >300ms, Fig. 2, p. 4), with no run-time write step and no cross-turn retrieval of agent-authored content. Both mechanisms are architecture/latency contributions dressed in a biological-memory metaphor (Fig. 1, p. 1) rather than an externalized store the agent writes to and later retrieves from to condition future behaviour, matching E1.",
+  "facets": []
+}

@@ -1,0 +1,22 @@
+{
+  "paper_id": 15884,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The agent runs a Claude tool-use loop exposing nine memory tools (save_memory, update_memory, delete_memory, get_memories, search_memories, semantic_search_memories, as_of_semantic_search, get_related_memories, get_memory_history); it writes memories at run time into a Neo4j store and retrieves them on later turns to answer questions (Section IV-B, p. 3). The evaluation ingests multi-session conversations and retrieves across sessions on LongMemEval (Section V-A, p. 3-4), so the run-time write/read-across-turns criterion is met. No exclusion criterion applies: writes are agent/system-driven into an externalised store the agent itself populated (not E2/E3), memory is the entire contribution rather than incidental (not E5), the agent is LLM-based (Claude, Section IV-B, p. 3) (not E6), and the record is a full system-and-evaluation paper well over four pages (not E7).",
+  "secondary_substrates": ["vector_store"],
+  "facets": [
+    {"axis": "substrate", "value": "graph_store",
+     "justification": "Each memory is an immutable :Memory identity node linked via HAS_VERSION to versioned :MemoryVersion content nodes, with RELATED_TO edges maintained between related memories — an explicitly bitemporal property graph the agent writes to (Section III-A, p. 2, and Fig. 1). The paper frames this as a graph-native alternative to plain vector stores (Section II-B, p. 2)."},
+    {"axis": "write_policy", "value": "append_only",
+     "justification": "On update_memory the current version is closed (tx_to set, :CurrentVersion label removed) and a new version node is created and linked to the same identity node \"rather than overwriting the previous one\"; no versions are physically removed (Section III-A–B, p. 2). Content already stored is never rewritten, only superseded by an appended version."},
+    {"axis": "retrieval_policy", "value": "hybrid",
+     "justification": "The bitemporal (as_of_semantic_search) path, the mechanism the title and contribution list center on, over-fetches 10×k candidates from the vector index by cosine similarity and then post-filters by valid-time/transaction-time conditions before ranking survivors by similarity — a declared two-step fusion of similarity_topk and structured_query (Section III-C, p. 3)."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "The system is evaluated on LongMemEval, a synthetic 500-question benchmark, over 60 sampled questions with recall@k scored against baselines/strategies (Section V-A–B, p. 3-4). No real users, deployment, or fielded use is reported; Neo4j Aura is described only as \"what we had available for testing\" (p. 1). Coded conservatively per the guide's validation/evaluation boundary."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Fixed task suite (LongMemEval, six question types, 10 sampled per type) with R@1/R@5/R@10 scores reported in Table I (p. 4)."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The contributions list on p. 1 names an identity/version schema and a dual-index design — an architecture for organising temporal and vector data in Neo4j — rather than a narrow algorithm; Section III (System Design) is presented separately from and prior to Section IV (Implementation), indicating the schema/design is the argued contribution."}
+  ]
+}

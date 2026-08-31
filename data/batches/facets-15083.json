@@ -1,0 +1,40 @@
+{
+  "paper_id": 15083,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 2 (p.4): the agent consolidates raw trajectory pages into compact memory cues held in a memory bank M_t while the raw pages go to an external page store P_t, written at run time as the trajectory unfolds (Eq. 5-6, p.4). Later, the agent itself issues a recall request with an intent q_t, selects candidate cues, and SAM reconstructs the corresponding pages back into the agent's active context to condition its next action (Eq. 7-8, p.4). This is an LLM-based agent writing and later retrieving its own trajectory state across steps to condition future behaviour. Abstract/p.1 place this as a 2026 arXiv preprint in English with retrievable text.",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "multi_store",
+      "justification": "p.2 and p.4: the paper's second listed contribution is explicitly 'a cue-page memory architecture that decouples lightweight write-time consolidation from intent-conditioned read-time reconstruction over preserved raw trajectory pages' (p.2) -- compact cues kept visible in context are deliberately paired with an external page store holding raw pages (Eq. 5-6, p.4), and the relationship between the two (cues as handles into pages) is the contribution itself, matching multi_store's requirement that the combination, not either store alone, be what's argued for."
+    },
+    {
+      "axis": "write_policy",
+      "value": "summarize_compress",
+      "justification": "Figure 1 (p.4, 'Page-based Episodic Consolidation') and the accompanying text: consolidation triggers when the active context 'Reached the token budget'; the raw page is then condensed into a compact memory cue and the raw page is removed from the active context while retained in the page store (Eq. 5-6, p.4). This is condensation on overflow, i.e. a compaction pass."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "agent_directed",
+      "justification": "p.4: 'this selection is not determined by a hand-crafted retrieval score'; instead, at step t the agent issues its own recall request with an intent q_t describing what it wants to recover and selects a subset of candidate cues itself (Eq. 7, p.4), which SAM then uses to reconstruct content from the associated pages (Eq. 8, p.4) -- the read is an agent-issued action, not similarity ranking or a fixed structured query."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "p.9: SAM is compared against baselines (w/o CM, discard-tool, summary, recent-k) on four public benchmarks (BrowseComp, BrowseComp-ZH, WideSearch, HLE) with ablations over interaction-round buckets and memory page size (Fig. 3, p.9). No deployed setting, real users, or field use are reported anywhere in the given pages -- a lab-controlled comparison, coded conservatively as validation."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "p.9: Pass@1 accuracy is reported across four fixed benchmark suites against multiple baselines and backbones (Fig. 3 and surrounding text, p.9), with no held-out control condition beyond the baseline systems -- a fixed task-suite evaluation with scores."
+    },
+    {
+      "axis": "contribution",
+      "value": "framework",
+      "justification": "p.1 and p.2: the paper repeatedly self-describes SAM as 'a standalone framework', and its second listed contribution (p.2) is 'a cue-page memory architecture' that is optimized as 'an independent capability' and 'applied across diverse backbones without retraining them' (p.9, Related Work) -- an architecture for organising memory rather than a single algorithmic technique."
+    }
+  ]
+}

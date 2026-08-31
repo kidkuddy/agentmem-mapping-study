@@ -1,0 +1,22 @@
+{
+  "paper_id": 19946,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The paper's contribution is a hypergraph memory (nodes = subtasks/skills, hyperedges = per-trajectory records) that the agent writes to at run time after each task and queries when it starts the next one: 'an outcome-conditioned LLM call extracts skill nodes ... and a distilled lesson from the full trajectory ... A new hyperedge ... is then added to E' (p. 5), and retrieval at the start of a new task pulls this stored content back into context via dual-path matching (p. 4). This is agent-written, cross-task state conditioning future behaviour, not a fixed corpus or parametric-only memory. Year 2026 (arXiv header, p. 1) satisfies I2; text is in English (I3); full pages were retrievable and the document is well over four pages (I4/E7 not triggered).",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "graph_store",
+     "justification": "Memory is 'a hypergraph G = (V, E) with subtask nodes ... and skill nodes ..., where each hyperedge groups the subtasks and skills from a single trajectory' (p. 2); Figure 2 (p. 4) shows subtask/skill nodes and hyperedges as the persisted structure the agent writes and later traverses. It is a hyperedge generalisation of a node/edge store, not a flat vector index or a file/relational store, so graph_store is the closest fit in the scheme; the paper itself frames pairwise graphs and hypergraphs as the same family, contrasted with 'flat vector DB' (p. 1, Figure 1)."},
+    {"axis": "write_policy", "value": "reflect_synthesize",
+     "justification": "On task completion, 'an outcome-conditioned LLM call extracts skill nodes ... and a distilled lesson ... from the full trajectory' (p. 5); the extraction prompts on p. 24 explicitly require abstracted, non-task-specific pattern names and a synthesized 'knowledge_fragment' capturing 'the core transferable lesson' -- content not present verbatim in any single trajectory step. A secondary edit-in-place step also occurs at write time (near-duplicate skills are merged into an existing node rather than appended, p. 5), but the transformation the paper centers and ablates (Figure 4c 'w/o hypergraph', p. 8) is the synthesized skill/lesson extraction."},
+    {"axis": "retrieval_policy", "value": "hybrid",
+     "justification": "Retrieval explicitly fuses two similarity paths with a declared rule: subtask-level top-k similarity search (Eq. 4, p. 4) and trajectory-level top-k similarity over hyperedge embeddings (Eq. 5, p. 5), merged as 'E* = Esub ∪ Etraj' (Eq. 6, p. 5); candidate skills are then re-ranked by a structured co-occurrence count over the fused hyperedge set, with embedding similarity only as a tiebreak (Eq. 7-9, p. 5). The declared fusion (union) and declared re-ranking (co-occurrence count) rule is exactly what the guide requires for hybrid rather than similarity_topk alone."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "The system is compared against ten memory baselines on three public agent benchmarks -- xBench, GAIA, WebWalkerQA -- with GPT-4o and Qwen3-30B-A3B (p. 1 abstract; p. 8 ablation/sensitivity figures), plus ablation and sensitivity analyses (Figure 4, p. 8). No deployed system, real users, or field setting is reported in the pages given; this is a lab benchmark comparison, so validation per the guide's conservative default."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Success rate is reported across three fixed benchmark suites against ten baselines (p. 1, p. 8), with an accompanying ablation table (Figure 4c, p. 8) removing components (trajectory retrieval, subtask retrieval, hypergraph structure) to attribute gains -- the dominant evidence form is fixed-suite scoring against baselines rather than a single controlled lab manipulation."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The abstract states the paper proposes 'HyperSkill, a hypergraph-based memory framework that jointly improves' what to store, how memory is structured/retrieved, and how memory evolves (p. 1); Figure 1/2 (p. 1, p. 4) present it as an architecture organizing three coupled subsystems (hyperedge construction, dual-path retrieval, structure-informed maintenance) rather than a single algorithmic technique, matching the guide's framework definition."}
+  ]
+}

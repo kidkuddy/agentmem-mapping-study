@@ -1,0 +1,22 @@
+{
+  "paper_id": 13639,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The Task Memory Tree (TMT) is an externalised structure the agent writes to at run time: 'nodes are dynamically created and updated in real time' as the agent progresses through a task (Sec. 4.1, p. 4). The Prompt Synthesizer then reads that structure back — 'traverses the active node path — from the root to the current leaf — and generates a concise, contextually-relevant prompt' (p. 4) — conditioning the agent's subsequent behaviour. This is a run-time write/read loop over agent-authored state, not a fixed corpus or parametric-only mechanism, satisfying I1. The record is 2025 (p. 1), in English, and is 16 pages with full text available, so I2-I4 hold and no exclusion criterion applies: memory is the paper's entire contribution (contributions 1-4, p. 2), not incidental (rules out E5), and the store is written by the agent, not a fixed index (rules out E3).",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "graph_store",
+     "justification": "The Task Memory Tree is a hierarchical node/edge structure the agent writes: each node holds action, input/output, status, and explicit 'Parent/Children' and 'Dependencies' cross-links (Sec. 4.1, p. 4). The paper explicitly frames it as graph-structured: 'TMT is already approaching a relaxed DAG form, which lays the foundation for future graph-based memory extensions' (p. 5)."},
+    {"axis": "write_policy", "value": "edit_in_place",
+     "justification": "Nodes are not merely appended: they are 'dynamically created and updated in real time' (p. 4), and TRIM performs 'subtree pruning and merging' to reduce redundancy (p. 4) plus rollback/replacement/merge operations that revert or overwrite existing nodes as new instructions arrive (Sec. 4.2.2, p. 5; Sec. 4.2.7, p. 6: 'Merged Task = f(Task1, Task2)', pruning via arg min cost)."},
+    {"axis": "retrieval_policy", "value": "structured_query",
+     "justification": "Re-entry into context is a deterministic tree traversal, not a ranked or agent-issued lookup: 'A dedicated Prompt Synthesizer traverses the active node path — from the root to the current leaf — and generates a concise, contextually-relevant prompt' (Sec. 4.1, p. 4)."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "The abstract states the method is demonstrated 'through case studies and comparative experiments on multi-step agent tasks' (p. 1) against a baseline (full-history prompting), not deployed with real users or in a fielded setting (p. 14-15). No deployment, production use, or external stakeholder is reported in the given pages, so this is a lab-investigated technique, coded conservatively as validation rather than evaluation."},
+    {"axis": "research_method", "value": "case_study",
+     "justification": "The evidence given is a worked example, not a benchmark suite: Table 3 (p. 15) walks a specific form-filling interaction across six rounds comparing the Baseline and TET (structured-memory) prompt construction, and p. 5 lists the scenario types studied ('recipe adaptation, travel itinerary revisions, or multi-tab planning'). p. 14 references a token-efficiency comparison ('Table 1') but that table's contents were not among the extracted pages, so it cannot independently be verified as a benchmark suite."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "Contribution 1 (p. 2) names the deliverable as 'a novel memory framework composed of the Task Memory Tree (TMT) and the Task Planner' — an architecture of three interacting components (TMT, TRIM, Prompt Synthesizer, p. 1) rather than a single technique. Code is released (contribution 6, p. 2) but is presented as an implementation of the framework, not the contribution itself."}
+  ]
+}

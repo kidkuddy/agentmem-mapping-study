@@ -1,0 +1,22 @@
+{
+  "paper_id": 17221,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "EBMChat's memory module writes intermediate workflow state at run time and the system retrieves it in later dialogue turns to condition its behaviour: 'the system can store not only the initial input or final output, but also the key intermediate information generated within entire workflows... EBMChat is able to retrieve contextual information according to users' requirements during subsequent interactions, including the medical Boolean query, evidence metadata, and selected evidence' (p. 5). Evaluation 2's 45 multi-turn dialogue tasks directly test this cross-turn recall (p. 1, p. 4, p. 18), and the abstract attributes EBMChat's multi-turn advantage over GPT-4.1+plugins to 'EBM-enabled workflow, memory module and TAO loops' (p. 2), so memory is not incidental. This is not E3 (fixed corpus never written to): the memory module stores agent-generated intermediate results, distinct from the separate PubMed evidence-retrieval index. Published 2025 (p. 1), in English, and full-length (19-page preprint per extraction note), so I2/I3/I4/E7 do not exclude it.",
+  "secondary_substrates": ["vector_store"],
+  "facets": [
+    {"axis": "substrate", "value": null,
+     "justification": "The given pages state only that the memory module 'stores' intermediate workflow information and metadata (queries, evidence metadata, selected evidence) and that a 'Table_Show' tool displays it (p. 5), but never name the underlying storage technology or data structure (no mention of embeddings, a graph, a schema/SQL, files, or KV-cache for this store). The Methods section that would likely specify implementation (probably page 3) was not among the extracted pages, so this is not decidable from what was given."},
+    {"axis": "write_policy", "value": "append_only",
+     "justification": "Page 5: 'the system can store not only the initial input or final output, but also the key intermediate information generated within entire workflows' — items generated during the workflow are added to the store as produced. No summarisation, synthesis, editing, or explicit save-tool action is described for this write path, only accumulation of raw workflow outputs."},
+    {"axis": "retrieval_policy", "value": "agent_directed",
+     "justification": "Page 5: 'Through the TAO loop, EBMChat invoked the Table_Show tool to extract and display the stored search result from its memory module'; later 'EBMChat automatically employed the Ref_Search tool to identify the most relevant reference... within the bibliography from the guideline cited previously.' Retrieval happens via the agent's own tool-invocation decisions (Thought-Action-Observation loop), not a fixed similarity/recency schedule."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Both evaluations use constructed task sets rather than a fielded deployment with real stakes: Evaluation 1 grades responses to 150 clinical questions across 15 cancer types against baselines (p. 1, Table 1 on p. 17), and Evaluation 2 scores 45 constructed multi-turn dialogue tasks against a baseline (p. 1, p. 4, Table 2 on p. 18), both rated by experts against ground truth rather than observed in real clinical use. Coded conservatively as validation per the guide's tie-breaking rule; a 'Design, Setting and Participants' framing mentioning 'West China Medical Center' (p. 1) does not itself establish a deployed setting with real users, which the given pages do not describe."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "EBMChat is run over fixed question/task suites (150 initial questions, 45 multi-turn tasks) against multiple baseline methods (MEDRAG-1, MEDRAG-5, Web Search/GPT-4.1) with quantitative scores reported: accuracy/Cohen's kappa in Table 1 (p. 17) and per-type success rates in Table 2 (p. 18)."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The paper argues for EBMChat as an integrated agent architecture combining the EBM-enabled workflow, the memory module, and the TAO loop (abstract, p. 1-2; p. 5 summary: 'Through the integration of EBM-enabled workflow, memory module and TAO loop, EBMChat demonstrates distinct advantages...'), i.e. a way of organising the system, rather than a single isolable algorithm, dataset, or metric."}
+  ]
+}

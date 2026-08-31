@@ -1,0 +1,22 @@
+{
+  "paper_id": 16551,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "VTG maintains an 'evolving long short-term memory' (DL, DS) that the system writes to at run time: DL is initially filled with top-k retrieved documents and then the system 'archives important documents in long-term memory and maintains recent ones in short-term memory' as generation proceeds (p. 1-2). Later claims are checked against this accumulated store via a memory verifier that 'reevaluates the claim against the documents stored in memory' (p. 2), conditioning subsequent claim/citation generation. This is the run-time-write-on-top-of-RAG boundary the guide names as in-scope, distinct from a fixed corpus the agent never writes to (the underlying Wikipedia corpus D is fixed and separate from the evolving memory DL/DS).",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "other",
+     "justification": "The contribution is a named 'evolving long short-term memory system' holding raw retrieved documents, split into a long-term archive and a short-term recent pool (p. 1-2). It does not match the typed categories: items are populated via external retrieval rather than being agent-authored context, but the memory verifier appears to check held documents directly rather than through a similarity index. The extracted pages (front matter and tail only) do not include Section 2.2+, so the exact internal representation (indexed store vs. plain list) is not specified."},
+    {"axis": "write_policy", "value": "append_only",
+     "justification": "Page 2: 'This system effectively archives important documents in long-term memory and maintains recent ones in short-term memory.' Documents are added to and retained/evicted from the two pools in their original form; there is no described summarization, synthesis, or in-place editing of stored content. The precise archiving threshold is not detailed in the extracted pages, but the transformation type (raw retention, not rewriting) is clear."},
+    {"axis": "retrieval_policy", "value": null,
+     "justification": "Page 2 states the memory verifier 'reevaluates the claim against the documents stored in memory,' but the extracted pages do not specify whether this check is exhaustive over the whole memory, ranked, or filtered by query/recency. Section 2.2 onward, which would contain this mechanism, was not among the extracted pages, so the selection rule for re-entering context cannot be determined from what was given."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "The paper reports 'extensive experiments on five datasets across three knowledge-intensive tasks' comparing VTG against baselines (VANILLA, SUMM, SNIPPET, RERANK) on standard metrics (p. 8, p. 13, Table 5). No deployment, real users, or fielded setting is reported anywhere in the extracted pages -- this is a lab-controlled benchmark comparison."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Table 5 (p. 13) lists five public QA datasets (2WikiMultihopQA, ASQA, ELI5, NQ, WebQ) with fixed example counts and correctness/citation metrics; p. 8 (Figure 4, Section 4) reports scores for VTG against four baseline methods on these fixed task suites."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The abstract calls VTG 'an innovative framework for Verifiable Text Generation with evolving memory and self-reflection' (p. 1), and the first listed contribution states 'We introduce VTG, a novel framework that guides the generation model using the combination of an evolving memory and a two-tier verifier' (p. 2) -- an architecture assembling memory, verification, and retrieval components, not a single algorithm, dataset, or tool artifact."}
+  ]
+}

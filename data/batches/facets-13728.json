@@ -1,0 +1,22 @@
+{
+  "paper_id": 13728,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "WebATLAS runs a curiosity-driven exploration pass to seed a cognitive map from interaction experience, then reads that map online during task execution to simulate action outcomes and pick the next action, and also writes to it online 'when execution encounters unseen transitions or world dynamics' (p. 6, Sec 3.3). This is agent-authored, run-time state that conditions the agent's own future behaviour across steps and (via the pre-seeded map) across the whole subsequent episode, satisfying I1. The paper is a 2025 arXiv/NeurIPS-workshop paper in English (p. 1) with full text retrievable (I2-I4). No exclusion applies: the store is agent-written (not E3), memory is one of the three contributions named on p. 2 and in the title (not E5), it is a primary study proposing WebATLAS, not a survey (not E4), and the paper spans at least 11 pages of body/references (not E7).",
+  "secondary_substrates": ["prompt_resident", "other"],
+  "facets": [
+    {"axis": "substrate", "value": "graph_store",
+     "justification": "Sec 3.3, p. 5: the cognitive map is 'represented by tuples (ot, at, ot+1)' and described as 'A graph of transitions M = {(o, a, o′)}' (p. 4, Sec 3.2). This is the store the paper formalizes, builds via a dedicated section (3.3), and repeatedly queries for look-ahead simulation (Sec 3.4, p. 6). Secondary stores: Working Memory ('facts and observations are optionally stored into the LLM context', p. 4 -> prompt_resident) and Semantic Memory / world knowledge (p. 4, 6), whose storage format is not specified in the given pages, coded 'other'."},
+    {"axis": "write_policy", "value": "summarize_compress",
+     "justification": "p. 5-6, Sec 3.3: 'we employ an LLM to convert the trajectories to agentic summaries of the environmental transitions' and the memory agent 'produces concise summaries emphasizing... Differences between successive observations... Newly available actions', explicitly done to avoid 'HTML bloat' (p. 2). Raw transitions are condensed into compact natural-language deltas on write, rather than stored verbatim or synthesized into novel higher-level lessons."},
+    {"axis": "retrieval_policy", "value": "structured_query",
+     "justification": "p. 6, Sec 3.3: 'the cognitive map is queried with (ot, at), returning the next raw observation ot+1, as well as LLM summaries.' This is an exact key lookup/graph traversal on the (state, action) pair, not a similarity ranking; Eq. 4 (p. 6) shows this lookup invoked for every action candidate at every step, not an agent-chosen optional read."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Evidence is a benchmark comparison: 'We evaluate WebATLAS on the WebArena-Lite benchmark for autonomous web navigation and demonstrate a success rate of 63%, outperforming the previous state-of-the-art at 53.9%' (p. 1, Abstract), plus ablation studies (p. 1). No deployment, real users, or fielded setting is reported in the given pages, so this is a novel technique investigated in the lab, not evaluation-in-practice."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "p. 1, Abstract: success rate reported on the WebArena-Lite benchmark against a prior state-of-the-art figure (63% vs 53.9%), i.e., running the system over a fixed task suite and reporting scores; ablation studies are mentioned as complementary evidence but the headline result is benchmark scoring."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "p. 2 contribution list: 'A practical modular architecture that integrates planning, memory, and simulation to transform high-level instructions into safe, executable action sequences', and Sec 3.2 (p. 4) describes WebATLAS as 'four modules operating in an inference-time actor-critic loop' — the paper argues for the overall modular system architecture (planner, actor, critic, multi-layer memory), not a single algorithm or a released tool/dataset."}
+  ]
+}

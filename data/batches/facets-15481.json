@@ -1,0 +1,40 @@
+{
+  "paper_id": 15481,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Imprint is an LLM-driven pipeline (Qwen2.5-7B-Instruct throughout, per p. 5) that writes structured Interaction Records into an evolving memory M at run time as new observations arrive, via a three-stage online compression process — Event-Prototype Assignment, Interaction Importance filtering, and Interaction Consolidation (p. 2, p. 4 Fig. 2 caption) — and later retrieves top-k entries from that same self-written memory to condition each new question's answer (p. 4, Section 3.3, Eq. 3). This is a run-time write followed by cross-query retrieval over a store the system itself populates, not retrieval over a fixed corpus (E3 does not apply). No hardware/cache optimisation (E1), no parametric-only memory (E2), no secondary study (E4), memory is the entire contribution not incidental (E5), and the paper is well over four pages with full evaluation (E7 does not apply).",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "vector_store",
+      "justification": "Memory entries are compared and merged via cosine similarity of contextual and action-object embeddings (event-prototype threshold δg = 0.75, consolidation threshold δm = 0.75, p. 4–p. 5), and retrieval ranks candidate entries with a weighted cosine-similarity score over object/action embeddings, Eq. 3 (p. 4). No separate structured schema, graph, or file store is described in the given pages."
+    },
+    {
+      "axis": "write_policy",
+      "value": "summarize_compress",
+      "justification": "The paper frames its write mechanism explicitly as 'online memory compression': incoming records are filtered by an importance score and then 'merged with similar observations into the compact memory M (Interaction Consolidation)' (p. 4, Fig. 2 caption); p. 2 describes the same process as producing 'compact long-term memories' as records arrive, reducing memory footprint 2.3× (p. 1)."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "hybrid",
+      "justification": "Base retrieval ranks memory entries by a declared weighted-cosine top-k score, Eq. 3 (p. 4: sk = γ1 cos(eoq,eok) + γ2 cos(eaq,eak) + γ3 w(fk), TopK selected). For questions with temporal constraints, this ranked set is then explicitly filtered by a declared rule using first_time/last_time/before/after predicates to produce the final evidence set R' (p. 4, Section 3.3) — a stated fusion of similarity ranking and structured filtering."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "Evaluation is confined to the public EgoLifeQA benchmark (500-question subset for participant Jake) against a reproduced EgoRAG baseline under a controlled LLM setup, run on a single NVIDIA L40 GPU (p. 5). No deployed system, real users, or field setting appears in the given pages."
+    },
+    {
+      "axis": "research_method",
+      "value": "controlled_experiment",
+      "justification": "EgoRAG is deliberately reproduced with the same LLM (Qwen2.5-7B-Instruct) and captioner 'to isolate the contribution of memory representation from LLM capacity... ensuring that performance differences arise from memory representation and retrieval design' (p. 5) — a manipulated-condition-vs-control design, further corroborated by systematic component-removal ablations (Table 5, stage-wise removal of Event-Prototype Assignment / Interaction Importance / Interaction Consolidation, and Table 8, zeroing each Eq. 3 term, both p. 15)."
+    },
+    {
+      "axis": "contribution",
+      "value": "framework",
+      "justification": "Self-described throughout as an architecture rather than a single technique: abstract calls it 'an interaction-centric memory framework' (p. 1), and the contributions list on p. 2 introduces 'Imprint, a cognitively inspired online memory compression framework' spanning pattern discovery, importance estimation, and consolidation stages."
+    }
+  ]
+}

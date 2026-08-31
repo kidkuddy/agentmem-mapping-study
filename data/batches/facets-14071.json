@@ -1,0 +1,22 @@
+{
+ "paper_id": 14071,
+ "eligible": true,
+ "eligibility_rule": "I1",
+ "eligibility_criteria": [],
+ "eligibility_reason": "The reasoning-track User and Item Memory Agents maintain persistent multimodal memories that the agent itself updates at run time via an attribute-guided reinforcement-and-reflection mechanism (contributions list, p. 2), and those evolved memories are read back to condition later ranking decisions ('After iterative memory evolution, the reasoning track ranks candidate items using the evolved user and item memories', Section 4.1.3, p. 5). This is an LLM-based agent writing and later retrieving its own state across interactions, satisfying I1. Year 2026 satisfies I2; the text is in English (I3); pages were retrievable (I4). No exclusion criterion applies: memory is not incidental but is the named contribution (not E5), an externalised store exists beyond weights (not E2), the agent writes to the store rather than only reading a fixed corpus (not E3), it is a primary study not a survey (not E4), it concerns an LLM-based agent (not E6), and the paper is far longer than four pages (not E7).",
+ "secondary_substrates": [],
+ "facets": [
+  {"axis": "substrate", "value": "multi_store",
+   "justification": "The framework's own architecture description names the combination as the contribution: 'MMEACR introduces a dual-track memory architecture that separates interpretable agent reasoning from fine-grained multimodal matching' (p. 1), with the reasoning-track memory and the multimodal embedding memory fused via weighted Reciprocal Rank Fusion, equations 15-17 (Section 4.3, p. 5). The evaluation (Table 1, p. 6) reports MMEACR-DES, MMEACR-EMB, and the combined MMEACR-RRF as the headline result, confirming the store combination itself is what is being argued for and measured."},
+  {"axis": "write_policy", "value": "reflect_synthesize",
+   "justification": "The second contribution bullet names an 'attribute-guided memory evolution mechanism that enables User and Item Memory Agents to reinforce aligned preferences and reflect on misaligned ones' (p. 2). The prompt templates on pages 15-16 show the model generating an 'updated self-introduction' that merges prior preferences with newly confirmed or corrected ones and removes conflicting parts ('Summarize your previous preferences and dislikes, combining them with newly confirmed insights while removing inconsistent or conflicting parts', p. 15) -- content synthesized from, not identical to, any single stored item."},
+  {"axis": "retrieval_policy", "value": "hybrid",
+   "justification": "Section 4.3 (p. 5) states the reasoning-based ranking and the embedding-based (cosine-similarity) ranking are combined through a declared weighted Reciprocal Rank Fusion rule: S_RRF(i) = w_des*S_des(i) + w_emb*S_emb(i) (Eq. 17), with per-track rank scores defined in Eqs. 15-16. This is an explicit, stated fusion rule combining two retrieval paths, matching the hybrid definition."},
+  {"axis": "research_type", "value": "validation",
+   "justification": "Evaluated via a leave-one-out protocol on three Amazon review benchmark subsets (CDs, Cell_Phones, Fashion) against eight baselines with NDCG/MRR metrics (Table 1, p. 6) and an ablation study removing components (Table 3, p. 6). No deployment, fielded system, or real users outside the authors' own experimental setup are reported on the given pages, so this is a controlled lab investigation rather than evaluation-in-practice."},
+  {"axis": "research_method", "value": "benchmark_evaluation",
+   "justification": "Table 1 (p. 6) reports N@1/N@5/N@10/MRR for MMEACR variants against eight baselines (Pop, BM25, SASRec, LLMSeqSim, MLLMSeqSim, LLMRank, AgentCF, CoTAgent) across three fixed datasets described in Table 2 (p. 6), the standard fixed-task-suite benchmark pattern."},
+  {"axis": "contribution", "value": "framework",
+   "justification": "The paper repeatedly names its own contribution as a framework and an architecture: 'we propose MMEACR, a Multimodal Memory-Enhanced Agent Collaboration framework for recommendation' (Abstract, p. 1) and 'MMEACR introduces a dual-track memory architecture' (p. 1); the first contribution bullet on p. 2 states 'We propose MMEACR, a multimodal memory-enhanced agent collaboration framework...'. No standalone released tool or dataset is claimed as the artefact on the given pages."}
+ ]
+}

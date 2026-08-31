@@ -1,0 +1,9 @@
+{
+  "paper_id": 14210,
+  "eligible": false,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": ["I1"],
+  "eligibility_reason": "The record's own contribution is an independent reproducible testbed and cost/accuracy benchmarking methodology for comparing existing LTM frameworks (mem0, Graphiti, cognee) against RAG and full-context baselines in a simulated cloud-edge DMAS — not a mechanism by which an agent writes and retrieves its own memory. The contributions list on p. 2 names three items: 'a testbed for evaluating LTM frameworks in a DMAS', 'independent benchmarks of three LTM frameworks funded by venture capital ... including full-context and RAG baselines, using LoCoMo as the source', and 'evaluations under unconstrained and constrained network scenarios'. None of these is a memory-write/retrieve mechanism the paper argues for; the mem0/Graphiti/cognee mechanisms belong to the systems under test, described only in related work (p. 2), and this paper does not modify or propose one. p. 8-9 report only comparative accuracy/cost/latency results across those third-party systems. No axis can be coded to a mechanism this record itself contributes.",
+  "secondary_substrates": [],
+  "facets": []
+}

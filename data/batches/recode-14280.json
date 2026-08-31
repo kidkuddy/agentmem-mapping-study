@@ -1,0 +1,40 @@
+{
+  "paper_id": 14280,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The paper's contribution centers on ChatAgent and MemoryManager writing conversational state (raw messages and derived semantic entries) into a persistent dual-layer memory bank at run time, and later retrieving that state via tri-path hybrid retrieval to condition future responses across sessions (p. 1 abstract; p. 4, Section 4.1: 'the belief state Mt is instantiated through dual-layer hybrid memory'; p. 14 MemoryManager system prompt showing add/delete/fetch operations). This is an externalised, agent-written store, not a fixed corpus (E3 does not apply) and not parametric-only (E2 does not apply). The work is a 2026 preprint (p. 1, 'Preprint. February 10, 2026'), in English, spans at least 16 pages (footer numbering through p. 16), and is a primary contribution paper, not a survey (E4 does not apply). Memory is the explicit, title-level contribution, not incidental (E5 does not apply), and the system is an LLM/VLM-based agent (ChatAgent, MemoryManager) rather than pure hardware/cache optimisation (E1 does not apply).",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "multi_store",
+      "justification": "The paper's own contribution list names the tiering itself as the contribution: 'Dual-layer hybrid memory with evidence linking. We propose a two-tier memory architecture with progressive narrowing for efficient and precise retrieval' (p. 2). Section 4.2 (p. 4) describes a RawMessageStore ('append-only database that stores raw conversational messages') coupled via evidence ids to a SemanticMemoryStore (indexed with dense text, BM25 sparse, and cross-modal image embeddings), with retrieval deliberately narrowing from the semantic layer to the raw layer (p. 4-5, p. 14 'Progressive Narrowing Strategy'). The relationship between the two stores, not either store alone, is what the paper argues for."
+    },
+    {
+      "axis": "write_policy",
+      "value": "edit_in_place",
+      "justification": "MemoryManager explicitly updates existing memories rather than only appending: 'analyzes existing memories to decide how to update (create, delete, modify)' (p. 4). The MemoryManager system prompt (p. 14) gives an explicit update workflow: 'Decide strategy: CREATE / DELETE / BOTH' and 'When updating contradictory info: delete old → create new → add update record.' Figure 1's caption (p. 2) contrasts M2A against baselines specifically on this axis: it 'updates a unified memory bank during interaction,' unlike systems with 'no write-back to the card.'"
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "hybrid",
+      "justification": "Section 4.2 (p. 4-5) defines a tri-path retrieval score combining dense text similarity, BM25 sparse matching, and cross-modal image similarity, explicitly fused with a declared rule: 'results from the three paths are fused via Reciprocal Rank Fusion (RRF)' (Eq. 6, p. 5), with hyperparameter k=60 stated. This is a stated combination/fusion rule over multiple retrieval signals, matching the hybrid definition rather than a single similarity_topk path."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "Evaluation is conducted on a synthesized benchmark built by injecting Yo'LLaVA/MC-LLaVA concept sessions into LoCoMo conversations (p. 5, Section on data synthesis; Figure 3), with results reported against baseline models (Qwen3VL-8B, GPT-4o-mini, GLM-4.6V-Flash) and systematic ablations (p. 8, Section 5.3, Table 2, Figure 5). No real users or fielded deployment are reported in the given pages — this is a controlled, benchmark-style investigation of a novel technique, coded conservatively as validation per the guide's boundary rule."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "The abstract states 'Experiments show that M2A significantly outperforms baselines' (p. 1), and Section 5.3 (p. 8) reports scores averaged across question categories on the synthesized dataset against named baseline models, with a results table (Table 2) and a supporting figure (Figure 5, p. 8) sweeping context-turn count. The ablation variants ('w/o Dual-layer', 'w/o Iterative', 'w/o Tri-path') are reported as part of this same fixed-task-suite evaluation rather than as an independently manipulated controlled trial outside the benchmark."
+    },
+    {
+      "axis": "contribution",
+      "value": "framework",
+      "justification": "Page 1 states directly: 'we propose M2A, an agentic framework with dual-layer hybrid memory.' The contributions list (p. 2) frames the second contribution as 'a two-tier memory architecture,' i.e., a way of organising the memory system (two collaborating agents plus a layered store), rather than a single algorithm. Code is released (p. 1, GitHub link) but the paper argues for the architecture itself, not the artefact as such."
+    }
+  ]
+}

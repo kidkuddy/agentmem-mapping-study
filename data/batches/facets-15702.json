@@ -1,0 +1,8 @@
+{
+  "paper_id": 15702,
+  "eligible": false,
+  "eligibility_rule": "E3",
+  "eligibility_criteria": ["E3", "I1"],
+  "eligibility_reason": "The contribution is a benchmark (ES-MemEval) and an accompanying static multi-session dataset (EvoEmo) for evaluating memory capabilities of existing LLM systems on QA, summarization and dialogue-generation tasks over a fixed pre-recorded conversation transcript (p. 1, abstract: 'we introduce ES-MemEval, a comprehensive benchmark...To support the benchmark, we also propose EvoEmo, a multi-session dataset'). The evaluated systems are off-the-shelf long-context models fed the full given history, and RAG variants where 'a dense retriever (bge-m3) retrieves the top-4 most relevant full-session contexts from a FAISS index to supply user information' (p. 6, Section 5). In both cases the store being read is the fixed, pre-existing dialogue transcript supplied as benchmark input, not a store the agent itself writes to at run time during the interaction; no page given describes an agent deciding what to write into a memory store or a write-then-later-retrieve loop that conditions the agent's own future behaviour (I1 not met). This matches E3: retrieval over a fixed corpus the agent never writes to.",
+  "facets": []
+}

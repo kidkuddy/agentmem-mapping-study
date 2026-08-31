@@ -1,0 +1,148 @@
+{
+ "batch": "03",
+ "is_pilot": false,
+ "seed": 20260830,
+ "output_path": "/Users/niemand/Desktop/dr/scripts/agentmem/batches/decisions-03.json",
+ "guide": "# Screening guide \u2014 memory design patterns in LLM agents\n\nYou are screening records for a systematic mapping study on **memory mechanisms\nin LLM-based agent systems**. You decide on **title and abstract only**. You are\nnot reading the paper. You are not classifying it.\n\nEverything you need is in the batch file you were given. Do not fetch anything.\n\n## What the study is about\n\n**Agent memory** in one sentence: a mechanism by which an LLM-based agent\n**writes state at run time** and **later retrieves it across turns or sessions**\nin order to condition its own future behaviour.\n\nThree clauses, all load-bearing:\n\n- **writes at run time** \u2014 the agent authors the content. A corpus somebody\n  indexed before deployment is not memory, however good the retrieval over it.\n- **across turns or sessions** \u2014 the state outlives the immediate completion.\n- **conditions future behaviour** \u2014 it is read back into the agent's own loop,\n  not just logged for humans.\n\nThe word \"memory\" is a homonym and the adjacent literatures are much larger than\nthis one. Most of what you reject will be GPU and inference memory, classical\nretrieval-augmented generation, and parametric knowledge editing. Rejecting them\ncorrectly is the main thing this stage is for.\n\n## Criteria\n\n**Include only if all of these hold.**\n\n| | |\n|---|---|\n| **I1** | The record's claimed contribution includes a mechanism by which an LLM-based agent writes state at run time and later retrieves it across turns or sessions to condition its own future behaviour. |\n| **I2** | Published, released or first preprinted on or after 2023-01-01. |\n| **I3** | Written in English. |\n| **I4** | Full text appears to be retrievable. |\n\n**Exclude if any of these hold.**\n\n| | |\n|---|---|\n| **E1** | \"Memory\" denotes hardware, GPU or DRAM memory, or inference-time cache optimisation, with no cross-turn agent state semantics. |\n| **E2** | Memory is exclusively parametric \u2014 fine-tuning, model editing, continual learning \u2014 with no externalised store the agent reads or writes at run time. |\n| **E3** | Retrieval over a fixed corpus the agent never writes to (classical RAG). |\n| **E4** | Secondary study \u2014 survey, review, systematic review or mapping study. |\n| **E5** | Memory is mentioned only incidentally and is not part of the claimed contribution. |\n| **E6** | Not an LLM-based agent \u2014 reinforcement-learning agent memory, or a symbolic cognitive architecture with no language model in the loop. |\n| **E7** | Fewer than four pages, or abstract-only. |\n\n## Decision rules\n\nThese exist so two coders reach the same answer on the hard records.\n\n**Two passes, in this order.** Study design first, topic second. The design\nquestion wins: a survey about agent memory is still a survey, and no topic rule\nbelow pulls it back in.\n\n### Pass 1 \u2014 study design. Any of these decides, whatever the topic.\n\n- **D1.** The contribution is aggregating other papers' findings \u2192 **E4**,\n  whether or not the record calls itself a survey, review or taxonomy. Labels\n  are not the test. A record proposing a new framework, architecture or position\n  **is primary** \u2014 keep it; it codes as research type `philosophical`. A primary\n  study with a related-work section is obviously primary.\n- **D2.** No LLM is in the loop \u2014 the agent is an RL policy, a robot controller,\n  a symbolic cognitive architecture, or a human \u2014 \u2192 **E6**. Human memory\n  research and neuroscience are **E6**, not E5.\n\n  **D2 fires on positive evidence, not on silence.** An abstract that never\n  mentions a language model has not told you there is no language model in the\n  loop; embodied-planning and agent papers routinely omit it as understood.\n  Silence \u2192 **include**, and say in the reason that the population could not be\n  confirmed from the abstract. E6 requires the abstract to describe something\n  that is positively not an LLM agent.\n- **D3.** Not a full paper: abstract-only, poster, editorial, commentary,\n  keynote description, or a duplicate of another record \u2192 **E7**.\n\n### Pass 2 \u2014 topic. Only reached by records that survive pass 1.\n\nApply in order; the first that matches decides.\n\n- **T1. Which sense of \"memory\"?** If every mention is bandwidth, footprint,\n  allocation, peak usage, swapping, quantisation or throughput \u2192 **E1**.\n  A record may talk about caches throughout and still be in scope: the question\n  is whether *agent state persists across turns or sessions*, not whether the\n  word \"cache\" appears. \"Persistent KV cache so an agent resumes a session\"\n  is **include**; \"KV-cache compression that raises tokens per second\" is **E1**.\n\n- **T2. Does the agent write the store?** If the retrievable content is authored\n  offline and fixed at deployment \u2014 a document collection, a wiki dump, a code\n  index, a product catalogue \u2014 \u2192 **E3**, no matter how sophisticated the\n  retrieval. If the agent appends, edits, summarises, reflects into or deletes\n  from the store while running \u2192 **include**. A record that adds run-time writes\n  to an otherwise classical RAG pipeline is **include**; that is precisely the\n  boundary this study maps.\n\n- **T3. Is there an externalised store at all?** If the only thing that persists\n  is model weights \u2014 fine-tuning on session history, model editing, continual\n  learning \u2014 \u2192 **E2**. If weights are updated *and* an external store is\n  maintained, \u2192 **include**, and note the hybrid.\n\n- **T4. Context window versus memory.** Extending how much the model can attend\n  to is an architecture contribution, not a memory mechanism \u2192 **E1**. Deciding\n  *what survives* into the next turn \u2014 compaction, summarisation, eviction,\n  a rolling scratchpad the agent maintains \u2014 is a memory mechanism \u2192 **include**.\n  The test is whether the record contributes a *policy over what persists*, or\n  merely more room.\n\n- **T5. Incidental use.** An agent paper whose contribution is planning, tool\n  use, or a domain application, which happens to keep a conversation buffer and\n  says nothing more about it \u2192 **E5**. If the memory design is named, motivated,\n  varied or ablated, it is part of the contribution \u2192 **include**.\n\n- **T6. Work about memory rather than in it.** Benchmarks and datasets for agent\n  memory, evaluation methodologies, and attacks or defences on agent memory\n  (poisoning, extraction, membership inference, isolation) are **include**. They\n  characterise a memory mechanism, and the map has facet values for them.\n\n  **T6 against T5, when memory is one attack surface among several.** A security\n  paper covering prompt injection, backdoors *and* memory poisoning is **T6** if\n  the memory attack is **named and separately evaluated** \u2014 its own condition,\n  its own result. If memory appears only in a list of surfaces with no separate\n  treatment, it is incidental \u2192 **T5**. The test is a separate result, not the\n  share of the paper spent on it.\n\n- **T7. Multi-agent.** Shared memory, blackboards, memory passed between agents\n  and memory-as-a-service are **include**.\n\n### Uncertainty\n\nIf two rules genuinely conflict, or the abstract does not say enough to apply\n**D2, T2 or T4**, **include** and say so in the reason. Screening errs toward admitting;\nthe full-text stage has the paper in front of it and will settle it. Do not\nguess a mechanism the abstract does not state.\n\n## Output\n\nWrite one JSON file to the `output_path` given in your batch file. Nothing else.\n\n```json\n{\n  \"batch\": \"<the batch id from your input file>\",\n  \"decisions\": [\n    {\n      \"paper_id\": 1234,\n      \"decision\": \"include\",\n      \"rule\": \"T2\",\n      \"criteria\": [],\n      \"reason\": \"Agent appends per-episode summaries to a vector store it queries on later tasks; the store is authored at run time, so T2 keeps it.\"\n    },\n    {\n      \"paper_id\": 1235,\n      \"decision\": \"exclude\",\n      \"rule\": \"T1\",\n      \"criteria\": [\"E1\"],\n      \"reason\": \"Every mention of memory is peak GPU usage during training; no state crosses a turn.\"\n    }\n  ]\n}\n```\n\n- `decision` \u2014 `include` or `exclude`, nothing else.\n- `rule` \u2014 the decision rule that settled it (`D1`\u2013`D3`, `T1`\u2013`T7`).\n- `criteria` \u2014 the exclusion codes that apply, empty for an include.\n- `reason` \u2014 one or two sentences citing what the abstract actually says. Do not\n  write \"meets criteria\" or \"off-topic\". A reason that would not let a second\n  coder reconstruct the decision is not a reason.\n\nOne entry per record in your batch, in the order given. Do not omit records you\nfind hard \u2014 include them and say why they were hard.\n",
+ "records": [
+  {
+   "paper_id": 15338,
+   "title": "Causal Intervention-Based Memory Selection for Long-Horizon LLM Agents",
+   "year": 2026,
+   "venue": null,
+   "authors": [
+    "Saksham Sahai Srivastava"
+   ],
+   "abstract": "Long-horizon LLM agents rely on persistent memory to support interactions across sessions, yet existing memory systems often retrieve context using semantic similarity or broad history inclusion, treating retrieved memories as uniformly useful. This assumption is fragile because memories may be topically related while remaining irrelevant, stale, or misleading. We propose Causal Memory Intervention (CMI), a causal memory-selection technique that estimates how candidate memories affect the model's answer under controlled interventions, selecting memories that improve task performance while suppressing unstable, irrelevant, or harmful ones. To evaluate this setting, we introduce Causal-LoCoMo, a causally annotated benchmark derived from long conversational data, where each example contains a user request, a structured memory bank, useful memories, irrelevant distractors, and synthetic harmful memories. We compare CMI against vector, graph, reflection, summary, full-history, and no-memory baselines. Results show that CMI achieves a stronger balance between answer quality and robustness to misleading memory, suggesting that reliable long-term memory requires selecting context based on causal usefulness rather than relevance alone. The full framework, benchmark construction code, and experimental pipeline are available at https://github.com/Saksham4796/causal-memory-intervention."
+  },
+  {
+   "paper_id": 18886,
+   "title": "MemPro: Agentic Memory Systems as Evolvable Programs",
+   "year": 2026,
+   "venue": null,
+   "authors": [
+    "Qingshan Liu",
+    "Guoqing Wang",
+    "Wen Wu",
+    "Jingqi Huang",
+    "Xinqi Tao",
+    "Dejia Song",
+    "Jie Zhou",
+    "Liang He"
+   ],
+   "abstract": "Long-horizon autonomous agents require memory systems to retain historical information, track evolving states, and reuse relevant knowledge beyond finite context windows. Existing agentic memory systems typically follow a memory construction-retrieval (MCR) pipeline, but often adapt mainly the memory bank while keeping the surrounding pipeline fixed after deployment. This fixed-pipeline design struggles to handle heterogeneous task-specific failure modes and can become misaligned with memory banks that evolve in scale and structure over time. To address these limitations, we propose MemPro, a system-level evolution framework that treats the entire MCR pipeline as an evolvable program rather than adapting only the memory bank or prompt text. MemPro maintains a version tree of runnable memory-system implementations, where an Evolving Agent iteratively selects promising versions, diagnoses recurring failures, and creates improved child versions through failure-mode-guided edit-debug refinement. Experiments on LongMemEval, LoCoMo, HotpotQA, and NarrativeQA show that MemPro consistently outperforms strong static and prompt-level evolving baselines within a few iterations, continues to improve with evolution, and achieves a favorable performance-cost trade-off. Code is available at https://github.com/wanghai673/MemPro."
+  },
+  {
+   "paper_id": 14122,
+   "title": "Augmenting Language Models with Long-Term Memory",
+   "year": 2023,
+   "venue": null,
+   "authors": [
+    "Weizhi Wang",
+    "Li Dong",
+    "Hao Cheng",
+    "Xiaodong Liu",
+    "Xifeng Yan",
+    "Jianfeng Gao",
+    "Furu Wei"
+   ],
+   "abstract": "Existing large language models (LLMs) can only afford fix-sized inputs due to the input length limit, preventing them from utilizing rich long-context information from past inputs. To address this, we propose a framework, Language Models Augmented with Long-Term Memory (LongMem), which enables LLMs to memorize long history. We design a novel decoupled network architecture with the original backbone LLM frozen as a memory encoder and an adaptive residual side-network as a memory retriever and reader. Such a decoupled memory design can easily cache and update long-term past contexts for memory retrieval without suffering from memory staleness. Enhanced with memory-augmented adaptation training, LongMem can thus memorize long past context and use long-term memory for language modeling. The proposed memory retrieval module can handle unlimited-length context in its memory bank to benefit various downstream tasks. Typically, LongMem can enlarge the long-form memory to 65k tokens and thus cache many-shot extra demonstration examples as long-form memory for in-context learning. Experiments show that our method outperforms strong long-context models on ChapterBreak, a challenging long-context modeling benchmark, and achieves remarkable improvements on memory-augmented in-context learning over LLMs. The results demonstrate that the proposed method is effective in helping language models to memorize and utilize long-form contents. Our code is open-sourced at https://aka.ms/LongMem."
+  },
+  {
+   "paper_id": 19071,
+   "title": "Substrate Asymmetry in User-Side Memory: A Diagnostic Framework",
+   "year": 2026,
+   "venue": "arXiv (Cornell University)",
+   "authors": [
+    "\u9093\u6709\u65fa"
+   ],
+   "abstract": "User-side memory in LLMs is typically scored as a single \"personalization\" capability: given a user's history, is the output more user-aware? We show this aggregate metric hides opposite-direction failures. Memory factorises into at least three orthogonal axes -- behavioral consistency (style, voice), factual presence (recall facts in history), and factual absence (abstain when a fact is absent) -- and no single substrate wins all three. Comparing per-user gamma-LoRA (a small LoRA adapter trained on each user's history; gamma denotes per-user, not per-task) against BGE-large dense top-K retrieval on a controlled 50-user synthetic corpus and a real-data probe (LaMP-3), we find gamma-LoRA decisively wins behavioral style while RAG decisively wins factual absence -- and the same query-projection cells in attention layers 21-35 causally load-bear both effects in opposite directions (zeroing those LoRA weights raises absence-probe TPR by +33 pp and drops presence-probe TPR by 20 pp). On the more heavily RLHF-tuned Llama-3.1-8B-Instruct the asymmetry strengthens, not heals: parametric memory's behavioral advantage collapses while its absence-calibration deficit against retrieval widens -- an alignment tax on parametric user-memory. On real-data LaMP-3, gamma-LoRA underperforms a majority baseline; a 9-condition mitigation sweep diagnoses this as instruction-following collapse, not substrate failure (a 9x2 cross-product shows the eval-time {1..5} logit mask drives main_acc to >=0.995 on every recipe), and the best training-time fix replicates bit-identically on Llama. Finally, substrate-selection routing is question-classification, not calibration: a 110M DistilBERT on the question text alone beats every logit-based router. We contribute the diagnostic framework, the diagnosed real-data negative, the alignment-tax replication, and the routing-as-classification finding."
+  },
+  {
+   "paper_id": 17759,
+   "title": "Symbolic Working Memory Enhances Language Models for Complex Rule Application",
+   "year": 2024,
+   "venue": null,
+   "authors": [
+    "Siyuan Wang",
+    "Zhongyu Wei",
+    "Yejin Choi",
+    "Xiang Ren"
+   ],
+   "abstract": "Large Language Models (LLMs) have shown remarkable reasoning performance but struggle with multi-step deductive reasoning involving a series of rule application steps, especially when rules are presented non-sequentially. Our preliminary analysis shows that while LLMs excel in single-step rule application, their performance drops significantly in multi-step scenarios due to the challenge in rule grounding. It requires anchoring the applicable rule and supporting facts at each step, amidst multiple input rules, facts, and inferred facts. To address this, we propose augmenting LLMs with external working memory and introduce a neurosymbolic framework for rule application. The memory stores facts and rules in both natural language and symbolic forms, enabling precise tracking. Utilizing this memory, our framework iteratively performs symbolic rule grounding and LLM-based rule implementation. The former matches predicates and variables of symbolic rules and facts to ground applicable rules at each step. Experiments indicate our framework's effectiveness in rule application and its robustness across various steps and settings~\\footnote{Code and data are available at \\url{https://github.com/SiyuanWangw/RuleApplication}.}."
+  },
+  {
+   "paper_id": 18641,
+   "title": "Mela: Test-Time Memory Consolidation based on Transformation Hypothesis",
+   "year": 2026,
+   "venue": null,
+   "authors": [
+    "Lungchuan Chen"
+   ],
+   "abstract": "Memory consolidation, the process by which transient experiences are transformed into stable, structured representations, is a foundational organizing principle in the human brain, yet it remains largely unexplored as a design principle for modern sequence models. In this work, we leverage established neuroscientific theories of memory consolidation and cross-frequency coupling to propose the Hierarchical Memory Module (HMM), a neural memory architecture composed of two functionally distinct sub-modules that operate at different update frequencies. Inspired by the transformation hypothesis, the low-frequency sub-module produces high-level representations that capture abstract, gist-level knowledge, while the high-frequency sub-module produces fine-grained representations that preserve richer episodic detail. The final memory output is dynamically reconstructed as a context-dependent combination of both representations, analogous to the reconstructive nature of human memory retrieval. We integrate HMM into a Transformer-based language decoder to form Mela, a family of memory-augmented language models that perform online memory consolidation at test time. To further exploit the multi-granularity memory representations produced by HMM, we introduce MemStack, a method that distributes different levels of memory features across the early layers of the decoder without introducing additional tokens. Experiments on language modeling demonstrate that Mela outperforms Transformer baselines across all the model sizes. Moreover, with the pretrained context length fixed at 4K, Mela maintains performance on significantly longer contexts, whereas Transformer baselines degrade rapidly beyond their training length. Extensive ablation studies validate the contribution of each component and provide guidance for practical configuration."
+  },
+  {
+   "paper_id": 16606,
+   "title": "MemSkill: Learning and Evolving Memory Skills for Self-Evolving Agents",
+   "year": 2026,
+   "venue": null,
+   "authors": [
+    "Haozhen Zhang",
+    "Quanyu Long",
+    "Jianzhu Bao",
+    "Tao Feng",
+    "Weizhi Zhang",
+    "Haodong Yue",
+    "Wenya Wang"
+   ],
+   "abstract": "Most Large Language Model (LLM) agent memory systems rely on a small set of static, hand-designed operations for extracting memory. These fixed procedures hard-code human priors about what to store and how to revise memory, making them rigid under diverse interaction patterns and inefficient on long histories. To this end, we present \\textbf{MemSkill}, which reframes these operations as learnable and evolvable memory skills, structured and reusable routines for extracting, consolidating, and pruning information from interaction traces. Inspired by the design philosophy of agent skills, MemSkill employs a \\emph{controller} that learns to select a small set of relevant skills, paired with an LLM-based \\emph{executor} that produces skill-guided memories. Beyond learning skill selection, MemSkill introduces a \\emph{designer} that periodically reviews hard cases where selected skills yield incorrect or incomplete memories, and evolves the skill set by proposing refinements and new skills. Together, MemSkill forms a closed-loop procedure that improves both the skill-selection policy and the skill set itself. Experiments on LoCoMo, LongMemEval, HotpotQA, and ALFWorld demonstrate that MemSkill improves task performance over strong baselines and generalizes well across settings. Further analyses shed light on how skills evolve, offering insights toward more adaptive, self-evolving memory management for LLM agents."
+  },
+  {
+   "paper_id": 14969,
+   "title": "Is Small Language Model the Silver Bullet to Low-Resource Languages Machine Translation?",
+   "year": 2025,
+   "venue": null,
+   "authors": [
+    "Yewei Song",
+    "Lujun Li",
+    "Cedric Lothritz",
+    "Saad Ezzini",
+    "Lama Sleem",
+    "Niccolo Gentile",
+    "Radu State",
+    "Tegawend\u00e9 F. Bissyand\u00e9",
+    "Jacques Klein"
+   ],
+   "abstract": "Low-resource languages (LRLs) lack sufficient linguistic resources and are underrepresented in benchmark datasets, resulting in persistently lower translation quality than high-resource languages, especially in privacy-sensitive and resource-limited contexts. Firstly, this study systematically evaluates state-of-the-art smaller Large Language Models in 200 languages using the FLORES-200 benchmark, highlighting persistent deficiencies and disparities in the translation of LRLs. To mitigate these limitations, we investigate knowledge distillation from large pre-trained teacher models to Small Language Models (SLMs) through supervised fine-tuning. The results show substantial improvements; for example, the translation performance of English to Luxembourgish (EN to LB), measured by the LLM-as-a-Judge score, increases from 0.36 to 0.89 in the validation set for Llama-3.2-3B. We further investigate various fine-tuning configurations and tasks to clarify the trade-offs between data scale and training efficiency, verify that the model retains its general capabilities without significant catastrophic forgetting after training, and explore the distillation benefits to other LRLs on SLMs (Khasi, Assamese, and Ukrainian). In general, this work exposes the limitations and fairness issues of current SLMs in LRL translation and systematically explores the potential of using the distillation of knowledge from large to small models, offering practical, empirically grounded recommendations to improve LRL translation systems"
+  },
+  {
+   "paper_id": 15342,
+   "title": "MementoGUI: Learning Agentic Multimodal Memory Control for Long-Horizon GUI Agents",
+   "year": 2026,
+   "venue": null,
+   "authors": [
+    "Ziyun Zeng",
+    "Hang Hua",
+    "Bocheng Zou",
+    "Mu Cai",
+    "Rogerio Feris",
+    "Jiebo Luo"
+   ],
+   "abstract": "Recent GUI agents have made substantial progress in visual grounding and action prediction, yet they remain brittle in long-horizon tasks that require maintaining task state across many interface transitions. Existing agents typically rely on raw history replay or text-only memory, which either overwhelms the model with redundant screenshots or discards localized visual evidence needed for future decisions. To address these limitations, we introduce \\textbf{MementoGUI}, a plug-in agentic memory framework that equips MLLM-based GUI agents with \\textbf{MementoCore}, a learned controller for online memory selection, compression, and retrieval. Rather than treating interaction history as a fixed context, MementoGUI formulates long-horizon GUI control as an online memory-control problem: working memory selectively preserves task-relevant interface events with textual summaries and ROI-level visual evidence, while episodic memory retrieves reusable past trajectories through learned relevance selection. MementoCore modularizes memory control into specialized operators for step processing, memory compression, episodic writing, and episodic selection, enabling plug-in memory augmentation without finetuning the GUI agent backbone. We further develop a scalable data curation pipeline that converts computer-use trajectories into memory-controller training data, introduce \\textbf{MementoGUI-Bench} for evaluating long-horizon decision-making in GUI agents, and design MLLM-based metrics for semantic action matching, task progress, and memory consistency. Experiments on GUI-Odyssey, MM-Mind2Web, and MementoGUI-Bench show that MementoGUI consistently improves GUI agents over no-history, history-replay, and text-only memory baselines, with larger MementoCore backbones further strengthening memory-augmented GUI control."
+  },
+  {
+   "paper_id": 14517,
+   "title": "Echo: A Large Language Model with Temporal Episodic Memory",
+   "year": 2025,
+   "venue": null,
+   "authors": [
+    "WenTao Liu",
+    "Ruohua Zhang",
+    "Aimin Zhou",
+    "Feng Gao",
+    "JiaLi Liu"
+   ],
+   "abstract": "Research on large language models (LLMs) has shown remarkable performance in domains such as mathematics, programming, and literary creation. However, most studies have focused on semantic memory-based question answering, neglecting LLMs' potential to handle episodic memory (EM)-related queries. This oversight has led to suboptimal performance in applications requiring EM, including emotional companionship, personal AI assistants, and AI teachers. To address this gap, we introduce Echo, a LLM enhanced with temporal episodic memory. We propose a Multi-Agent Data Generation Framework that guides the model in generating multi-turn, complex scenario episodic memory dialogue data (EM-Train). Temporal information is innovatively incorporated into the LLM training process, and Echo is trained using the EM-Train. Furthermore, We develop an EM-Test benchmark specifically designed to evaluate LLMs' episodic memory capabilities. The EM-Test assesses performance across various time spans and difficulty levels, providing a comprehensive evaluation of multi-turn episodic memory dialogues. Our experiments demonstrate that Echo significantly outperforms state-of-the-art LLMs on EM-Test. Additionally, a qualitative analysis reveals Echo's potential to exhibit human-like episodic memory capabilities. We will open-source all datasets, code, and model weights."
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+{
+  "paper_id": 15338,
+  "eligible": false,
+  "eligibility_rule": "E3",
+  "eligibility_criteria": ["E3"],
+  "eligibility_reason": "The paper's primary contribution, Causal Memory Intervention (CMI), is a selection rule over a memory bank that is fixed per example and never written to by the method being coded: Section 5.1 (p. 6) states 'each method receives the same current task and candidate memory bank, but differs in which memories it selects or exposes to the response model,' and the CMI selection rule in Section 3.4 (p. 5) only computes Utility/Stability over existing candidate memories mi to decide inclusion (Utility(mi) > 0, Stability(mi) >= 0) — there is no step where the agent authors or updates memory content. The memory bank itself (useful, irrelevant, and synthetic harmful memories) is constructed offline by an LLM-assisted pipeline before evaluation (Section 4, p. 6: '100 candidate CAUSAL-LOCOMO examples from LoCoMo using GPT-5 as the dataset construction model' followed by deterministic filtering), not written at run time by the agent whose behaviour is being conditioned. This matches E3: retrieval/selection over a fixed corpus the agent never writes to, so I1 (an agent-authored, run-time-written, later-retrieved store) is not met by the coded contribution. Baselines named alongside CMI (vector, graph, reflection, summary, full-history, no-memory; Section 5.1, pp. 6-7) are alternative selection/retrieval strategies over the same fixed bank, not writing mechanisms that change this judgement for the primary contribution.",
+  "facets": []
+}

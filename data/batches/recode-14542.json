@@ -1,0 +1,22 @@
+{
+  "paper_id": 14542,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "MERIT is a training-free agent that, after each finalized repair episode, writes an oracle-verified correction or an observed unsuccessful direction into an online dual-polarity memory, and only memories from earlier finalized episodes are eligible for retrieval by a hybrid lexical-dense retriever on later queries (p. 1-2, p. 4 'Episode finalization and memory update'). This is run-time write plus later cross-episode retrieval conditioning future agent behaviour, satisfying I1. The record is 2026, English, and full text is present (I2-I4). No exclusion applies: the store is agent-written, not a fixed corpus (not E3); memory is externalised (JSONL files, FAISS index; not E2); this is a primary study introducing a new method, not a survey (not E4); memory is the paper's central contribution, not incidental (not E5); the repairing system is an LLM-based agent (Qwen2.5-7B-Instruct as semantic parser and repair generator; not E6); and the paper is 15 pages (not E7).",
+  "secondary_substrates": ["filesystem"],
+  "facets": [
+    {"axis": "substrate", "value": "vector_store",
+     "justification": "Positive and negative memory entries are dense-encoded with BAAI/bge-large-en-v1.5 and 'stored in a FAISS IndexFlatIP index' for similarity retrieval (p. 13, 'Dense retrieval'; Table 7, p. 14). Entries are also persisted as JSONL files (p. 13, 'Memory and generation configuration'), listed here as a secondary substrate since the FAISS embedding index is what the paper's retrieval mechanism operates over."},
+    {"axis": "write_policy", "value": "append_only",
+     "justification": "Page 4, 'Episode finalization and memory update': on success MERIT creates exactly one positive entry from the final confirmed transition, on exhaustion at most one negative entry from the final observed direction, and the update rule is M<(t+1) = M<t ∪ {xt} — a strict union/append with no rewriting of existing entries. Page 4 also states 'MERIT Full does not generate local reflections,' ruling out reflect_synthesize."},
+    {"axis": "retrieval_policy", "value": "hybrid",
+     "justification": "Page 4 and Table 7 (p. 14) give an explicit fusion rule, r(x,u) = 0.75·dense(x,u) + 0.25·BM25(x,u), combining dense similarity and lexical BM25 scores (independently min-max normalized per polarity pool, p. 4 and p. 13) to rank retrieved precedents — a declared combination rule, matching hybrid rather than similarity_topk alone."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Evaluated on the development sets of two public academic Text-to-SQL benchmarks, Spider and BIRD, against baselines and ablations (abstract; p. 8 Conclusion). The Limitations section (p. 8) explicitly contrasts this with deployment: the oracle-assisted feedback used here 'is stronger than the feedback available in many deployed databases, where an agent may observe only execution errors, incomplete tests, or delayed user confirmation.' No real users or fielded system are reported, so this is lab validation, not evaluation-in-practice."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Execution accuracy is reported on the fixed Spider and BIRD benchmark suites against a frozen Qwen2.5-7B-Instruct backbone, comparing MERIT to stateless iterative repair, Reflexion-style memory, and untyped dynamic retrieval, with per-benchmark accuracy tables (abstract; p. 8). Component ablations (dense rerank, BM25, type filter, schema locality; p. 8) are run within this same fixed-suite comparison rather than as an independently controlled lab experiment."},
+    {"axis": "contribution", "value": "method",
+     "justification": "The contributions list (p. 2) names two techniques: formulating Text-to-SQL correction as causal episodic memory, and an error-guided hybrid retrieval scheme that ranks precedents by outcome, failure type, and lexical/dense signals. No standalone tool, model, metric, or dataset is released as the argued artefact; the paper's own conclusion (p. 8) still frames MERIT as a mechanism ('a training-free framework that learns... through causal cross-query memory'), i.e. a method for organizing and using memory."}
+  ]
+}

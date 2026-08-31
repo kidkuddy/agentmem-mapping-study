@@ -1,0 +1,40 @@
+{
+  "paper_id": 15038,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The contribution list (p. 2) and §3.1–§3.3 (p. 3) describe agents that write records at run time — staging an observation into a transaction, committing it through a validate-and-commit pipeline — and later read that store to gate future tool calls (§3.3, p. 3) and to condition other agents' behaviour across turns (the credit-analyst / partner-relations handoff, p. 14). The store is externalised (entity/attribute/value records with provenance and permissions, p. 3), not parametric, so E2 does not apply; the agent itself authors the writes via staging/commit, so E3 does not apply. Evaluated on five LLM backbones (Qwen3-8B, Qwen2.5-14B, GLM-4.7-Flash, GPT-5.4-mini, GPT-5.5, p. 5), so E6 does not apply. The record is a 16-page arXiv paper (p. 16 marks the end), not a survey (E4 n/a) and memory is the entire contribution, not incidental (E5 n/a).",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "graph_store",
+      "justification": "§3.1 (p. 3): each record carries \"derived-from edges forming a derivation DAG\" in addition to entity/attribute/value fields. The paper's central repair mechanism operates over this graph: G3 (p. 5) states \"Ancestors quarantined by cascade repair block descendants through the same revocation registry\", i.e. cascading repair traverses the derivation edges. No SQL or tabular query language is named anywhere in the given pages, so this is coded as a written graph of records/edges rather than relational_db."
+    },
+    {
+      "axis": "write_policy",
+      "value": "edit_in_place",
+      "justification": "§3.1 (p. 3) lists branch states \"superseded\" and \"revoked\" in the eight-state lifecycle. §3.2 (p. 3): on conflict, \"a higher-authority candidate supersedes the old record, a lower-authority one aborts, and equal authority from different sources is quarantined for user review\" — existing entries are updated/displaced as new evidence arrives, and retraction triggers cascading repair of derived records (abstract, p. 1; G3, p. 5). The transformation is fully specified by the paper, so agent_tool_invoked does not apply."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "structured_query",
+      "justification": "§3.1 (p. 3): \"Reads are scoped by five isolation levels, each defined by the lifecycle states it exposes, from raw-read, exposing everything, to action-safe-read, exposing only [committed/action-safe records]\" — an exact metadata/state filter, not a ranking. §3.6 (p. 5) confirms the read tool \"retrieves under the transaction snapshot\". No similarity ranking, recency window, or declared fusion rule is described in the given pages, so similarity_topk/hybrid do not apply."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "§4 (p. 5) constructs a purpose-built \"conformance suite of 90 cases\" and evaluates nine methods across five backbones with paired-McNemar significance testing (abstract, p. 1); §2 (p. 2) states the design holds the agent fixed \"so the memory manager is the only variable.\" No real users, production deployment, or fielded setting is reported anywhere in the given pages — this is a controlled lab investigation, coded conservatively as validation."
+    },
+    {
+      "axis": "research_method",
+      "value": "controlled_experiment",
+      "justification": "p. 2: \"so the memory manager is the only variable\" — the memory-manager is deliberately isolated as the manipulated condition while backbone, tool inventory, and task suite are held constant across 9 baselines (p. 5) and 5 backbones, with paired-McNemar significance reported (abstract, p. 1) and an isolation-level sweep as a further manipulated-condition comparison (Table 14, p. 15)."
+    },
+    {
+      "axis": "contribution",
+      "value": "method",
+      "justification": "The contributions bullet list on p. 2 names the deliverable: \"We design MemTX, a belief-commit state model unifying an eight-state lifecycle, five isolation levels, risk-tiered transactions, action gating on in-flight belief state, and typed cascading repair.\" This is a protocol/method; the conformance test suite is an evaluation artefact, not the argued contribution."
+    }
+  ]
+}

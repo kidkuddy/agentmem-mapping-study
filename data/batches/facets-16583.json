@@ -1,0 +1,22 @@
+{
+  "paper_id": 16583,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Metis maintains a hierarchical experience memory M = (Mtext, Mcode) that a reflector writes to at run time after each rollout (Mk = Reflect(Mk-1, tau^(k))) and that a Memory Manager retrieves from on later tasks to condition the agent's subsequent behaviour, forming an execute-reflect-reuse loop across tasks (Section 2.2, p. 4). The system is training-free and model-agnostic, i.e. the store is externalised rather than parametric, so E2 does not apply; it writes new text and code entries itself rather than querying a fixed corpus, so E3 does not apply. The record is a 2026 arXiv system/study paper (not a survey), in English, with 19 extractable pages, so I2-I4 hold and E1, E4-E7 do not apply.",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "multi_store",
+     "justification": "The paper's central contribution is exactly how a text store and a code store relate: 'Metis maintains a hierarchical experience memory M = (Mtext, Mcode), consisting of a structured text memory store and a code memory library' (Section 3.1, p. 4), with joint retrieval across both and a dependency-closure mechanism that couples code tools to the text memories that reference them (Section 3.4-3.5, p. 8). This is not incidental co-occurrence of two stores; the paper's stated aim is to determine when to promote text into code, so the combination itself is the argued contribution."},
+    {"axis": "write_policy", "value": "reflect_synthesize",
+     "justification": "Differentiated Text Reflection 'distills completed trajectories into reusable textual experience,' extracting execution plans, environment facts and common pitfalls that are not present verbatim in any single trajectory step (Section 3.1, p. 4), and Pattern-Aware Code Generation further crystallizes recurring plans into new callable tools once a stable pattern is observed (Section 3.1, p. 4; Section 3.5 admission guard, p. 8). Both are generative distillations of stored/observed experience into new higher-level artifacts, which is what the evaluation in Section 4 measures, rather than plain append or unspecified agent-tool writes."},
+    {"axis": "retrieval_policy", "value": "hybrid",
+     "justification": "The Memory Manager states a two-stage, declared fusion: 'Metis first performs embedding-based top-k retrieval over both text memory entries and code tools ... A lightweight LLM-based Memory Manager then jointly selects useful text memories and tools for the task' (Section 3.4, p. 8; consistent with the overview on p. 4). This is similarity_topk to build a candidate pool followed by an explicit LLM-directed selection rule over that pool, i.e. a stated combination rather than two independent retrieval paths."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Metis is assessed on AppWorld, 'an interactive agent benchmark containing simulated environment of 9 applications exposing 457 APIs' (Section 4.1, p. 9), under a train-then-test protocol against baselines (No Memory, ACE, SkillX) with accuracy/cost/token metrics (p. 9). No real users, fielded deployment, or production setting outside the authors' own experimental protocol is reported anywhere in the given pages, even though the benchmark is described as 'mirroring deployment scenarios' (p. 9) — that phrasing describes the task design, not an actual deployment, so the conservative code is validation."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Section 4 runs Metis and named baselines over the fixed AppWorld task suite under Official and Resampled splits, reporting accuracy, token and step counts in figures/tables (Section 4.1, pp. 9, 17-18: 'code drives the executor to 1.1M tokens and 204 steps, text to 1.5M tokens and 272 steps, against the no-memory baseline's 2.4M tokens and 375 steps (Figure 4)')."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The abstract and Section 3.1 present Metis as a system architecture with four interacting components (Differentiated Text Reflection, Pattern-Aware Code Generation, Memory Manager, Reflection Harness) built on a memory hierarchy (p. 4), not a single technique; the title itself frames it as 'bridging' two representations via this organisation, which is what the paper argues for rather than a single algorithmic method."}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "paper_id": 20081,
+  "eligible": false,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": ["E3"],
+  "eligibility_reason": "The system's 'experience memory' stores records e = (scene features, score vector, best strategy, best margin) that the Strategy Router 'consults' to pick a retrieval strategy (p. 2, Section 2.2), and Section 2.3 describes it as 'reusable experience records' that are looked up (p. 3). No page describes the agent writing new entries to this store at run time: the strongest reported setting is a static 'rule-based routing' table mapping task types to fixed strategies ('maps direct tasks to dense, and both multi hop and scientific tasks to hybrid rrf', p. 2), and the learned-routing variants that were tried are reported as underperforming and not adopted (p. 2, and Appendix A.2 on p. 5). The evaluation in Section 3 (pp. 3) measures only retrieval quality (Recall@10/MRR@10/nDCG@10) against a fixed candidate pool, with no measurement of any write, update, or persistence-across-sessions process for the experience memory. This is retrieval over a store the agent is never shown writing to (E3); the pages given do not evidence the run-time write-and-later-retrieve-across-turns mechanism required by I1.",
+  "facets": []
+}

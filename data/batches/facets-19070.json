@@ -1,0 +1,9 @@
+{
+  "paper_id": 19070,
+  "eligible": false,
+  "eligibility_rule": "E5",
+  "eligibility_criteria": ["E5"],
+  "eligibility_reason": "The record's own contribution is TriggerBench, a 1,265-task benchmark for measuring prospective memory (PM) in LLMs/agents (p. 1 abstract: 'We introduce TriggerBench, a comprehensive PM benchmark'; p. 2: 'we introduce TriggerBench, a comprehensive benchmark of 1,265 PM tasks spanning five dimensions'). The memory-writing/retrieving mechanisms present in the record are the evaluated baselines, not the paper's contribution: p. 16 (§B.2) lists 'Memory Systems' — A-MEM, Mem0, and a simplified Letta-Sim — as third-party methods being benchmarked ('We evaluate three families of approaches on TriggerBench... Memory Systems include three frameworks that utilize semantic search over LLM-curated memory items'), and p. 29's case study shows Letta-Sim's write-time curation to core memory succeeding where RAG/A-MEM/Mem0 fail, again as an evaluated external system rather than an authored mechanism. Long-context models and RAG are likewise evaluated baselines (p. 16). No page given shows TriggerBench itself specifying a store the agent writes to and later reads from as part of its own contribution — the contribution is the benchmark/dataset and its evaluation protocol (p. 1-2, p. 32-33 blueprint examples). Memory-write/retrieve semantics are therefore present in the record but not part of the claimed contribution (E5).",
+  "secondary_substrates": [],
+  "facets": []
+}

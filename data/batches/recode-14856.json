@@ -1,0 +1,22 @@
+{
+  "paper_id": 14856,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 3.1-3.2 (p. 4) describes LLMextract writing episodic memory fragments to a persistent store at run time as each conversation session is observed, and Section 3.2.2/3.3 (p. 5) describes LLMreason writing synthesized cross-session reasoning fragments to a reasoning pool R that is then retrieved by LLMresponse to condition later responses (p. 5, Section 3.3). The store is written and read across sessions by the system's own components, not a fixed corpus, and the paper is an original EMNLP 2025 Findings method paper (p. 1) with dataset/benchmark evaluation (p. 5), so none of E1-E7 apply.",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "vector_store",
+     "justification": "Section 3.2.1 (p. 4): memory fragments are embedded via femb into vectors and clustered; Section 3.3 (p. 5): inference retrieves from the union of memory store M and reasoning store R by cosine similarity over their embeddings E and E'. Both stores are embedding-indexed collections of agent-written items."},
+    {"axis": "write_policy", "value": "reflect_synthesize",
+     "justification": "Section 3.2.2 (p. 4-5): LLMreason analyzes memory fragments in clusters Mp and Mc and generates new reasoning fragments r^j_{p,c} capturing evolution patterns (extension, accumulation, specification, transformation, connection) that are not present in any single source fragment (p. 5, bullet list). This pre-storage reasoning step is the paper's title contribution and what Section 4 evaluates."},
+    {"axis": "retrieval_policy", "value": "similarity_topk",
+     "justification": "Section 3.3 (p. 5): for a query q, the system selects the top-k items from M ∪ R based on cosine similarity between embedded vectors and femb(q); Algorithm 1 line 22 (p. 18) confirms TopK_k(M ∪ R; sim(femb(·), e_q))."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Section 4.1 (p. 5): evaluated on two public QA benchmarks, LoCoMo and LongMemEval, across multiple model families and sizes with standardized prompts and automated/LLM-judge metrics (p. 5, Table 1; p. 17 judge prompt). No deployment or real users are reported anywhere in the given pages, so this is lab-controlled benchmark validation, not evaluation-in-practice."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Section 4.1 (p. 5): two fixed benchmark datasets (LoCoMo, LongMemEval) with defined question categories (Table 1, p. 5) are run against baselines/model sizes and scored with BLEU-1, ROUGE-1/L, METEOR, BERTScore, and an LLM-as-a-judge score (p. 5-6)."},
+    {"axis": "contribution", "value": "method",
+     "justification": "Abstract (p. 1) and contributions list (p. 2, item 2) name PREMem as 'a pre-storage reasoning method that shifts complex cross-session synthesis from response time to memory construction'; code and dataset are released (p. 1, GitHub link) but the argued contribution is the reasoning technique itself, per Section 3's algorithmic description (p. 4-5, Algorithm 1 on p. 18)."}
+  ]
+}

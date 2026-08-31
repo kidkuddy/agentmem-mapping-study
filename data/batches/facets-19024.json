@@ -1,0 +1,22 @@
+{
+  "paper_id": 19024,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Contribution 1 defines graph state as 'a deterministic fold over an append-only event log', with behaviors (including LLM-backed routines) that 'react to changes in the graph and emit new events' (p. 2). LLM-backed behaviors write events at run time (e.g. the llm.requested/llm.responded events from the claude-sonnet-4-5-backed question_generator behavior, p. 7) and other behaviors later react to the resulting graph state to decide their own next action (p. 2, p. 9: contradiction detection and memo synthesis react to claims and evidence objects written earlier in the same run). This is a run-time-written, later-retrieved externalised store conditioning future agent behaviour, satisfying I1. Not E1: the paper repeatedly describes cross-step state semantics (replay, forking at any event, lineage) rather than a hardware/context-window optimisation. Not E2/E3: the log and graph are externalised and are continuously written by the agent's own behaviors, not a fixed corpus. Not E4 (primary systems paper), not E6 (LLM-backed behaviors are integral, p. 1-2, p. 7), not E7 (12 pages, full text). Year 2026 (arXiv 2605.21997, p. 1), English, full text present.",
+  "secondary_substrates": ["other"],
+  "facets": [
+    {"axis": "substrate", "value": "multi_store",
+     "justification": "The paper's own title and Contribution 1 name the deliberate relationship between two stores as the contribution itself: 'the append-only event log is the source of truth; the working graph is a deterministic projection of that log' (p. 1-2). The graph carries typed nodes/objects and typed edges/relations that behaviors read and write (p. 9: 93 objects, 76 relations), while the log is what is actually persisted and replayed (p. 7-8). This log-to-graph projection relationship, not either store alone, is what §2-§5 argue for."},
+    {"axis": "write_policy", "value": "append_only",
+     "justification": "'The append-only event log is the source of truth' and 'graph state is a deterministic fold over an append-only event log' (Contribution 1, p. 2). Rule changes, tool calls, and produced claims are each modeled as new events rather than as rewrites of existing entries (p. 2)."},
+    {"axis": "retrieval_policy", "value": "structured_query",
+     "justification": "'Behaviors subscribe to patterns over events and graph shape; when a matching change occurs, the behavior fires' (p. 2) — an exact pattern/structural match over the graph, not a ranking, and not stated as similarity- or recency-based."},
+    {"axis": "research_type", "value": "solution",
+     "justification": "The authors state directly: 'This is a systems paper; its contributions are architectural, not empirical claims about task performance' (p. 2), and 'We report no large-scale empirical evaluation of task performance; this is a systems and architecture contribution' (p. 11). The worked diligence example (§6, p. 8-9) argues the design with a demonstration but is explicitly not a systematic evaluation against baselines."},
+    {"axis": "research_method", "value": "proof_of_concept",
+     "justification": "The diligence pack run is reported as event/object/relation counts and reproducibility (byte-identical replay) rather than a comparison against any baseline or condition (p. 8-9): 'the quantitative artifacts we present ... are demonstrations of the mechanism rather than a benchmark study' (p. 11)."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The paper offers a runtime/architecture for organising agentic systems around an event-sourced graph (Contribution 1, p. 2), open-sourced as activegraph (p. 1 footnote), but the paper explicitly argues for the architecture itself ('the substrate and its guarantees', p. 2) rather than for the released package as an end in itself."}
+  ]
+}

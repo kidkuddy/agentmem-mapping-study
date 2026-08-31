@@ -1,0 +1,22 @@
+{
+  "paper_id": 13693,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 3.1 (p. 3) defines memory admission as a run-time decision problem: given conversation history H and an existing memory store M, the agent extracts candidate memories from the dialogue and decides at run time to admit, merge, or reject each one, updating M for use in later turns; Algorithm 1 (p. 5) implements this write/update loop and Section 4 evaluates it on the multi-session LoCoMo benchmark. This is a run-time write to an externalised store that conditions future behaviour, not a fixed corpus or parametric-only mechanism, so none of E1-E7 apply.",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "vector_store",
+     "justification": "Section 3.2 (p. 5), Eq. 3: novelty N(m) is computed by embedding candidates and existing memories with Sentence-BERT and taking max cosine similarity against the store, with embeddings for existing memories precomputed — the memory store is represented and compared as embeddings. The extracted pages do not describe any other storage schema (no SQL, graph, or file structure mentioned), so this is the best-supported reading."},
+    {"axis": "write_policy", "value": "edit_in_place",
+     "justification": "Algorithm 1 (p. 5), lines 5-10: when a candidate conflicts with an existing memory (semantic similarity above 0.85) and scores higher, the framework replaces the existing entry with Merge(m, mconflict); Section 3.3 (p. 5) states this is done explicitly 'to ensure that long-term memory remains compact and up to date.' The no-conflict branch simply appends, but the merge/overwrite behaviour is the mechanism the paper designs and describes as central to admission control, so edit_in_place is coded over plain append_only."},
+    {"axis": "retrieval_policy", "value": null,
+     "justification": "The extracted pages (1, 2, 3, 5, 6, 10-12) describe only the admission side — how candidates are scored and written into M — and the evaluation in Section 4 measures admission precision/recall/F1 (Table 1) and feature ablations (Table 2), not how admitted memories are later queried or re-enter context for downstream tasks. No retrieval mechanism for future turns is stated in the given pages, so this is not decidable from what was extracted."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Section 4.1 (p. 6): evaluated on the LoCoMo benchmark (30 conversations, ~1,500 candidate memories) with a train/validation/test split and four baselines (Random, MemGPT, MemoryBank, A-mem); Section 4.3 reports an ablation study (p. 6). This is a controlled benchmark comparison with no reported deployment or real users, i.e. a novel technique investigated in the lab."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Table 1 (p. 6) reports precision/recall/F1/latency for A-MAC against four baselines on the fixed LoCoMo test set (N=225); Table 2 (p. 6) reports ablation results on the same benchmark. Fixed task suite with reported scores across systems."},
+    {"axis": "contribution", "value": "method",
+     "justification": "The contribution list (p. 2, item 2) names the admission scoring technique itself — five interpretable signals combined via learned weights and a threshold rule (Algorithm 1, p. 5). Code is released (p. 1 abstract, GitHub link) but the paper's argument centers on the decision rule/algorithm rather than the artefact."}
+  ]
+}

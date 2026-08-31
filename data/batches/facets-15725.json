@@ -1,0 +1,41 @@
+{
+  "paper_id": 15725,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The system constructs a memory bank M from the running conversation history H, where each memory unit corresponds to a turn, session, or (in the proposed method) a topically coherent segment of turns already exchanged, including the agent's own prior responses (p. 4, Section 2.1: 'each turn t_j = (u_j, r_j) consisting of a user request u_j and the corresponding response from the agent r_j'; 'Memory construction: construct a memory bank M using conversation history H'). This history accrues at run time as the dialogue proceeds and is later retrieved ('Memory retrieval: given a target user request u* and context budget N, retrieve N memory units... relevant to user request u*', p. 4) to condition the agent's next response ('Response generation: take the retrieved N memory units... as the context and query the response generation model', p. 4). This is a run-time write-then-retrieve loop conditioning future behaviour, not retrieval over a fixed corpus the agent never writes to (E3 does not apply). Published as an ICLR 2025 paper (p. 1), in English, full-length with extensive experiments (p. 1-4, 10, 34-36), so I2-I4 and E7 are satisfied/not triggered. No exclusion criterion applies."
+  ,
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "vector_store",
+      "justification": "Memory units (turn/session/segment) are retrieved by a base retrieval system f_R; results are reported separately for a 'BM25 based retriever' and an 'MPNet based retriever' (p. 3, Figure 2b/2c, Figure 3), with MPNet an embedding model used for similarity-based retrieval over the constructed memory units. No graph, relational, filesystem, or KV-cache structure is described in the given pages, and there is no declared multi-store combination, so vector_store (embedding similarity search over agent-written conversation units) is the best-supported value."
+    },
+    {
+      "axis": "write_policy",
+      "value": "append_only",
+      "justification": "Memory construction is defined as partitioning existing conversation history into memory units (turns, sessions, or segments) without rewriting prior content (p. 4, Section 2.1-2.2: segmentation model f_I splits session c into segments {s_k}). The paper explicitly states response generation 'directly concatenate[s] the retrieved segment-level memory units as the context... bypassing summarization to avoid the information loss that often occurs when converting dialogues into summaries' (p. 3), which rules out summarize_compress or reflect_synthesize for the stored memory content itself. The compression-based denoising (LLMLingua-2) described in the contributions (p. 4) is applied to enhance retrieval matching, not to replace or rewrite the stored memory units used as context; the mechanics of that step are in Section 2.3, which was not among the given pages, so this justification is limited to what pp. 3-4 establish about the stored content."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "similarity_topk",
+      "justification": "Retrieval is defined as selecting a fixed number of memory units under a context budget N (p. 4, Section 2.1), and the reported evaluations sweep 'K: number of retrieved segments' / 'Number of Retrieved Turns' against retrieval accuracy (DCG) for both a BM25 and an MPNet-based retriever (p. 3, Figure 2b/2c, Figure 3). This is top-k ranked retrieval by relevance score, not an exact structured query, a fixed recency window, or an agent-issued read, and no declared fusion rule combining the two retrievers is given, so hybrid does not apply."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "The paper reports controlled comparisons against baselines on public long-term-conversation benchmarks: 'Experimental results show that SeCom exhibits a significant performance advantage over baselines on long-term conversation benchmarks LOCOMO and Long-MT-Bench+' (p. 1 abstract; repeated p. 4 contributions and p. 10 conclusion). No deployed system, real users, or fielded setting is reported in the given pages, so this is lab-based technique investigation, not evaluation-in-practice."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "Results are reported as scores over fixed benchmark suites (LOCOMO, Long-MT-Bench+, and dialogue-segmentation datasets DialSeg711, TIAGE, SuperDialSeg per p. 1 abstract) with baseline comparisons and ablations ('Further analysis and ablation studies confirm the contributions of the segment-level memory units and the compression-based denoising technique', p. 10), matching benchmark_evaluation rather than a single controlled manipulation, case study, simulation, or proof-of-concept."
+    },
+    {
+      "axis": "contribution",
+      "value": "method",
+      "justification": "The contributions list (p. 3-4) centers on two techniques: a conversation segmentation method for constructing segment-level memory, and a compression-based denoising technique for retrieval, packaged as 'SeCom, a system that constructs memory bank at segment level... while applying compression based denoising on memory units' (p. 4). A project page is linked (p. 1 footnote) but the paper argues for the segmentation and denoising techniques themselves, not for the released artefact as the contribution, so method fits better than tool or framework."
+    }
+  ]
+}

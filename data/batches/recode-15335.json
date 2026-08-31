@@ -1,0 +1,22 @@
+{
+  "paper_id": 15335,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 4.2 (p.4) describes episodic memory M_ep: agent nodes write experience tuples (t_e, v_e, s_e) from task executions that ultimately succeed, bootstrapped from a small manually collected set and 'gradually expanded through successful runs.' At inference time a later agent node retrieves stored experiences via cosine similarity over its own subgoal embedding to condition its in-context decision-making (p.4). The contributions list on p.2 names 'two memory systems: episodic memory ... and working memory' as one of the paper's three core contributions, and working memory (p.4) is likewise written automatically as agent nodes observe objects and read back via a dedicated recall action shared across nodes within a run. This is agent-authored run-time state read back across turns/executions to shape future behaviour, published 2025/2026 (arXiv v2, AAMAS 2026), in English, with full text available (24-25 pages) -- none of E1-E7 apply.",
+  "secondary_substrates": ["other (in-memory working-memory dictionary mapping object classes to observed locations, shared across agent nodes within a single run; queried via an exact 'recall location of <object>' action, p.4)"],
+  "facets": [
+    {"axis": "substrate", "value": "vector_store",
+     "justification": "p.4: episodic memory M_ep stores experience tuples per subgoal; each is embedded with a sentence encoder (v_e = f_sen(g_e), Sentence-BERT) and retrieval is by cosine similarity over these embeddings. This is the memory system evaluated by default in the main 'ReAcTree' condition (p.5: 'all experiments include episodic memory unless otherwise specified'), so it is coded as primary; working memory (a plain object-location dictionary, not embedding-based) is recorded as secondary since it is only added in the ReAcTree+WM variant."},
+    {"axis": "write_policy", "value": "append_only",
+     "justification": "p.4: 'Episodic memory M_ep stores experiences from agent nodes involved in task executions that ultimately succeed' -- each successful subgoal trajectory is recorded verbatim as a new tuple (t_e, v_e, s_e); nothing already stored is condensed, synthesised, or rewritten. p.5 confirms this happens by retaining successful executions during a bootstrapping/training phase ('Only successful executions were retained in episodic memory')."},
+    {"axis": "retrieval_policy", "value": "similarity_topk",
+     "justification": "p.4: 'the agent retrieves the top k similar experiences (with k determined by a token limit) as in-context examples,' computed via cosine similarity sim(v_n, v_e) between the current subgoal embedding and stored goal embeddings."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "p.5 (Section 5.1): evaluation is run on WAH-NL (VirtualHome) and ALFRED (AI2THOR), simulated household task-planning benchmarks, comparing ReAcTree/ReAcTree+WM against five baselines across seven LLMs with GSR/SSR metrics. No real users, fielded deployment, or external stakes are reported anywhere in the given pages -- this is a controlled lab investigation of a novel technique, coded conservatively as validation rather than evaluation."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Table 1 (p.5) reports GSR and SSR for ReAcTree and ReAcTree+WM against five baselines (ZSP, Tree-Planner N=25/50, ReAct, ReAct+WM) across seven LLMs on the WAH-NL and ALFRED task suites -- a fixed benchmark task suite with scores reported, not a single manipulated variable against one control."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "p.1: 'we introduce ReAcTree, a novel framework that dynamically constructs an agent tree in the subgoal space.' p.2 contribution (1): 'ReAcTree, a hierarchical planning framework for long-horizon tasks that dynamically constructs an LLM agent tree, where each agent node independently solves a subgoal while control flow nodes coordinate their execution into a coherent plan.' The contribution is the overall architecture (agent-tree construction, control-flow coordination, integrated memory systems), not a single algorithmic technique; code is released (p.1) but is not itself what the paper argues for."}
+  ]
+}

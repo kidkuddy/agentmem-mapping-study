@@ -1,0 +1,9 @@
+{
+  "paper_id": 19507,
+  "eligible": false,
+  "eligibility_rule": "E3",
+  "eligibility_criteria": ["E3"],
+  "eligibility_reason": "The paper's contribution is the CAPA benchmark and an inference-time 'same-user history gating' method that reads a user's previously resolved coding sessions to resolve recurring ambiguity (p. 1 abstract; p. 2 contributions list). Those prior-session histories are synthetically constructed by the paper's own three-stage generation pipeline (p. 2, 'A data generation pipeline' contribution), not written by the coding-assistant agent under test at run time. The evaluated mechanism (p. 7, 'A lightweight same-user history gating method') is a gate LLM that reviews this already-fixed resolved history and highlights evidence to add to context -- a retrieval/filter over a fixed corpus the agent never writes to, matching E3. The mem0 and A-mem systems the paper compares against (p. 7, Table 4) do write agent-authored stores, but they are baselines the paper argues against, not the record's own contribution -- the paper's own gating approach explicitly works by 'reviewing the resolved history' directly rather than writing a store, and outperforms both memory baselines on FT-ES/TTC (p. 7).",
+  "secondary_substrates": [],
+  "facets": []
+}

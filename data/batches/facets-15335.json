@@ -1,0 +1,22 @@
+{
+  "paper_id": 15335,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 4.2 (p. 4) defines episodic memory M_ep: each agent node's successful subgoal trajectory is recorded as an experience tuple (t_e, v_e, s_e) and 'gradually expanded through successful runs'; at inference an agent node retrieves the top-k most similar past experiences by cosine similarity over sentence embeddings of the current subgoal. The same section defines working memory, a shared store 'automatically updated whenever an agent observes movable objects during interaction' and read back later via an explicit 'recall location of <object>' action. Both are agent-written, run-time stores queried on later turns/episodes to condition behaviour, satisfying I1. Year 2025/2026 (AAMAS 2026, p. 1) satisfies I2; English text and retrievable pages satisfy I3/I4. No exclusion applies: the store is not fixed (E3 does not hold, since episodic memory is 'gradually augmented with additional successful executions', p. 4) and memory is a named, evaluated contribution rather than incidental (contribution (2) on p. 2; ablations in Table 1, p. 5).",
+  "secondary_substrates": ["other"],
+  "facets": [
+    {"axis": "substrate", "value": "vector_store",
+     "justification": "p. 4: episodic memory stores sentence embeddings v_e = f_sen(g_e) of each recorded experience and retrieves via cosine similarity sim(v_n, v_e) over the stored embeddings."},
+    {"axis": "write_policy", "value": "append_only",
+     "justification": "p. 4: 'Episodic memory M_ep stores experiences from agent nodes involved in task executions that ultimately succeed... episodic memory can be bootstrapped from a few manually collected trajectories and gradually augmented with additional successful executions.' Each experience is stored as-is (the raw trajectory tuple); nothing already stored is rewritten or condensed."},
+    {"axis": "retrieval_policy", "value": "similarity_topk",
+     "justification": "p. 4: the agent embeds its current subgoal and 'retrieves the top k similar experiences (with k determined by a token limit) as in-context examples,' via cosine similarity."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "p. 5 (Table 1) and p. 1 (abstract): evaluated on the WAH-NL and ALFRED benchmarks against five baselines across seven LLMs, with ablations on memory systems and control flow. No deployed setting or real users are reported anywhere in the given pages."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "p. 5: Table 1 reports goal success rate (GSR) and subgoal success rate (SSR) for ReAcTree/ReAcTree+WM against five baselines over a fixed task suite (WAH-NL, ALFRED), the defining pattern of benchmark_evaluation."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "p. 2, contributions list item (1): 'ReAcTree, a hierarchical planning framework... where each agent node independently solves a subgoal while control flow nodes coordinate their execution into a coherent plan' — an architecture combining an agent tree, control-flow nodes, and two memory systems, not a single algorithmic technique."}
+  ]
+}

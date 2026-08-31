@@ -1,0 +1,923 @@
+{
+  "batch": "01",
+  "decisions": [
+    {
+      "paper_id": 15481,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "Imprint's Interaction Records are authored by the agent at run time ('Incoming observations are first represented as structured Interaction Records and continuously organized into recurring interaction patterns') and queried across a seven-day horizon, meeting I1's write/retrieve/condition-behaviour test."
+    },
+    {
+      "paper_id": 18520,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "The paper's entire contribution is a policy for what survives from prior interaction into future turns ('when should consolidation replace retention, and which operator -- Merge, Abstract, or Rewrite -- should be selected'), the canonical T4 case."
+    },
+    {
+      "paper_id": 20076,
+      "decision": "include",
+      "rule": "T5",
+      "criteria": [],
+      "reason": "The 'three-layer memory architecture' is named and motivated ('supports dynamic task decomposition for complex problems and long-term capability accumulation'), so under T5 it counts as part of the claimed contribution even though skill learning is the headline."
+    },
+    {
+      "paper_id": 19260,
+      "decision": "exclude",
+      "rule": "D2",
+      "criteria": [
+        "E6"
+      ],
+      "reason": "'Speaker Information Enhanced Long-Short Term Memory (SI-LSTM) for the ERC task' is a recurrent neural architecture for emotion recognition, not an LLM in the loop -- positive evidence of a non-LLM population fires D2."
+    },
+    {
+      "paper_id": 13717,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "'Context Folding, which compresses long interaction histories into structured memory for stable long-horizon control' is exactly a policy over what persists across multi-turn image-editing sessions."
+    },
+    {
+      "paper_id": 17053,
+      "decision": "exclude",
+      "rule": "T2",
+      "criteria": [
+        "E3"
+      ],
+      "reason": "EICL 'aids in generating sentences...by memorizing semantic and attribute information from unlabelled corpora,' i.e. content fixed/derived offline from a corpus rather than authored by the agent at run time, so T2 routes this to classical RAG (E3)."
+    },
+    {
+      "paper_id": 13677,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "MemCon 'learns an online policy that adaptively decides when, what, and how much to retrieve...and when to consolidate or forget,' the definitional case of a memory-write/read policy conditioning future agent behaviour."
+    },
+    {
+      "paper_id": 16210,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "MemTool 'enabl[es] LLM agents to dynamically manage tools or MCP server contexts across multi-turn conversations,' deciding what tool-context state carries into subsequent turns."
+    },
+    {
+      "paper_id": 17432,
+      "decision": "exclude",
+      "rule": "T4",
+      "criteria": [
+        "E1"
+      ],
+      "reason": "The 'working memory constraints' addressed are within-query buffering of graph text for a single reasoning pass ('Buffer Module integrates and indexes graph data across multiple formats'), not state that persists across turns or sessions, closer to attention/context capacity than agent memory."
+    },
+    {
+      "paper_id": 15096,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "StateMemBench is 'a benchmark of 234 multi-session scenarios' testing whether memory systems track superseded facts, squarely T6 (benchmarks/evaluation methodology for agent memory)."
+    },
+    {
+      "paper_id": 18240,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "MemSearch-o1 'dynamically grows fine-grained memory fragments...then retraces and deeply refines the memory,' an agent-authored, run-time-updated store read back into the search loop."
+    },
+    {
+      "paper_id": 20349,
+      "decision": "exclude",
+      "rule": "T1",
+      "criteria": [
+        "E1"
+      ],
+      "reason": "The only 'memory' mentioned is storage cost of policy populations ('incurring quadratic computation and linear memory costs'; GEMS has '1.3x less memory usage than PSRO') -- resource/footprint sense only, no cross-turn agent state."
+    },
+    {
+      "paper_id": 16207,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "'HierarCache, an adaptive memory management system that defends against unauthorized access and malicious poisoning, representing the first systematic defense for agent memory' is a named, separately evaluated defence on agent memory (T6)."
+    },
+    {
+      "paper_id": 13764,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "The paper studies 'memory laundering: toxic or adversarial context can be compressed into memory summaries' as its central, separately measured phenomenon (the sub-threshold propagation gap), matching T6's attacks/defences-on-memory scope."
+    },
+    {
+      "paper_id": 13791,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "MIND is 'a lightweight defense framework for memory injection attack' with its own named mechanism and measured attack-success-rate reductions, a T6 defence-on-agent-memory paper."
+    },
+    {
+      "paper_id": 14736,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "The agent 'leverag[es]...large vision language models to perform the language encoding process' and continuously stores natural-language encodings of new video in a vector database that is later queried, meeting the write-at-runtime/retrieve-later test."
+    },
+    {
+      "paper_id": 14160,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "GhostWriter 'exploits current memory subsystems in tool-using personal agents to poison their memory store' via injection and later activation phases, a named, separately evaluated attack on agent memory (T6)."
+    },
+    {
+      "paper_id": 18738,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "The paper evaluates 'eight memory/retrieval systems, including our own proposed Theoria' on full-text scientific-memory benchmarks, a T6 evaluation-methodology contribution for agent memory."
+    },
+    {
+      "paper_id": 13951,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "'world-model-mcp...builds a temporal knowledge graph for codebases, capturing facts with provenance metadata and per-evidence-type decay, then re-injecting them after compaction' is written by the agent's tooling at run time and read back in later sessions."
+    },
+    {
+      "paper_id": 19982,
+      "decision": "exclude",
+      "rule": "T5",
+      "criteria": [
+        "E5"
+      ],
+      "reason": "The abstract describes a structured representation for 'agent skill artifacts' (scheduling/structural/logical signals) with no mention of a memory store the agent writes to and retrieves across turns/sessions; there is nothing to apply I1 to."
+    },
+    {
+      "paper_id": 19811,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "'the chatbot incorporates short-term, long-term, and temporal event memories, which track conversational flow and personalize responses based on user-specific information, such as recent activity history' is a named, motivated cross-turn memory design."
+    },
+    {
+      "paper_id": 19947,
+      "decision": "exclude",
+      "rule": "T5",
+      "criteria": [
+        "E5"
+      ],
+      "reason": "'memory-aware failure recovery' is named once with no elaboration; the claimed contribution is the skill base (parameterized execution/composition graphs) and skill retrieval, so memory is incidental (E5)."
+    },
+    {
+      "paper_id": 15854,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "MemMark is a 'state-evolution attribution watermark that embeds an owner-controlled signal into latent memory-write decisions' evaluated on agent long-term memory systems (A-Mem, Graphiti) -- T6's provenance/characterisation-of-memory scope."
+    },
+    {
+      "paper_id": 18211,
+      "decision": "exclude",
+      "rule": "T5",
+      "criteria": [
+        "E5"
+      ],
+      "reason": "The abstract concerns repository exploration strategies (linear vs. domain-scoped parallel agent traversal) for file localization; no memory store or cross-turn/session state is described anywhere."
+    },
+    {
+      "paper_id": 19507,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "'whether resolved session history from the same user can serve as memory for resolving recurring personalized ambiguity in a newly opened session' is precisely an agent reading state it accumulated in prior sessions to condition new-session behaviour."
+    },
+    {
+      "paper_id": 14074,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "HLTM 'extracts implicit and explicit signals from noisy longitudinal behavioral data, stores them in a structured form, and supports low-latency retrieval' for LinkedIn's Hiring Assistant -- agent-authored, persistently stored, retrieved state."
+    },
+    {
+      "paper_id": 19975,
+      "decision": "exclude",
+      "rule": "T5",
+      "criteria": [
+        "E5"
+      ],
+      "reason": "CODESKILL is explicitly contrasted with 'the strongest prompt-based or memory baseline,' positioning its skill-bank mechanism as distinct from a memory system; the abstract never frames its own skill bank as memory."
+    },
+    {
+      "paper_id": 18699,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "LRE 'learns which units of history are load-bearing and keeps them by verbatim extraction' under eviction pressure -- a learned policy over exactly what persists into future turns, the T4 test."
+    },
+    {
+      "paper_id": 17360,
+      "decision": "exclude",
+      "rule": "D1",
+      "criteria": [
+        "E4"
+      ],
+      "reason": "'This survey presents a comprehensive review of agent memory from the graph-based perspective' and offers 'a taxonomy of agent memory'; aggregating other papers' findings fires D1/E4 regardless of the memory topic."
+    },
+    {
+      "paper_id": 15083,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "SAM 'consolidates ongoing interaction into compact memory cues while preserving raw trajectory pages for intent-driven recall,' explicitly a policy over what survives for long-horizon agentic reasoning."
+    },
+    {
+      "paper_id": 14103,
+      "decision": "exclude",
+      "rule": "D1",
+      "criteria": [
+        "E4"
+      ],
+      "reason": "'we systematically evaluate 18 representative healthcare agent papers under strict mechanism-level criteria' is aggregation of other papers' findings via a taxonomy, D1/E4 regardless of the memory-evolution topic it covers."
+    },
+    {
+      "paper_id": 19978,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "FactorMiner pairs skills with 'a structured Experience Memory that distills historical mining trials into actionable insights,' an agent-authored store updated and read back into the retrieve-generate-evaluate-distill loop."
+    },
+    {
+      "paper_id": 13915,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "TiM 'recalls relevant thoughts from memory' before responding and 'post-thinks and incorporates both historical and new thoughts to update the memory' via insert/forget/merge -- the canonical write-then-later-read memory mechanism."
+    },
+    {
+      "paper_id": 17397,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "SAMD's GUM/CPM modules decide 'what information should be remembered or discarded' at run time, building the personal-knowledge memory that later applications read from."
+    },
+    {
+      "paper_id": 15873,
+      "decision": "exclude",
+      "rule": "D1",
+      "criteria": [
+        "E4"
+      ],
+      "reason": "The paper's stated method is '1) reviewing the technological underpinnings of LTM..., 2) surveying current personal AI companions and assistants, and 3) analyzing critical considerations' -- an explicit review/survey design, D1/E4."
+    },
+    {
+      "paper_id": 16245,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "Pichay 'interposes on the message stream to evict stale content, detect page faults...and pin working-set pages,' a run-time policy over what carries forward across the session's turns ('across 681 turns')."
+    },
+    {
+      "paper_id": 18950,
+      "decision": "exclude",
+      "rule": "T5",
+      "criteria": [
+        "E5"
+      ],
+      "reason": "The contribution is a diagnostic method for locating faithfulness/citation errors across a multi-agent report pipeline; the abstract contains no description of a memory store the agents write to or read from."
+    },
+    {
+      "paper_id": 14918,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "'an adaptive agent profile with dual-process memory that separates short-term execution traces from long-term semantic consolidation, enabling persistent yet evolving identity' is agent-authored state read back to condition later behaviour across a long-horizon deployment."
+    },
+    {
+      "paper_id": 14943,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "The study measures persistent-memory prompt-injection attacks and defenses ('malicious instructions are stored at rates exceeding 97.5%...downstream execution ranges from 0% to 95%') via a factorial experiment, a named and separately evaluated attack surface (T6)."
+    },
+    {
+      "paper_id": 14371,
+      "decision": "exclude",
+      "rule": "D1",
+      "criteria": [
+        "E4"
+      ],
+      "reason": "'This survey aims to provide a comprehensive overview of LSTM architectures' -- a secondary aggregation of RNN literature with no LLM agents at all, D1/E4 (also fails E6 on population)."
+    },
+    {
+      "paper_id": 15865,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "'personalization increases attack success rates by 15.8%--243.7% relative to stateless baselines' is a separately measured safety failure specific to memory-augmented personalization, characterising a memory mechanism per T6."
+    },
+    {
+      "paper_id": 18706,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "The paper directly studies what a consolidation policy should retain ('an episodic-only control that simply retains those trajectories remains competitive'; 'agents preserve raw episodes by default'), a T4 policy-over-persistence question."
+    },
+    {
+      "paper_id": 14978,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "MAGMA 'represents each memory item across orthogonal semantic, temporal, causal, and entity graphs' and formulates 'retrieval as policy-guided traversal,' an agent-authored, later-retrieved memory architecture."
+    },
+    {
+      "paper_id": 18749,
+      "decision": "exclude",
+      "rule": "D2",
+      "criteria": [
+        "E6"
+      ],
+      "reason": "This is 'Experience Replay' for 'artificial neural networks' on split-CIFAR100/TinyImageNet image classification, with no language model in the loop -- D2 fires on positive evidence of a non-LLM population."
+    },
+    {
+      "paper_id": 14898,
+      "decision": "exclude",
+      "rule": "T3",
+      "criteria": [
+        "E2"
+      ],
+      "reason": "The mechanism is 'sharpness-aware minimization' applied 'during fine-tuning' to flatten the loss landscape; only model weights are affected, no externalised store the agent reads or writes at run time (E2)."
+    },
+    {
+      "paper_id": 18999,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "The paper 'formalizes the fleet-memory problem' and implements 'scoped retrieval, temporal supersession, provenance tracking, and policy-governed memory propagation' in a production multi-tenant memory service (MemClaw) -- multi-agent shared memory."
+    },
+    {
+      "paper_id": 19086,
+      "decision": "exclude",
+      "rule": "T5",
+      "criteria": [
+        "E5"
+      ],
+      "reason": "The contribution is a model-harness 'interface contract' hierarchy for goal/tool/action validity; 'persistent state' is invoked generally but no concrete write/retrieve memory mechanism is described, so it is incidental to the actual contribution."
+    },
+    {
+      "paper_id": 19986,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "MemEngine is 'a unified and modular library for developing advanced memory models of LLM-based agents' implementing 'abundant memory models from recent research,' directly infrastructure for the memory mechanisms this study maps."
+    },
+    {
+      "paper_id": 13750,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "RecMem 'stores incoming interactions in a subconscious memory layer' and only invokes LLMs to consolidate into episodic/semantic memory 'when sustained recurrence' is observed -- a run-time policy for what and when to write into agent memory."
+    },
+    {
+      "paper_id": 20043,
+      "decision": "exclude",
+      "rule": "T5",
+      "criteria": [
+        "E5"
+      ],
+      "reason": "EffiSkill builds 'a portable optimization toolbox' of 'reusable agent skills' (Operator and Meta Skills) mined from program pairs; the abstract never uses the word memory or describes cross-turn/session agent state."
+    },
+    {
+      "paper_id": 18737,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "SuperLocalMemory 4.0 is 'a governed, local-first memory operating system for AI agents' with 'generation-fenced admission, verifiable memory transactions...and a hash-chained audit trail' governing its primary write path -- agent-authored, retrievable memory."
+    },
+    {
+      "paper_id": 19279,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "LifeBench 'requir[es] the integration of declarative and non-declarative memory reasoning' and reports 'top-tier, state-of-the-art memory systems reach just 55.2% accuracy,' a benchmark for agent memory (T6)."
+    },
+    {
+      "paper_id": 15764,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "HERO 'converts the dialogue history into a traceable heterogeneous memory graph' and retrieves via 'iterative graph traversal,' agent-authored long-term memory read back for later turns."
+    },
+    {
+      "paper_id": 14549,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "EMemBench 'generates questions from each agent's own trajectory' to evaluate 'long-term memory of agents through interactive games,' a benchmark/evaluation-methodology contribution for (VLM) agent memory, T6."
+    },
+    {
+      "paper_id": 15725,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "SeCom 'constructs the memory bank at segment level' via a learned segmentation model and compression-based denoising, directly a policy for what units of conversation become persistent memory."
+    },
+    {
+      "paper_id": 15884,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "'an agent-local Neo4j property graph augmented with HNSW vector indexes and a full bitemporal data model' stores each memory as versioned content nodes written and later retrieved across sessions -- textbook agent memory."
+    },
+    {
+      "paper_id": 19976,
+      "decision": "exclude",
+      "rule": "T5",
+      "criteria": [
+        "E5"
+      ],
+      "reason": "The note is about skill artefacts as software artefacts, mentioning 'project memory files' only as one contrasted mechanism among slash commands, subagents, and hooks; memory is not the claimed contribution."
+    },
+    {
+      "paper_id": 18689,
+      "decision": "exclude",
+      "rule": "D1",
+      "criteria": [
+        "E4"
+      ],
+      "reason": "'this survey provides the first comprehensive and systematic review of Vibe Coding...Drawing from systematic analysis of over 1000 research papers' is explicit secondary aggregation, D1/E4."
+    },
+    {
+      "paper_id": 19059,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "LifeSide is 'a benchmark centered on multi-session Memory-Emotion-Environment loops,' evaluating 'memory tracking, user understanding, privacy control, and emotional companionship' -- a benchmark for agent memory (T6)."
+    },
+    {
+      "paper_id": 19024,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "ActiveGraph explicitly replaces 'retrieval-and-summarization memory systems' with an append-only event log whose 'working graph is a deterministic projection'; the graph is agent-authored persistent state that is read back to drive behaviour ('behaviors...react to changes in the graph'), so it is functionally in scope even though the authors position it against memory -- flagged as a hard case."
+    },
+    {
+      "paper_id": 20129,
+      "decision": "exclude",
+      "rule": "D2",
+      "criteria": [
+        "E6"
+      ],
+      "reason": "The study is 'a longitudinal study with 78 teams' of human contributors' self-beliefs and transactive memory; this is human memory/socio-cognitive research, D2's explicit E6 case, not an LLM agent."
+    },
+    {
+      "paper_id": 19516,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "WebCoach 'equips web browsing agents with persistent cross-session memory' via a WebCondenser, External Memory Store, and Coach that curates episodic memory from new trajectories -- explicit cross-session agent-authored memory."
+    },
+    {
+      "paper_id": 14280,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "M2A's 'MemoryManager breaks down memory requests from ChatAgent into detailed operations on the dual-layer memory bank,' coupling an immutable raw log with a semantic store updated online -- agent-authored, later-retrieved memory."
+    },
+    {
+      "paper_id": 13639,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "TME's Task Memory Tree stores 'relevant input, output, status, and sub-task relationships' per step and 'dynamically generates LLM prompts based on the active node path,' state written and read back across the multi-step task."
+    },
+    {
+      "paper_id": 15740,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "The system 'autonomously maintain[s] a dynamically updated memory vector database by minimizing global entropy,' a run-time write/update policy for personalized affective memory."
+    },
+    {
+      "paper_id": 17013,
+      "decision": "exclude",
+      "rule": "T4",
+      "criteria": [
+        "E1"
+      ],
+      "reason": "KGERMAR 'constructs dynamic, context-specific knowledge graphs from input text during inference' and is evaluated on perplexity over SlimPajama/WikiText-103/PG-19 -- long-context language modeling, not an agent whose state persists across turns or sessions."
+    },
+    {
+      "paper_id": 13769,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "MOSAIC's 'entity-typed graph storage' with 'active conflict detection at save time that cross-references new information against existing graph neighbors' is agent-written, persistent, cross-hop-retrieved memory."
+    },
+    {
+      "paper_id": 14402,
+      "decision": "exclude",
+      "rule": "T5",
+      "criteria": [
+        "E5"
+      ],
+      "reason": "DroidAgent 'is based on Large Language Models and support mechanisms such as long- and short-term memory' -- named once with no further design detail; the claimed contribution is intent-driven goal-setting and GUI test generation, memory is incidental."
+    },
+    {
+      "paper_id": 16981,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "CoVeMem vectorizes 'the collaborative core of the agent's memory' so 'Frozen LightGCN user and item states form the memory bank' that the LLM reads as soft tokens at each recommendation decision -- an externalised, agent-conditioned store."
+    },
+    {
+      "paper_id": 14042,
+      "decision": "exclude",
+      "rule": "T1",
+      "criteria": [
+        "E1"
+      ],
+      "reason": "'memory, and energy constraints' here means device resource budgets for small LLMs on IoT edge hardware ('51.2% CPU usage reduction and 50.4% energy savings'); no cross-turn agent state semantics are described."
+    },
+    {
+      "paper_id": 17082,
+      "decision": "exclude",
+      "rule": "D2",
+      "criteria": [
+        "E6"
+      ],
+      "reason": "RowNet is a 'retrieval-based neural architecture for real estate price-per-square-meter prediction' comparing MLPs and gradient-boosted trees; there is no LLM in the loop, only a similarity-based 'memory bank of labeled properties' for tabular regression."
+    },
+    {
+      "paper_id": 17221,
+      "decision": "include",
+      "rule": "T5",
+      "criteria": [],
+      "reason": "'The system incorporated an EBM-enabled workflow, a memory module and Thought-Action-Observation (TAO) loops,' and multi-turn task success is explicitly attributed in part to the memory module ('attributed to EBM-enabled workflow, memory module and TAO loops, which ensure robust contextual conversation capabilities')."
+    },
+    {
+      "paper_id": 20237,
+      "decision": "exclude",
+      "rule": "D2",
+      "criteria": [
+        "E6"
+      ],
+      "reason": "This is 'a modified version of Performance Factor Analysis' using attention mechanisms over student item-response data; large language models are mentioned only as background context lacking 'a complete approach for tracking knowledge,' not as the studied population -- no LLM agent in the loop."
+    },
+    {
+      "paper_id": 16754,
+      "decision": "exclude",
+      "rule": "D2",
+      "criteria": [
+        "E6"
+      ],
+      "reason": "The paper studies effects of AI tool use on human students' 'critical thinking,' 'creativity,' and 'storage of memories' via surveys and prior studies of students -- human cognition research, D2's explicit E6 case."
+    },
+    {
+      "paper_id": 17244,
+      "decision": "exclude",
+      "rule": "D1",
+      "criteria": [
+        "E4"
+      ],
+      "reason": "'this tutorial provides a systematic and comprehensive introduction to the principles, design, and applications of Large Artificial Intelligence Models (LAMs) and Agentic AI technologies' -- explicit secondary aggregation/tutorial, D1/E4."
+    },
+    {
+      "paper_id": 14271,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "The model 'integrates explicit memory units, gated writing mechanisms, and attention-based reading modules' with 'a forgetting function...to enable dynamic updates of memory content' -- a proposed and ablated write/read/forget memory architecture."
+    },
+    {
+      "paper_id": 19606,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "TAME 'endows MLLMs with double memories to manage the temporal and persistent variations of each personalized concept in a differentiated manner,' a named, evaluated memory design for long-context personalization."
+    },
+    {
+      "paper_id": 14094,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "The framework merges an LLM agent with Knowledge Graphs 'enhanced by advanced retrieval tools and a robust long-term memory mechanism' shown to 'accurately track[] learner progress' across the tutoring dialogue."
+    },
+    {
+      "paper_id": 15816,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "PersonaTree 'enables controllable growth, achieving memory compression while preserving consistency' via a trained MemListener producing 'ADD, UPDATE, DELETE, NO_OP' operations -- an explicit, ablated memory-update policy."
+    },
+    {
+      "paper_id": 16068,
+      "decision": "exclude",
+      "rule": "D3",
+      "criteria": [
+        "E7"
+      ],
+      "reason": "The abstract field contains only a bibliographic citation ('Kai Tzu-iunn Ong...Proceedings of the 2025 Conference...') with no descriptive content to evaluate against I1-I4; treated as unretrievable/insufficient content, E7."
+    },
+    {
+      "paper_id": 20081,
+      "decision": "include",
+      "rule": "T5",
+      "criteria": [],
+      "reason": "'The proposed skill analyzes the current scene, consults an experience memory, selects an appropriate retrieval strategy' -- experience memory is a named, motivated component driving retrieval-strategy selection at run time."
+    },
+    {
+      "paper_id": 14893,
+      "decision": "include",
+      "rule": "D2",
+      "criteria": [],
+      "reason": "'The conscious agent will be able to create, store, and recall narrative-like representations of prior experiences with the help of the narrative memory module' meets the write/retrieve/condition-behaviour test, but the abstract never states whether an LLM is in the loop; per D2, silence yields include with population unconfirmed."
+    },
+    {
+      "paper_id": 15965,
+      "decision": "exclude",
+      "rule": "D1",
+      "criteria": [
+        "E4"
+      ],
+      "reason": "'This tutorial introduces the evolution from traditional RAG to advanced Long-Term Memory (LTM) mechanisms' and reviews 'cutting-edge systems (like Mem0)' -- explicit tutorial/secondary aggregation, D1/E4."
+    },
+    {
+      "paper_id": 274,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "Cognitive Workspace performs 'active memory management with deliberate information curation' and 'hierarchical cognitive buffers enabling persistent working states,' empirically validated (58.6% memory reuse) -- a primary study with related-work synthesis, still primary per D1."
+    },
+    {
+      "paper_id": 18490,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "FadeMem 'implements differential decay rates across a dual-layer memory hierarchy, where retention is governed by adaptive exponential decay functions' -- an explicit, evaluated forgetting policy over agent memory."
+    },
+    {
+      "paper_id": 15734,
+      "decision": "exclude",
+      "rule": "D1",
+      "criteria": [
+        "E4"
+      ],
+      "reason": "'This study reviews multi-turn conversational AI across text-only dialogue, AudioLLMs...and tool-augmented agents,' organizing 'the literature around datasets and benchmarks' -- explicit review, D1/E4."
+    },
+    {
+      "paper_id": 14072,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "The 'manager agent...globally regulates information propagation and retention, analogous to LSTM and its input gate, forget gate...and output gate' is a gated policy over what segment-level information survives into later processing steps of the multi-agent chain -- flagged as a hard case since it processes one long document rather than dialogue turns."
+    },
+    {
+      "paper_id": 19639,
+      "decision": "exclude",
+      "rule": "D1",
+      "criteria": [
+        "E4"
+      ],
+      "reason": "'This paper presents a retrospective overview of a decade of research...We summarize past experiments and results' -- explicit retrospective aggregation of the group's own prior work, D1/E4."
+    },
+    {
+      "paper_id": 18780,
+      "decision": "exclude",
+      "rule": "D3",
+      "criteria": [
+        "E7"
+      ],
+      "reason": "This is a 'Reproduction package...judged outputs, flag manifests, and analysis scripts,' i.e. a software/data artifact description (npm install/run instructions, CI details), not a research paper abstract -- D3/E7."
+    },
+    {
+      "paper_id": 14977,
+      "decision": "exclude",
+      "rule": "T5",
+      "criteria": [
+        "E5"
+      ],
+      "reason": "A 'convergent memory model' is named once amid many hardware-layer components (routing policy, habit-compilation, safety constraints); the measured contribution is latency/energy reduction from cognitive decomposition across compute substrates, not the memory design itself."
+    },
+    {
+      "paper_id": 6721,
+      "decision": "exclude",
+      "rule": "T5",
+      "criteria": [
+        "E5"
+      ],
+      "reason": "The tool explicitly targets 'memoryless sequential decision-making tasks' -- the studied LLM policies have no persistent state to write or retrieve, the opposite of I1's mechanism."
+    },
+    {
+      "paper_id": 18830,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "AtomMem 'deconstruct[s] high-level memory processes into fundamental atomic CRUD...operations' and learns 'an autonomous, task-aligned policy to orchestrate memory behaviors' -- directly a learned write/read memory policy."
+    },
+    {
+      "paper_id": 13867,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "CASIT's 'Memory Mechanism and Summary Mechanism...enable LLMs to efficiently process the data by comparing historical data with Local Knowledge and Chat History in the prompt,' evaluated on repeated sensor-data inputs -- named, motivated, results-tied memory design."
+    },
+    {
+      "paper_id": 19006,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "The architecture combines 'consent scaffolding, memory provenance layers, persona anchoring, pressure and drift telemetry' around a local LLM, evaluated across 'governed and ungoverned baseline conditions' -- governance/provenance work characterising agent memory, T6."
+    },
+    {
+      "paper_id": 15381,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "ACON 'optimally compresses both observations and history into concise, informative representations' via 'an optimization in natural language space' that 'iteratively refines compression guidelines...ensuring critical state information is preserved' -- a run-time policy over what persists for the agent."
+    },
+    {
+      "paper_id": 19257,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "MemTrace probes 'LLM agents [that] increasingly maintain long-term memory of user facts across sessions' along memory-age/question-type/evidence-condition axes -- a benchmark/evaluation-methodology contribution for agent memory, T6."
+    },
+    {
+      "paper_id": 13980,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "REMEMBERER equips 'the LLM with a long-term experience memory' updated via 'Reinforcement Learning with Experience Memory (RLEM)...the whole system can learn from the experiences of both success and failure' -- LLM-authored, later-retrieved experience memory."
+    },
+    {
+      "paper_id": 14045,
+      "decision": "exclude",
+      "rule": "T3",
+      "criteria": [
+        "E2"
+      ],
+      "reason": "PEAM 'transforms agent memory from inference-time retrieval into parameter-resident skills internalized through experience' via LoRA adapters ('parameter-level continual learning') with no externalised store described -- exclusively parametric memory, E2."
+    },
+    {
+      "paper_id": 14200,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "Memory-R1's 'Memory Manager...learns structured operations, including ADD, UPDATE, DELETE, and NOOP' via RL over an external memory bank -- a directly learned write/read agent-memory policy."
+    },
+    {
+      "paper_id": 14028,
+      "decision": "include",
+      "rule": "T3",
+      "criteria": [],
+      "reason": "SBU 'unlearns jointly across parameter and memory pathways,' explicitly maintaining 'dependency closure-based unlearning' over a persistent external memory alongside parametric suppression -- the hybrid case T3 marks as include."
+    },
+    {
+      "paper_id": 15335,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "Each ReAcTree node 'retrieves goal-specific, subgoal-level examples from episodic memory and shares environment-specific observations through working memory,' two named memory systems integrated into the planning loop."
+    },
+    {
+      "paper_id": 14110,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "AgeMem 'exposes memory operations as tool-based actions, enabling the LLM agent to autonomously decide what and when to store, retrieve, update, summarize, or discard information' -- unified LTM/STM management directly learned by the agent's own policy."
+    },
+    {
+      "paper_id": 13845,
+      "decision": "include",
+      "rule": "T5",
+      "criteria": [],
+      "reason": "'we enhance three core components, covering memory mechanism, task planning, and tool learning abilities' names the memory mechanism as one of the paper's core, enhanced components of the recommender agent."
+    },
+    {
+      "paper_id": 14135,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "MemoryRewardBench 'systematically stud[ies] the ability of RMs to evaluate long-term memory management processes' across '10 distinct settings with different memory management patterns' -- an evaluation-methodology contribution for agent memory, T6."
+    },
+    {
+      "paper_id": 14694,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "HeLa-Mem 'models memory as a dynamic graph with Hebbian learning dynamics' with 'an episodic memory graph that evolves through co-activation patterns' and a distilled semantic store -- explicit agent-authored, structured memory."
+    },
+    {
+      "paper_id": 13637,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "The attack 'writes the payload into long-term memory through its normal update process' during infection and the 'payload is retrieved or carried forward' during trigger -- a named, separately measured attack on self-evolving agent memory, T6."
+    },
+    {
+      "paper_id": 18501,
+      "decision": "exclude",
+      "rule": "T1",
+      "criteria": [
+        "E1"
+      ],
+      "reason": "IndexMem addresses 'standard softmax attention incur[ring] a KV cache that grows linearly with sequence length' during a single long-context inference pass, evaluated on RULER/Needle-in-a-Haystack/LongBench -- inference-time cache/eviction optimisation, not cross-turn/session agent state."
+    },
+    {
+      "paper_id": 14090,
+      "decision": "exclude",
+      "rule": "T5",
+      "criteria": [
+        "E5"
+      ],
+      "reason": "'reasoning trajectories are treated as reliable internal beliefs for guiding actions and updating memory' is background framing; the claimed contribution is adversarial self-auditing/verification of belief states (SAVeR), not a memory design, so memory is incidental."
+    },
+    {
+      "paper_id": 16591,
+      "decision": "include",
+      "rule": "T5",
+      "criteria": [],
+      "reason": "RAMP is explicitly 'equip[ped]...with a long-term memory store, which is a knowledge base of client-specific facts and past queries,' and the paper attributes accuracy gains to 'LLM planning and memory.'"
+    },
+    {
+      "paper_id": 20429,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "SEA has a 'cognitively inspired dual-memory module' jointly optimized with reasoning via RL, with 'rules consolidated from SEA' assessed for clinical usefulness -- a named, trained, evaluated memory mechanism."
+    },
+    {
+      "paper_id": 15038,
+      "decision": "include",
+      "rule": "T2",
+      "criteria": [],
+      "reason": "MemTX is 'a transactional belief-commit protocol' where 'writes are staged inside snapshot-isolated transactions and admitted by a validate-and-commit pipeline' for agent-authored, persistent, shared belief state."
+    },
+    {
+      "paper_id": 13873,
+      "decision": "exclude",
+      "rule": "D1",
+      "criteria": [
+        "E4"
+      ],
+      "reason": "'This review examines recent developments in employing LLMs as autonomous agents and tool users and comprises seven research questions,' explicitly a structured review across 2023-2025 papers -- D1/E4."
+    },
+    {
+      "paper_id": 14044,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "MemAdapter 'enables fast alignment across agent memory paradigms' (explicit, parametric, latent) via a 'generative subgraph retriever,' directly infrastructure/technique work characterising agent memory, T6."
+    },
+    {
+      "paper_id": 14282,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "MA-LMM 'store[s] past video information in a memory bank' online and 'reference[s] historical video content for long-term analysis' as processing proceeds -- a policy for what persists into later steps, applied to video rather than dialogue turns."
+    },
+    {
+      "paper_id": 18626,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "The framework covers 'state unlearning (forgetting specific states or items), trajectory unlearning...and environment unlearning' for LLM-based agents, a governance/forgetting mechanism directly targeting agent memory, T6."
+    },
+    {
+      "paper_id": 19076,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "PRAXIS 'stores the consequences of actions and retrieves them by jointly matching environmental and internal states of past episodes to the current state,' a run-time-written, later-retrieved procedural memory."
+    },
+    {
+      "paper_id": 14745,
+      "decision": "exclude",
+      "rule": "D2",
+      "criteria": [
+        "E6"
+      ],
+      "reason": "SMEMO is 'a neural network based on an end-to-end trainable working memory' for pedestrian trajectory forecasting; there is no language model in the loop, only a purpose-built memory-augmented RNN/attention network."
+    },
+    {
+      "paper_id": 13766,
+      "decision": "include",
+      "rule": "T4",
+      "criteria": [],
+      "reason": "The speculator is equipped with 'three online memory systems that learn from past agent trajectories' (a contrastive transition table, episodic memory, and confusion tracker) whose accumulated state 'grow[s] continuously' and conditions future speculative predictions across tasks."
+    },
+    {
+      "paper_id": 19205,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "StratMem-Bench evaluates 'strategic memory use in character-centric dialogues' where characters 'navigate heterogeneous memory pools containing required, supportive, and irrelevant memories' -- a benchmark for agent memory, T6."
+    },
+    {
+      "paper_id": 15800,
+      "decision": "include",
+      "rule": "T6",
+      "criteria": [],
+      "reason": "KEEM is 'a novel generation-based dataset designed to enhance memory updates in long-term conversational systems' that 'dynamically generates integrative memories' incorporating emotional/causal context -- dataset/methodology work characterising a memory mechanism, T6."
+    }
+  ]
+}

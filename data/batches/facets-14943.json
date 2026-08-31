@@ -1,0 +1,22 @@
+{
+  "paper_id": 14943,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 2.1 (p. 4) defines a stateful agent that, in one session, calls memory_save_fact to write a rule it extracted from a RAG document into a persistent SQLite store, and in a later session, after conversation history has been wiped, calls memory_recall_fact to read that stored rule back and condition an action (routing an email) on it. This is a run-time write followed by a cross-session retrieval that conditions the agent's own future behaviour, matching I1's boundary example of a RAG pipeline with added run-time writes. The record is 2026, English, and full text was retrievable (I2-I4). No exclusion applies: the persisted store is written by the agent at run time, not a fixed corpus (rules out E3); an externalised store exists alongside model weights (rules out E2); this is a 33-page primary empirical study, not a secondary study or abstract-only (rules out E4, E7); and persistent memory is the paper's central subject, named in the title, not incidental (rules out E5).",
+  "secondary_substrates": ["vector_store"],
+  "facets": [
+    {"axis": "substrate", "value": "relational_db",
+     "justification": "Section 2.1, p. 4: \"The only state that persists across sessions is the memory tool's SQLite database.\" The agent's persistent memory (written via memory_save_fact, read via memory_recall_fact) is this SQLite store; Figure 1 (p. 17) depicts it as the 'persistent store' node between memory write and memory recall."},
+    {"axis": "write_policy", "value": "append_only",
+     "justification": "p. 4: in S1 the agent \"save[s] any rules it finds to persistent memory\" via an explicit memory_save_fact tool call; injection is scored as whether that call occurred. No summarization, synthesis, or edit of existing entries is described anywhere in the given pages — content is stored as retrieved, matching the guide's own example of a save-memory tool call being append_only."},
+    {"axis": "retrieval_policy", "value": "agent_directed",
+     "justification": "p. 4: in S4 \"the agent retrieves the stored routing rule\" via its own memory_recall_fact tool call; p. 14 confirms the trigger-session mechanism is scored by presence/absence of \"explicit memory_recall_fact tool calls in the trigger session,\" i.e. the agent chooses when and what to recall as an action, not a similarity ranking or an always-present context."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "p. 1-2: the central claims rest on a \"5,040-run factorial experiment across nine open-source models (N=40 per condition)\" plus a separate frontier API evaluation, both controlled lab comparisons with pre-specified comparisons and ablations (p. 2) rather than a fielded system with real users or deployment consequences — conservative call per the guide's validation/evaluation boundary."},
+    {"axis": "research_method", "value": "controlled_experiment",
+     "justification": "p. 2 and p. 4: defenses and attack presence are manipulated conditions compared against explicit controls — a no-attack baseline (\"Attack success was detected in 0 of 2,520 no-attack runs\", p. 4) and a no-defense baseline — plus a reasoning-mode ablation (p. 14) isolating a single factor within Qwen-3-32B."},
+    {"axis": "contribution", "value": "method",
+     "justification": "The paper's headline technical offering is a set of memory-pathway defense techniques, chiefly Memory Sandbox, \"a tool-layer defense that structurally isolates recalled memory from executable context\" and reduces ASR to 0% for eight of nine models (p. 1), analysed against a layer-placement taxonomy in Table 5 (p. 17); this is a technique/intervention offered to the reader rather than a released tool, a model, a metric, a system framework, or a dataset."}
+  ]
+}

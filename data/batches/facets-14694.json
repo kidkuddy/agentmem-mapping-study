@@ -1,0 +1,40 @@
+{
+  "paper_id": 14694,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The contribution list (p. 2) names an 'Online Encoding & Association mechanism' that writes conversation turns into a dynamic Hebbian graph at run time, a 'Reflective Consolidation' pass that distills hub clusters into a semantic store, and a 'Dual-Path Retrieval' strategy that reads both stores back into context on later turns/sessions — an LLM agent writing and later retrieving its own state (I1). The arXiv header on p. 1 dates the preprint 18 Apr 2026 (I2). The paper is in English (I3) and its text was retrievable (I4). None of the exclusions apply: there is an externalised graph/semantic store the agent writes to at run time (not E2), the graph is built from the agent's own conversation history rather than a fixed corpus (not E3), this is a novel-method paper rather than a survey (not E4), memory is the entire contribution rather than incidental (not E5), the agent is explicitly LLM-based (abstract, p. 1; not E6), and the extracted pages alone span 8 of 14 pages (not E7).",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "multi_store",
+      "justification": "Figure 3 (p. 3) shows two distinct persisted stores — an 'Episodic Hebbian Memory Store' and a 'Semantic Memory Store' — linked by a Hebbian Distillation step, and the abstract (p. 1) frames this as a deliberate 'dual-level organization' mirroring the episodic-semantic distinction in human cognition; this is listed as its own numbered contribution on p. 2. Retrieval explicitly combines the two with a declared rule rather than treating one as incidental: Equation 6 (p. 8) computes Stotal as the sum of a semantic-path score and a Hebbian-path score. The exact internal representation of the semantic store is not stated on the pages given (Section 3.3 describing it in full was not extracted), but its existence as a second, deliberately combined store is established by pp. 1-3 and 8."
+    },
+    {
+      "axis": "write_policy",
+      "value": "edit_in_place",
+      "justification": "The Hebbian update rule on p. 3 (Δwij = η·xi·xj) continuously revises existing edge weights between memory nodes rather than only appending new ones, and the case study on p. 8 evaluates exactly this: the association weight w89,15 accumulates to ≈0.52 'through repeated co-occurrences' across sessions, which is what the paper's own trace-analysis evaluation (Section 4.5, p. 8) measures. A second transformation, reflect_synthesize, is also present (Hebbian Distillation of hub clusters into semantic knowledge, p. 1 abstract; p. 2 contribution 2), but the association mechanism is the one the given evaluation section actually traces and is listed first among the contributions on p. 2."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "hybrid",
+      "justification": "The Dual-Path Retrieval strategy (contribution 3, p. 2) is a declared fusion: Base Activation (p. 5, Eq. 3) scores nodes by cosine similarity plus temporal decay plus keyword overlap, and this is combined with a Hebbian spreading-activation score along graph edges via an explicit sum, Stotal = Ssemantic + SHebbian (Eq. 6, p. 8). The worked example on p. 8 shows the fusion rule numerically (0.35 similarity-only score becomes 0.71 once the 0.36 Hebbian term is added), which is the declared combination the axis definition requires for 'hybrid'."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "The reported evidence is entirely benchmark comparison: Figure 1 (p. 1) plots HeLa-Mem against ReadAgent, MemoryBank, MemGPT, A-Mem and MemoryOS on the LoCoMo benchmark by F1 score and token cost, and the conclusion (p. 8) reiterates 'experiments on the LoCoMo benchmark validate HeLa-Mem's effectiveness.' No deployed system, real users, or field setting is reported anywhere in the extracted pages (front matter, mid-paper architecture sections, tail, or appendix pp. 12-14) — this is a novel technique investigated against public benchmarks in a controlled comparison, not a fielded evaluation."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "LoCoMo is used as a fixed task suite: Table 4 (p. 12) gives the dataset's conversation/turn/QA-pair counts and Table 5 (p. 12) its question-type distribution, and Figure 1 (p. 1) reports F1 scores across six competing methods on that suite. This is a fixed-benchmark comparison against baselines rather than a manipulated controlled-experiment condition, a fielded case study, or a mere proof-of-concept run."
+    },
+    {
+      "axis": "contribution",
+      "value": "framework",
+      "justification": "The first contribution bullet (p. 2) states 'We propose HeLa-Mem, a bio-inspired framework that utilizes an Online Encoding & Association mechanism...', and the abstract (p. 1) calls it a 'bio-inspired memory architecture' with an explicit 'dual-level organization' of coordinated modules (association, consolidation, retrieval — Figure 3, p. 3). The paper argues for this coordinated multi-module architecture itself, not a single isolated algorithm; code is released (p. 1) but is presented as an implementation of the architecture rather than the contribution in itself."
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "paper_id": 18706,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The record studies LLM agents that write a textual memory bank at run time from their own trajectories and read that bank back in on later tasks to condition future behaviour: the memory-update prompt (p. 48) has the agent issue delete/replace/add/retain actions against a capacity-bounded MEMORY BANK built from its own past rollouts, and the paper evaluates how that bank, once written, affects solving of later episodes across ALFWorld, ScienceWorld, WebShop and AppWorld (pp. 1-2). Published 2026 (arXiv 2605.12978, p. 1), in English, with 70 pages of retrievable text.",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "prompt_resident",
+      "justification": "The consolidated memory bank is injected into context as a whole rather than queried by embedding search: the episodic control is described as 'appending raw rollouts to context as in-context demonstrations' (p. 2), and the update prompt operates over the entire capacity-bounded 'FULL MEMORY BANK' shown in full to the model at each update, with a FIFO cap rather than any similarity index (p. 48). No embeddings, graph, database, or file-based store is mentioned in the given pages."
+    },
+    {
+      "axis": "write_policy",
+      "value": "reflect_synthesize",
+      "justification": "The paper's own framing is that an LLM 'rewrites past trajectories into a textual memory bank' by distilling 'consolidated abstractions distilled across many episodes into reusable, schema-like lessons' (p. 1). The update prompt explicitly asks the model to replace multiple memories with 'a single compact memory that captures the shared pattern' across pooled rollouts (p. 48), and the resulting entries (pp. 65, 68) are generalized rule-form lessons ('X MAY BE NECESSARY to Y') not present verbatim in any single trajectory -- content generated from, not copied from, the stored episodes."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": null,
+      "justification": "The extracted pages describe how the memory bank is written and how it degrades (the update prompt on p. 48, and the failure-mode analysis on pp. 54, 65, 68-69) but do not state the rule by which entries enter context during task-solving -- no similarity search, recency window, or query mechanism for the consolidated bank is described on any page I was given, so this axis is not decidable from the provided text."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "The study runs controlled comparisons and ablations over public benchmarks (ALFWorld, ScienceWorld, WebShop, AppWorld, ARC-AGI) and a testbed the authors themselves introduce (pp. 1-2); the component ablation in K.1 and the Fresh-vs-Cumulative comparison in K.2 (pp. 68-69) are lab manipulations against a no-memory baseline, not a fielded system with real users or deployment stakes."
+    },
+    {
+      "axis": "research_method",
+      "value": "controlled_experiment",
+      "justification": "The paper isolates the consolidation step by manipulating conditions and comparing against controls: Abstract Only vs. Episodic Only vs. Auto memory-source ablation at matched checkpoints (Fig. 17, p. 69), and Cumulative vs. Fresh consolidation schedules compared on the same task sequence (Fig. 18, p. 69; also referenced from §6.2), each against a no-memory or episodic-only baseline (p. 2)."
+    },
+    {
+      "axis": "contribution",
+      "value": "dataset",
+      "justification": "The headline deliverable is 'a controlled testbed we introduce to make consolidation failures more visible' -- the ARC-AGI Stream environment exposing Retain, Delete, and Consolidate actions (p. 2) -- used to isolate the consolidation failures the paper reports, rather than a new consolidation method being proposed as the contribution."
+    }
+  ]
+}

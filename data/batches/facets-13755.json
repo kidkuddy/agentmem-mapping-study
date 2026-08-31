@@ -1,0 +1,22 @@
+{
+  "paper_id": 13755,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Assistant agents each maintain an uncompressed episodic memory context built from prior conversation ('Memory Building, where long memory is processed into persistent episodic contexts', Appendix H, p. 14); at query time a routing mechanism selects and re-activates these stored segments so the master agent can condition its answer on them, tested across multi-session dialogue turns in the LoCoMo benchmark (p. 1, p. 2, p. 6). This is a run-time-written, cross-turn-retrieved agent memory store, not a fixed corpus or parametric-only mechanism, so no exclusion criterion applies.",
+  "secondary_substrates": ["vector_store"],
+  "facets": [
+    {"axis": "substrate", "value": "filesystem",
+     "justification": "Assistant agents 'maintain uncompressed memory contexts' rather than converting them into embeddings or graphs (p. 1-2); Appendix G states dormant agents are 'stored entirely on inexpensive disk storage (occupying only about 30KB per agent, which includes raw text, summaries, and embeddings)' (p. 14) — the primary content is raw text held per agent, with embeddings used only as a routing signal (see secondary_substrates)."},
+    {"axis": "write_policy", "value": "append_only",
+     "justification": "The paper's stated motivation is avoiding 'destructive de-contextualization' from compression (p. 1); Appendix H describes 'Memory Building, where long memory is processed into persistent episodic contexts' (p. 14) with no rewriting or synthesis of existing entries described in the given pages — segments are preserved raw and appended, not compacted or rewritten."},
+    {"axis": "retrieval_policy", "value": "hybrid",
+     "justification": "Appendix I describes a 'Two-Stage Cascaded Routing Algorithm': a threshold override immediately activates a chunk if any of Svec, Skw or Sglobal exceeds a threshold, otherwise remaining chunks are ranked by a declared weighted sum w1*S~global + w2*S~vec + w3*S~kw to fill the activation budget (p. 14) — an explicit, declared fusion rule over vector, keyword and global-alignment signals."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Evaluated on the public LoCoMo and HotpotQA benchmarks against baselines (Long-Context, RAG, A-mem, Mem0, MemoryOS, LightMem, GAM) with F1/BLEU-1 tables (Table 1, Table 2, p. 6) and further ablations (document-shuffling robustness, storage overhead, retriever choice, Appendix F-I, p. 14); no deployed system or real users are reported in the given pages, so this is lab-controlled validation, coded conservatively."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Table 1 reports F1/BLEU-1 on the LoCoMo benchmark across five sub-tasks and two backbones against seven baselines; Table 2 reports F1 on HotpotQA at three context scales (p. 6) — a fixed task suite with scores, not a manipulated controlled condition or a deployment case study."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The contribution list on p. 2 names 'Heterogeneous Hierarchical Master-Assistant Architecture. We propose E-mem, a scalable framework that decouples high-level planning from memory retention,' i.e. the paper argues for a system architecture (master agent plus SLM-based assistant agents) rather than a single portable technique; code is released (p. 1) but the architecture itself is what is argued for."}
+  ]
+}

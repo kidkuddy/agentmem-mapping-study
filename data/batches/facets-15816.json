@@ -1,0 +1,22 @@
+{
+  "paper_id": 15816,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 3.2 (p. 4-5) defines an iterative update loop in which, for each dialogue chunk Dt, the system (via the trained MemListener) writes ADD/UPDATE/DELETE/NO_OP operations to a persisted PersonaTree state Tt at run time; Eq. 1-2 (p. 4) and the 'Agentic Recall and Fusion' discussion (p. 7) show the persisted state Tt/TN is read back on later turns to condition subsequent response generation (fgen(xt, Tt, frecall(Tt,H))). This is agent-authored, cross-turn state, satisfying I1. Year is 2026 (p. 1, arXiv 2601.05171, Jan 2026), text is English, and full text was retrievable (I2-I4 all hold). No exclusion applies: the store is written by the agent, not fixed (rules out E3); memory is externalized (persisted to a JSON file or MongoDB, p. 5), not parametric-only (rules out E2); no hardware/cache framing (rules out E1); this is a primary method paper, not a survey (rules out E4); memory is the paper's whole contribution, not incidental (rules out E5); and the extraction note confirms 22 pages (rules out E7).",
+  "secondary_substrates": ["vector_store"],
+  "facets": [
+    {"axis": "substrate", "value": "graph_store",
+     "justification": "Section 3.2 (p. 4): PersonaTree is a hierarchical structure with a constrained trunk and writable branch/leaf nodes addressed by JSON key paths (e.g. path examples in the operation-generation prompt, p. 20); it is a tree of nodes and parent-child edges that the agent writes via ADD/UPDATE/DELETE, materialized/persisted as a JSON file or in a document database (p. 5)."},
+    {"axis": "write_policy", "value": "edit_in_place",
+     "justification": "Section 3.2 (p. 5): the operation grammar is ADD/UPDATE/DELETE/NO_OP; UPDATE is explicitly 'an overwrite rewrite on the target leaf node,' DELETE clears or marks a leaf for removal, and the LLM decides at write time whether to overwrite, preserve, or append based on the old value in Tt-1 -- i.e. existing entries are directly updated or deleted as new information arrives, not merely appended."},
+    {"axis": "retrieval_policy", "value": "always_in_context",
+     "justification": "Abstract (p. 1) and Eq. 2 (p. 4): 'During response generation, PersonaTree is directly leveraged to enhance outputs in latency-sensitive scenarios' -- the reconstructed tree state Tt is fed straight into fgen with no described ranking/query step in this default (fast) mode. The separate agentic recall/fusion path (p. 7), which reranks retrieved evidence, is described as triggered only on-demand for long-tail detail requests -- a different-purpose second path, not a declared fusion with the always-used tree, so it is not coded as hybrid."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Section 4 (p. 7): evaluated on the PersonaMem benchmark against baselines (Only LLM, Full Context, LangMem, Mem0, A-Mem, MemoryOS) with accuracy-based metrics reported in Table 1; no deployment, fielded system, or real users are reported in the given pages, so this is lab-controlled comparison rather than a studied real-world deployment."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Section 4.1-4.2 (p. 7): a fixed benchmark (PersonaMem) with a stated metric (accuracy, broken down per skill category) is run across multiple response models and baseline memory frameworks, with score comparisons reported (e.g. 'Overall = 71.31... by +8.83' over MemoryOS)."},
+    {"axis": "contribution", "value": "method",
+     "justification": "The contributions list (p. 2) centers on PersonaTree (the tree-update mechanism) and the RL training strategy for MemListener -- both techniques/algorithms. Code is released (github link, p. 1) but the paper argues for the mechanism, not the released artifact itself."}
+  ]
+}

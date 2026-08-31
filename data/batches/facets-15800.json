@@ -1,0 +1,22 @@
+{
+  "paper_id": 15800,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The paper's central contribution is a generation-based memory-update mechanism for long-term conversational systems: given existing memory M (previous sessions' summaries) and the current session's summary S, the system writes an updated memory M^U that merges, resolves conflicts and preserves essential information, then that memory is what the system draws on to 'inquire about recent conditions and reference past conversations accurately' in later sessions (p. 1; Section 3.2, p. 4; Figure 1 example, p. 2). That is a run-time write of state that conditions later behaviour across sessions, satisfying I1. Published 2026, English, full text available (I2-I4). No exclusion criterion applies: the store is written by the system itself, not a fixed corpus (rules out E3); memory is externalised, not parametric (rules out E2); memory is the paper's explicit, named contribution, not incidental (rules out E5); this is a primary study with an original dataset/method, not a survey (rules out E4); the paper concerns a long-term conversational agent, not hardware/cache optimisation (rules out E1, E6); it is 19 pages (rules out E7).",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "prompt_resident",
+     "justification": "Section 3.2 (p. 4) describes memory M as 'previous sessions' summaries' that is compared as a whole against the current session's summary S to produce an updated memory M^U; the few-shot examples (pp. 17-18) show the entire memory as a flat list of natural-language sentences fed directly into the prompt and rewritten as a whole. No vector index, graph, relational schema, filesystem, or KV-cache mechanism is described anywhere in the given pages -- the memory is a maintained, directly-reinserted text block, matching prompt_resident."},
+    {"axis": "write_policy", "value": "reflect_synthesize",
+     "justification": "Section 3.2 (p. 4) and the worked example on p. 2 (Figure 1: 'I am traveling in Europe' + 'I am back in Korea' -> 'I traveled to Europe') show the model generating an integrative sentence whose content is not present verbatim in either source memory -- explicitly contrasted in the abstract and p. 1 with prior 'operation-based' (PASS/APPEND/DELETE/REPLACE) approaches that only select or remove. This is generation of new higher-level content from stored memories, not a mechanical edit or append."},
+    {"axis": "retrieval_policy", "value": "always_in_context",
+     "justification": "No selective retrieval step (similarity search, recency window, or structured query) is described in the given pages; Section 3.2 (p. 4) treats the full memory M as the direct input to every update pass, consistent with a resident memory block that is not queried out of an external store rather than selectively re-entered into context."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "The dataset and update method are investigated entirely in a lab setting: ChatGPT-4.0 is used to construct the dataset and also to power the comparisons (Section 4.1, p. 4), evaluation is by human raters and automatic keyword-recall metrics on held-out samples (Sections 4.3-4.5, pp. 5-6; Tables 2-4, Figure 3), with no fielded system, real users, or deployment reported anywhere in the given pages."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Section 4.5.1 (p. 6) states the explicit intent: 'To benchmark our KEEM dataset against the existing update method... we apply CareCallmem's methods to update 50 memories in the KMSC dataset,' then reports scores across methods (human/ChatGPT scoring 0-2 in Tables 2-4, and TextRank/TF-IDF keyword recall in Figure 3) -- systems run over fixed evaluation sets with reported scores rather than a designed independent/dependent-variable experiment."},
+    {"axis": "contribution", "value": "dataset",
+     "justification": "The title names the artifact ('Creating the KEEM Dataset'), and both listed contributions on p. 2 center on the dataset itself ('we propose a novel generation-based memory update dataset...'; 'Our work introduces the Keep Emotion and Essential Memory (KEEM) dataset, the first of its kind...'), making the corpus/resource the thing the paper argues for rather than the update procedure alone."}
+  ]
+}

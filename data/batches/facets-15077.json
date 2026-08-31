@@ -1,0 +1,23 @@
+{
+  "paper_id": 15077,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The contribution is the Agent Cognitive Compressor (ACC), which writes a single persistent state variable, the Compressed Cognitive State (CCS), at run time: 'ACC writes exactly one persistent state variable and updates it through controlled replacement rather than unbounded accumulation' (p. 9). The reasoning engine then conditions on that committed state on the next turn ('The reasoning engine conditions on the committed state from the previous turn together with the current user input', p. 9), so the agent both writes and later reads its own state to condition future behaviour, satisfying I1. The record is a 2026 arXiv paper in English with full text available (I2-I4). None of the exclusions apply: there is explicit cross-turn agent state semantics (not E1), an externalised store exists beyond the model weights (CCS itself, plus an artifact store described as 'typically in an indexed store such as a vector database', p. 9; not E2), the agent writes to that state every turn rather than only reading a fixed corpus (not E3), this is primary research with a proposed mechanism and an evaluation, not a survey (not E4), memory control is the paper's sole claimed contribution, named in the title (not E5), the system is explicitly an LLM-based agent (ReAct and planning agent patterns, p. 2 contents; not E6), and the document runs at least 33 pages (not E7)."
+  ,
+  "secondary_substrates": ["vector_store"],
+  "facets": [
+    {"axis": "substrate", "value": "prompt_resident",
+     "justification": "CCS is 'the sole persistent internal representation carried across turns'; the reasoning engine 'conditions on the committed state from the previous turn together with the current user input, not on the full transcript, tool traces, or raw recalled documents' (p. 9) — the committed state is carried directly into the next turn's conditioning rather than queried out of a store. The separate artifact store (vector database) is secondary; the paper's central mechanism is the bounded state itself, listed as secondary_substrates."},
+    {"axis": "write_policy", "value": "summarize_compress",
+     "justification": "The mechanism is named the 'Compressed Cognitive State' and grounded in 'cognitive compression as a principle for memory control' (p. 2 contents). At each turn the CCM 'performs abstraction, normalization, and selective incorporation of decision critical information into CCS' (p. 9), and the conclusion states ACC 'updates a single persistent variable ... via controlled replacement rather than growth' (p. 27) — condensation on write, not append-only accumulation."},
+    {"axis": "retrieval_policy", "value": "always_in_context",
+     "justification": "CCS is not retrieved through a query; it is 'the sole persistent internal representation carried across turns' and the reasoning engine conditions on 'the committed state from the previous turn' directly (p. 9), matching always_in_context, which pairs with prompt_resident."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "The abstract reports evaluation 'using an agent-judge-driven live evaluation framework ... [a]cross scenarios spanning IT operations, cybersecurity response, and healthcare workflows' (p. 1), and the conclusion describes comparison against transcript-replay and retrieval-based baselines on judge-scored metrics (p. 27). No real users, fielded deployment, or stakes outside the authors' own experiment are described in the given pages, so this is coded conservatively as validation rather than evaluation."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Section 5 ('Agent Judge Driven Multi-Turn Evaluation') runs ACC and baseline memory mechanisms over fixed scenario sets with reported metrics for outcomes, hallucination rate, and drift rate (p. 2 contents, subsections 5.5.1-5.5.4); p. 27 reports ACC has 'significantly lower hallucination and drift than transcript replay and retrieval-based agents' across the domain scenarios — scores over a fixed set of scenarios against comparison methods."},
+    {"axis": "contribution", "value": "method",
+     "justification": "The abstract states 'we introduce the Agent Cognitive Compressor (ACC), a bio-inspired memory controller that replaces transcript replay with a bounded internal state updated online at each turn' (p. 1) — the paper argues for this mechanism itself, not a released tool or dataset artifact."}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "paper_id": 15347,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The agent's own interaction logs are rendered into images and stored verbatim in an external memory bank M = {(I_i, {s_i,k}, pi_i)} at run time (p. 4, Eq. 5); a query-time module g_theta reads M and returns supporting segments injected into the primary agent's context on later steps (p. 4, Eq. 6), and the paper frames this as reusing 'experience accumulated over extended histories' across a 'continuous stream of tasks' (p. 1). This is an LLM-based agent writing and later retrieving cross-turn state, satisfying I1. Year is 2026 (arXiv:2604.26622, p. 1), English, and full text was retrievable. No exclusion criterion applies: the store is written by the agent itself (not E3), it is an externalised store beyond parametric weights (not E2), it is a primary empirical study, not a survey (not E4), memory is the entire contribution rather than incidental (not E5), and the paper spans at least 13 pages (not E7).",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "other",
+     "justification": "The store is a bank of rendered, SoM-annotated trajectory images paired with verbatim text segments and metadata (p. 4, Eq. 5: M = {m_i}, m_i = (I_i, {s_i,k}, pi_i)), retrieved by a fine-tuned vision-language relevance model rather than by embedding similarity, graph traversal, SQL, or plain file access. The paper's own framing is that this optical/visual representation is the novel contribution distinguishing it from vector, graph, relational, or filesystem stores (p. 1 abstract; p. 2, 'renders historical trajectories into images annotated with unique visual identifiers'), so none of the named categories fit without distortion."},
+    {"axis": "write_policy", "value": "summarize_compress",
+     "justification": "Beyond storing new trajectory chunks, the paper's central write-side mechanism is an age-aware adaptive-resolution scheme: 'an older memory is assigned to a higher aging tier, which in turn dictates a lower image resolution' (p. 5, Eq. 13), explicitly termed 'optical forgetting' that 'significantly reduces the visual-token cost of long-term history' (p. 5). This is a condensation of stored representation over time/overflow, the defining feature of summarize_compress, not a simple unmodified append."},
+    {"axis": "retrieval_policy", "value": "hybrid",
+     "justification": "Retrieval combines a probability-threshold filter with a Top-K fallback under a stated union rule: S_i(q) = {(i,k) : p_i,k(q) >= tau} union TopK({p_i,k(q)}, K) (p. 4, Eq. 12), which the text itself calls a 'hybrid selection strategy' that 'robustly maintains coverage... without manual tuning' (p. 5). The fusion rule is declared, not incidental, satisfying the guide's bar for hybrid."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "The system is assessed via 'empirical evaluations on the Mind2Web... and AppWorld... benchmarks' against baselines and ablations (p. 2), with backbone-generalization and retrieval-quality tables reported on public benchmarks (p. 9, Tables 5-7). No real users, fielded deployment, or setting with stakes outside the authors' own experiments is described anywhere in the given pages, so this is a novel technique investigated in the lab rather than evaluation in practice."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Results are reported as scores over fixed task suites and baselines: Table 5 (Mind2Web backbone generalization vs. Text-RAG), Table 6 (Recall@1/5/10, MRR on an Experience Retrieval Evaluation Subset), and Table 7 (system efficiency profile on Mind2Web) (p. 9)."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The paper repeatedly self-identifies the contribution as an architecture rather than a single technique: 'we propose Optical Context Retrieval Memory (OCR-Memory), a memory framework' (p. 1 abstract), and the contributions list opens with 'We propose OCR-Memory, the first memory framework to store an agent's interaction history in the image modality' (p. 2), organizing multiple sub-mechanisms (locate-and-transcribe retrieval, multi-resolution storage, training strategy) under one system."}
+  ]
+}

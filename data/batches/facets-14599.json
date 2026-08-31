@@ -1,0 +1,22 @@
+{
+  "paper_id": 14599,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "BMAM writes agent interactions into an episodic memory store at run time — each incoming interaction is encoded as an episodic memory trace with inferred temporal/semantic attributes (p. 5) — and later retrieves that state across sessions via a hybrid retrieval mechanism to answer queries about prior sessions, evaluated on LoCoMo and LongMemEval (p. 8). Year 2026 (arXiv header, p. 1), English, and full text retrievable (23-page preprint).",
+  "secondary_substrates": ["prompt_resident"],
+  "facets": [
+    {"axis": "substrate", "value": "multi_store",
+     "justification": "Section 3 states BMAM 'employs a unified memory substrate that combines key–value episodic storage, vector-based similarity indexing, and a shared knowledge graph' (p. 4-5). The paper explicitly frames this deliberate combination/routing across specialized subsystems (episodic, semantic, salience, control) as its primary contribution: 'we therefore emphasize that the primary contribution is the architectural pattern' (p. 8). A capacity-limited prefrontal working-memory buffer (10 items) of recent context is also maintained for immediate reasoning (p. 4), coded as a secondary prompt_resident substrate."},
+    {"axis": "write_policy", "value": "append_only",
+     "justification": "The subsystem the paper evaluates as critical is episodic memory: incoming interactions are encoded into new episodic memory traces as they arrive (p. 5, 'The interaction is encoded ... as an episodic memory trace, capturing the contextual content together with inferred temporal and semantic attributes'), and the ablation on p. 8 validates this store as the critical backbone (removing it drops LoCoMo accuracy by 24.62%, described as 'validating episodic memory as the critical backbone'). A separate consolidation pass also condenses/extracts semantic content from episodic memories (p. 5, and the compression/consolidation prompt templates on p. 21-22), but the paper's headline evaluated write mechanism is the episodic encoding step."},
+    {"axis": "retrieval_policy", "value": "hybrid",
+     "justification": "The introduction states BMAM 'integrates a hybrid retrieval mechanism that combines lexical, dense, knowledge-graph, and temporal signals via reciprocal rank fusion' (p. 1) — a declared fusion rule. Section 3 confirms this at the mechanism level: evidence from episodic memory, semantic memory, and the knowledge graph is combined under temporal constraints, with feedback signals reweighting lexical, dense, entity-based, and temporal cues, and each retrieval source producing a ranked list that is fused (p. 5)."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Evaluated on the public LoCoMo and LongMemEval benchmarks with per-category accuracy tables and baseline comparison (p. 8, Table 3), plus ablation analyses on a LoCoMo subset (p. 8). No deployment, real users, or fielded setting is reported anywhere in the given pages — this is a lab benchmark comparison, coded conservatively as validation."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Headline evidence is accuracy against baselines on LoCoMo (78.45%, p. 1-2, p. 8) and per-category scores on LongMemEval (Table 3, p. 8), run over fixed task suites rather than a manipulated real-world deployment; ablation analyses (p. 8) are reported as a secondary analysis within this benchmark evaluation."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The paper explicitly states 'we therefore emphasize that the primary contribution is the architectural pattern' (p. 8). The abstract and contribution list (p. 1-2) frame BMAM as a 'general-purpose memory architecture' that decomposes memory into functionally specialized, coordinated subsystems, not a single technique; code release is noted only as a reproducibility item (p. 22), not the argued contribution."}
+  ]
+}

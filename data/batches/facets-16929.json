@@ -1,0 +1,22 @@
+{
+  "paper_id": 16929,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The Extraction Agent writes structured entries (candidate schemas, facts, passages) into a Three-Layer Global Memory as it processes each corpus chunk, and later processing steps read that accumulated memory to condition further behaviour: schemas are promoted to 'stable' only once their tracked frequency across chunks exceeds a threshold (Sec. 4.2.1, p. 5), and a Conflict Detection/Resolution Agent pair scans the existing Fact Layer whenever a new triple is added and edits or discards entries based on what is already stored (Sec. 4.2.2, p. 5; Figure 8, p. 19). At query time a separate retrieval phase re-reads the same three-layer memory to build the context for generation (Sec. 4.3, p. 5). This is a run-time-written, later-retrieved agent store, not a fixed corpus the agent only reads (distinguishing it from E3).",
+  "secondary_substrates": ["vector_store"],
+  "facets": [
+    {"axis": "substrate", "value": "graph_store",
+     "justification": "The three memory layers (schemas, facts, passages) are consolidated into one Hierarchical Graph that the agents write and later query; Fig. 1b (p. 2) shows Graph Construction producing the Hierarchical Graph, and Sec. 4.2.1-4.2.3 (p. 5) describes inducing G_fac and G_pas from the memory, with bridging edges added for connectivity. Retrieval itself runs Personalized PageRank 'over the heterogeneous graph' (Sec. 4.3, p. 5; Eq. 20, p. 19). Evaluation (Table 2, p. 7) compares against GraphRAG systems specifically, confirming the graph is what is measured."},
+    {"axis": "write_policy", "value": "edit_in_place",
+     "justification": "Sec. 4.2.2 (p. 5) describes a 'decoupled diagnosis and correction loop': when a new triple is activated, the Conflict Detection Agent scans existing facts for conflicts and the Conflict Resolution Agent corrects them. Figure 8 (p. 19) gives the resolution agent's instructions: 'Keep only the CORRECT triple, discard the incorrect one(s)' and 'Modify the predicate to include time context' — i.e. existing entries are updated, merged or deleted as new chunks are processed, not merely appended."},
+    {"axis": "retrieval_policy", "value": "hybrid",
+     "justification": "Sec. 4.3.1 (p. 5) retrieves top-K candidates from the memory layers and filters by declared similarity threshold Sim(q,x) > τ; Sec. 4.3.3 (p. 5) then runs Personalized PageRank propagation over the heterogeneous graph (Eq. 20, p. 19) to re-rank nodes/passages for generation. The similarity filter feeding into a declared PPR re-ranking rule is a stated fusion of two retrieval mechanisms."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "All reported evidence is against public multi-hop QA and GraphRAG benchmarks (HotpotQA, 2WikiMultiHopQA, MuSiQue, G-bench Medical/Novel) with baseline comparisons (Table 2, p. 7; dataset descriptions, p. 19-20). No deployment, real users, or fielded setting is described in the given pages, so this is a lab-controlled benchmark study rather than a study of consequences in practice."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Table 2 (p. 7) reports Recall/Relevance/Retrieval Time for MemGraphRAG against seven GraphRAG baselines (RAPTOR, Lazy-GraphRAG, LightRAG, HippoRAG, HippoRAG2, GFM-RAG, LinearRAG) across a fixed benchmark suite, with additional baselines and metrics described on p. 7 and p. 20."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The abstract (p. 1) and contributions list (p. 2) both name the offering a 'novel framework' organising a multi-agent system around the Three-Layer Global Memory and a hierarchical-graph retrieval algorithm, i.e. an architecture for organising the whole pipeline rather than a single technique; code release is mentioned only via a footnote link, not argued as the contribution itself."}
+  ]
+}

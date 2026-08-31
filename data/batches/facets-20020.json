@@ -1,0 +1,22 @@
+{
+  "paper_id": 20020,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "ReMe extracts experiences from past agent trajectories and writes them into an experience pool held in a vector database at run time (p.4: 'All retained experiences are indexed by the embedding vector of usage scenario ... and then stored in a vector database, which we refer to as the experience pool'), then retrieves top-K experiences by similarity to condition future task execution (p.4: 'we can retrieve top-K relevant experiences based on task similarity ... to guide LLMexecute'). The pool is also actively maintained after each task via selective addition and utility-based deletion (p.4, Figure 2: 'Selective Addition', 'Utility-based Deletion'), i.e. the agent's own run writes state that is read back on later tasks. The record is 2025, in English, and full text (21 pages) is present.",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "vector_store",
+     "justification": "Experiences are embedded and stored in a vector database, indexed by the embedding of the usage-scenario field: 'Our selected vector database is Elasticsearch' and 'past experiences are indexed using vector representations of the usage scenario field ... obtained from Qwen3-Embedding model' (p.13); also p.4: 'stored in a vector database, which we refer to as the experience pool.'"},
+    {"axis": "write_policy", "value": "reflect_synthesize",
+     "justification": "Multi-faceted distillation produces content not present in any single source trajectory: 'analyzing failure triggers and generating comparative insights' by 'jointly examining successful and failed trajectories, identifying critical differences that distinguish effective from ineffective attempts' (p.1-2); Figure 2 (p.4) shows a dedicated 'Failure-aware Reflection' step feeding Experience Refinement. The paper's central ablation (Table 5, p.8) scales the summarization/distillation model (LLMsumm) and treats distillation quality as the main lever behind performance gains, ahead of the utility-based add/delete maintenance step."},
+    {"axis": "retrieval_policy", "value": "similarity_topk",
+     "justification": "Top-K experiences are retrieved by cosine similarity between the embedded task query and stored experience embeddings: 'we can retrieve top-K relevant experiences based on task similarity ... computes cosine similarity scores to rank prior experiences' (p.4); p.13 gives the explicit cosine-similarity retrieval formula sim_cos(E, q_new). The reranking and rewriting steps shown in Figure 2 (p.4) are post-processing of this same top-K similarity retrieval, not a declared fusion of two independent retrieval mechanisms, so it does not meet the hybrid bar."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "All evidence given is benchmark comparison against baselines (No-Memory, and smaller/larger Qwen3 model variants) on BFCL-V3 and AppWorld (abstract p.1; tables/figures p.8 and p.13); none of the provided pages describe deployment, real users, or a fielded setting. Coded conservatively per the guide's validation/evaluation tie-break."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Fixed benchmark suites (BFCL-V3, AppWorld) with Avg@4/Pass@4 scores reported across model scales, retrieval-key variants, and ablation settings (p.8: Table 5, Figure 4, Figure 5, Table 6; p.13: Table 8, Table 9), rather than a single controlled two-condition experiment."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The record repeatedly self-describes as 'a comprehensive framework for experience-driven agent evolution' integrating three coordinated mechanisms across the memory lifecycle: 'We propose ReMe, a comprehensive framework for agent evolution that integrates multi-faceted experience distillation, context-adaptive reuse, and utility-based refinement' (first contribution bullet, p.2; also abstract p.1). This argues for a system architecture/organisation rather than a single algorithm; code and a dataset (reme.library) are released as secondary contributions (p.2)."}
+  ]
+}

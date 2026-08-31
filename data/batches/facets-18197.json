@@ -1,0 +1,40 @@
+{
+  "paper_id": 18197,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Figure 1 (p.4) shows 'Agent Dialogue' natural-language commands parsed into typed operations (Encode, Update, Label, Promote, Demote, Merge, Delete, Split, Lock, Expire, Retrieve) that are executed at run time against a persistent memory store via adapters to real memory frameworks (langmem, MemOS, mem0, zep) or a SQL prototype backend. Section III.A.c (p.5) describes Retrieve and Summarize as turning the store into 'a controllable memory interface' that keeps 'the working context compact' for later reasoning, i.e. state written by the agent is read back to condition subsequent behaviour. The contributions list (p.2) centers the paper's claim on exactly this write/govern/retrieve mechanism for LLM agents. Year is 2025 (record metadata), the text is English, and the pages were retrievable, satisfying I1-I4. No exclusion criterion applies: the store is externalised and agent-written (not E2/E3), memory is the paper's entire contribution not an incidental mention (not E5), this is a primary proposal not a secondary/survey study (not E4), and the paper is well over four pages with a methods/results structure (not E7).",
+  "secondary_substrates": ["vector_store", "graph_store"],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "relational_db",
+      "justification": "Section III.B.4 (p.8): 'Beyond dedicated memory frameworks, Text2Mem also provides a reference backend that maps operations to a relational database... every operation is compiled into a sequence of SQL statements.' Section IV.B.2 (p.11) describes constructing 'a unified memory database' with fields for content, embeddings, provenance, lifecycle metadata, locks, lineage and permissions. Section IV.A (p.8) states Text2Mem Bench evaluations are 'conducted inside a structured SQL-based prototype' — this is the concrete substrate the paper's own evaluation targets, even though adapters also map to external frameworks (listed as secondary substrates)."
+    },
+    {
+      "axis": "write_policy",
+      "value": null,
+      "justification": "Missing a single designated primary transformation. The paper's own differentiator (contributions list, p.2; Table I and surrounding prose, p.5) is the full storage-stage operation set treated as equally central: Update/Label/Lock are edit-in-place, Promote/Demote/Expire are described as 'prioritization without mutation' and 'lifecycle control' (p.5), and Merge triggers an LLM to 'generate a merged summary, which is inserted as a new item' (p.8) — a synthesis transformation. Section IV (pp. 8, 11) states Text2Mem Bench evaluates the operation set as a whole ('how accurately a system translates natural language into valid Text2Mem schemas... how reliably those schemas produce verifiable effects', p.8), not any one write transformation, so no primary value can be assigned without guessing."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "hybrid",
+      "justification": "p.5: 'Retrieve issues filtered and ranked queries using a hybrid strategy that combines symbolic predicates with embedding similarity. It respects governance fields such as permissions, priority, soft deletes, and expiration, and can apply freshness or diversity controls to avoid stale or redundant results.' This is a declared fusion rule combining structured/symbolic filtering with embedding-similarity ranking."
+    },
+    {
+      "axis": "research_type",
+      "value": "solution",
+      "justification": "The contributions list (p.2) proposes the language, schema, parser and adapters, and Figure 1 (p.4) walks through one worked example (a 'Demote' command shown transforming stored items before/after). Section IV (pp. 8, 11) describes 'Text2Mem Bench' explicitly as 'a planned benchmark' whose dataset-generation pipeline (Stage I-III, p.11) is still being described/constructed, with no reported evaluation results in the given text — a proposed and demonstrated solution, not yet systematically evaluated."
+    },
+    {
+      "axis": "research_method",
+      "value": "proof_of_concept",
+      "justification": "p.4 walks through a single worked example (schema validated, type-parsed, and mapped through 'Memory Framework Adapter' to real APIs), and p.8 describes the adapter executing against both a SQL prototype and real frameworks (MemGPT, mem0, Letta) end to end. No comparison, control condition, or completed benchmark results appear anywhere in the given pages, only a demonstration that the pipeline runs."
+    },
+    {
+      "axis": "contribution",
+      "value": "framework",
+      "justification": "Contributions list (p.2): 'We propose Text2Mem, the first unified memory operation language for LLM-based agents... a schema-based specification that formally encodes each operation's required fields, invariants, and constraints, together with a type parser... adapters.' This is an architecture (language + validator + parser + adapter) for organising memory operations across heterogeneous backends, argued for as a system design rather than a single algorithm."
+    }
+  ]
+}

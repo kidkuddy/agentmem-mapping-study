@@ -1,0 +1,22 @@
+{
+  "paper_id": 16210,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "MemTool's own contribution is a policy for what tool state survives into the next conversational turn: an agent-invoked Search_Tools/Remove_Tools loop that adds and evicts entries from the LLM's active tool set (T) across a 100+ turn session, with prior turns' additions/removals carrying forward and conditioning which tools the agent can call next (Algorithm 1, p. 4; Fig. 1's 'Existing tools from past messages', p. 2). This is a run-time-written, cross-turn state mechanism, not mere context-length extension or a static retrieval-only pipeline (abstract, p. 1; Introduction, p. 2).",
+  "secondary_substrates": ["vector_store"],
+  "facets": [
+    {"axis": "substrate", "value": "prompt_resident",
+     "justification": "The memory being managed is the agent's active tool set bound into every LLM call across the session -- described as 'short-term memory' in the abstract (p. 1) and shown in Fig. 1 as 'Existing tools from past messages' carried turn to turn (p. 2). The 5,000-server tool knowledge base is a fixed vector index the agent searches but never writes into (p. 4), so it is recorded as a secondary substrate rather than the primary one."},
+    {"axis": "write_policy", "value": "edit_in_place",
+     "justification": "Algorithm 1 (Autonomous Agent Mode, p. 4): on a Remove_Tools call, T <- T \\ (R \\ {Search_Tools, Remove_Tools}) deletes entries from the active tool set based on the current message; Workflow mode likewise 'removes irrelevant tools based on the current message state' (p. 7). The paper's headline evaluated metric is this removal/eviction behaviour ('Avg Removal Ratio 3T', described in the abstract as 'short-term memory efficiency', Table 1, p. 7), so the coded transformation is deletion of existing entries as new turns arrive; addition via search also occurs but is not the evaluated transformation."},
+    {"axis": "retrieval_policy", "value": "agent_directed",
+     "justification": "In Autonomous Agent Mode, Algorithm 1 (p. 4) shows the agent itself issuing the Search_Tools(keywords) call with its own chosen query (Q <- reply.args) that brings new tools into context; the abstract also leads with Autonomous Agent Mode's results (p. 1). The underlying VectorSearch(Q,V,k=5) is the mechanics of that agent-chosen search, but what causes new content to enter context is the agent's own decision to invoke Search_Tools."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Evaluation is run on the ScaleMCP benchmark: 5,000 MCP servers with 100 sampled multi-turn dialogues, stratified by tool-calls-per-turn (Dataset, p. 7); 13 LLMs are compared across the three modes (Experiment Settings, p. 7; abstract, p. 1). No deployment, production system, or real users are reported in the pages available -- this is a controlled lab/benchmark comparison, i.e. validation."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Table 1 (p. 7) reports Avg Removal Ratio, Avg Residual, Tool Correctness and Task Completion for 13 LLMs x 3 modes over the fixed ScaleMCP task suite (Dataset section, p. 7) -- a fixed benchmark run with scores reported, not a manipulated controlled comparison against a separate control condition."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "Abstract (p. 1): 'We introduce MemTool, a short-term memory framework enabling LLM agents to dynamically manage tools or MCP server contexts... MemTool offers three agentic architectures.' The paper's own language names it a framework/architecture with three modes, not a single algorithm, tool release, or dataset."}
+  ]
+}

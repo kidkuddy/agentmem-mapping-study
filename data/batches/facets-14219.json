@@ -1,0 +1,22 @@
+{
+  "paper_id": 14219,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Mandol writes conversational memory at run time into a basic layer (raw memory units) and an LLM-synthesized abstract layer (episodic/semantic/emotional memories), then retrieves those agent-written memories on later queries to condition future responses (pp. 1-3). Published 2026 (I2), English (I3), full 11-page text retrieved (I4). Not hardware/inference-cache (E1 does not apply): the fusion is a memory representation/storage architecture, not a cache optimisation. Not parametric-only (E2): SemanticMap/SemanticGraph plus an underlying DuckDB store are externalised (p. 2). Not a fixed uninvited corpus (E3): the agent writes dialogue-derived memory units and LLM-abstracted memories into the store (p. 3). Not a secondary study (E4), memory is not incidental but the entire contribution (E5), it targets LLM-based conversational agents (E6 does not apply, p. 2 discusses Generative Agents, medical expert agents), and it is well beyond four pages (E7 does not apply).",
+  "secondary_substrates": ["relational_db"],
+  "facets": [
+    {"axis": "substrate", "value": "multi_store",
+     "justification": "The paper's central claim is a data structure that 'natively fuses key-value, vector, and graph structures' (SemanticMap + SemanticGraph) specifically to eliminate cross-database I/O between vector, graph and other stores that fragment prior systems (p. 2, Section 3.2). Table 1 (p. 3) contrasts Mandol's unified 'In-memory SemanticMap/Graph + In-process DuckDB' against competitors' separate VectorDB/GraphDB stacks — the combination itself is the contribution, not an incidental pairing."},
+    {"axis": "write_policy", "value": "reflect_synthesize",
+     "justification": "Section 3.1.2 (p. 3): the high-level abstract layer 'leverages an LLM to agglomerate compact abstract memories from the basic memory layer through an abstraction-linking procedure,' extracting and organizing information into episodic memory (event chains), semantic memory (entity graphs), and emotional memory (user preferences) — content not present in any single source dialogue turn."},
+    {"axis": "retrieval_policy", "value": "hybrid",
+     "justification": "Section 3.3 / Figure 2 (p. 5): within each activated memory source, 'hybrid recall runs BM25 keyword retrieval, SPLADE sparse expansion, and dense vector search in parallel. Candidate lists are fused via reciprocal rank fusion,' followed by declared intra-source denoising and cross-source conflict-resolution scoring equations (p. 5) — a stated fusion rule combining multiple retrieval signals."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Evidence is benchmark comparison against baselines (Mem0, Zep, MemOS, EverMemOS, MemU) on LoCoMo and LongMemEval accuracy plus latency under synthetic QPS load (abstract, p. 1; results, p. 9). No deployed system, real users, or fielded setting is reported — a lab evaluation of a novel technique, coded conservatively as validation per the guide's boundary rule."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Section 5-ish results reported on p. 9: fixed benchmark suites (LoCoMo, LongMemEval) with accuracy scores against multiple baseline systems, plus a fixed QPS workload reporting latency/throughput speedups ('Mandol completes the LoCoMo workload in 86.18 s, 4.2-9.9x faster than the compared systems,' p. 9)."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The abstract (p. 1) frames the contribution as consolidating fragmented memory representations and storage into 'a unified memory-native architecture' comprising three integrated components (hierarchical memory model, agglomerative data structure, quantitative query mechanism). Code is released on GitHub (p. 1), but the paper argues for the architecture itself rather than a single algorithmic technique."}
+  ]
+}

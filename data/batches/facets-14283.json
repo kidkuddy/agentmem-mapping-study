@@ -1,0 +1,22 @@
+{
+  "paper_id": 14283,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The agent maintains an external memory bank of (topic summary, raw dialogue) entries that it writes at the end of each session via Prospective Reflection (\"memory extraction is achieved by using an LLM ... to extract dialogue snippets from the session with their corresponding summaries\", p. 4) and reads on later queries via a retriever/reranker to condition its response (Algorithm 1, p. 4). This is 2025 work (p. 1), in English, with full text available. It is not fixed-corpus retrieval (E3) since the agent writes new entries and merges updates into existing ones each session (p. 4-5); memory is the paper's central contribution, not incidental (contributions list, p. 2); it is an original method paper, not a survey (E4 does not apply); and it exceeds four pages (30 pages total per extraction_note).",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "vector_store",
+     "justification": "The memory bank entries are retrieved via a retriever over embeddings: memory update \"retrieve the Top-K most semantically similar memories already present in the memory bank\" (p. 4-5), and the reranker computes relevance as a dot product of query and memory embeddings (Section 6.1, p. 5)."},
+    {"axis": "write_policy", "value": "summarize_compress",
+     "justification": "Abstract: Prospective Reflection \"dynamically summarizes interactions across granularities—utterances, turns, and sessions—into a personalized memory bank\" (p. 1); Section 5 confirms memory extraction condenses dialogue snippets into topic summaries at the end of each session (p. 4)."},
+    {"axis": "retrieval_policy", "value": "similarity_topk",
+     "justification": "Algorithm 1 retrieves M_K via retriever f_theta(q, B) over the memory bank, then reranks to top-M (p. 4); the reranker itself still scores by embedding dot product (Section 6.1, p. 5), so the underlying retrieval signal throughout is semantic similarity, not a separately-typed fused mechanism."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Evidence is benchmark comparison only: \"Experiments on MSC and LongMemEval benchmarks show that RMM achieves more than 5% improvement over the strongest baseline\" (p. 2); no deployed system, real users, or setting outside the authors' own experiment is reported in the given pages."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Results are reported as accuracy/metric improvements over baselines on named benchmarks (MSC, LongMemEval), e.g. \">10% accuracy improvement over the baseline without memory management on the LongMemEval dataset\" (abstract, p. 1) and \">5% improvement over the strongest baseline\" (p. 2)."},
+    {"axis": "contribution", "value": "method",
+     "justification": "Contributions list on p. 2 frames RMM as \"a novel memory management mechanism that employs topic-based memory management ... and leverages attribution signal ... for unsupervised online retrieval refinement\"; no tool release or dataset release is claimed as the contribution in the given pages."}
+  ]
+}

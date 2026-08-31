@@ -1,0 +1,40 @@
+{
+  "paper_id": 15385,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The agent maintains a compact internal state <IS> that is updated (written) by the model at every turn and carried forward into subsequent turns, directly conditioning the next query and action (p. 2: MEM1 'keep[s] updating an internal state ... that blends thought and memory, discarding the contents from previous steps'; Fig. 3, p. 5, shows IS(t) feeding IS(t+1) across turns via the rollout). This is a run-time write-then-condition-future-behaviour mechanism, satisfying I1. Published 2025 (I2), in English (I3), and full text was retrievable (I4). No exclusion criterion applies: the contribution is memory-centric rather than incidental (E5 does not apply, title and abstract on p. 1 name memory consolidation as the core contribution), the state is an explicit externalised context object rather than purely parametric (E2 does not apply), and it is an original empirical study, not a survey (E4 does not apply).",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "prompt_resident",
+      "justification": "The internal state <IS> is a maintained context block, not an externally queried store: p. 2 describes it as an internal state 'enclosed in <IS></IS>' that 'blends thought and memory'; Fig. 3 (p. 5, bottom left) shows 'Previous context removed' as IS(t) replaces IS(t-1) directly in the token sequence rather than being retrieved from a separate index."
+    },
+    {
+      "axis": "write_policy",
+      "value": "summarize_compress",
+      "justification": "The abstract (p. 1) states the state 'integrates prior memory with new observations from the environment while strategically discarding irrelevant or redundant information', and p. 2 frames this as learning 'to consolidate its memory ... so that it retains only what is essential' — condensation on each turn, matching compaction rather than generation of new higher-level content."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "always_in_context",
+      "justification": "Because the memory is prompt-resident, it is never queried back in: Fig. 3 (p. 5) shows IS(t) passed directly as context into the next turn's rollout with no similarity, query, or agent-directed lookup step over it."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "The method is investigated in controlled lab conditions against baselines on public benchmarks (Wiki RAG, Online Web-QA, WebShop; Tables 2-3, pp. 9), with no deployment or real users reported anywhere in the given pages — a novel technique tested in the lab, not used in practice."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "Table 2 (p. 9) and Table 3 (p. 9) report scores (EM, F1, average final reward, peak token usage, inference time) for MEM1 against numerous baselines (GPT-4o, Qwen2.5 variants, Agent-R, AgentLM, DeepResearcher, Search-R1) over fixed task suites."
+    },
+    {
+      "axis": "contribution",
+      "value": "method",
+      "justification": "p. 1 abstract: 'We introduce MEM1, an end-to-end reinforcement learning framework that enables agents to operate with constant memory' — the argued contribution is the RL training technique (masked-trajectory policy optimisation over the consolidated state, Sec. 3.2, p. 5); code is released (p. 1) but is not itself what the paper argues for."
+    }
+  ]
+}

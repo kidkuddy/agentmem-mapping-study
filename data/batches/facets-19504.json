@@ -1,0 +1,22 @@
+{
+  "paper_id": 19504,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "EgoSelf builds a graph-based interaction memory from the user's past egocentric observations and an attached user profile, then retrieves from that memory at query time (via embedding similarity plus graph-constrained filtering, Sec. 3.3, p. 8) to condition personalized responses/recommendations for the assistant (Fig. 1, p. 2; profile summarization via LLM, p. 8). The store is written and updated from run-time interaction history rather than being a fixed corpus, and results are conditioned on multi-day retrieved history (Fig. 4, p. 12), so I1 is satisfied; the paper is 2026 arXiv, English, and full text was retrievable (I2-I4).",
+  "secondary_substrates": ["prompt_resident"],
+  "facets": [
+    {"axis": "substrate", "value": "graph_store",
+     "justification": "Abstract (p. 1) and Sec. 3 (p. 5) name the primary contribution as 'a heterogeneous interaction graph with persistent entity nodes' encoding temporal, causal and entity-level correlations; Sec. 3.3 (p. 8) retrieves over 'entity nodes' and 'event nodes' in graph memory G_t. The user profile is a secondary, compact document 'sent to the retrieved context during inference' (p. 8), coded as prompt_resident in secondary_substrates."},
+    {"axis": "write_policy", "value": null,
+     "justification": "The pages provided (1, 2, 5, 8, 12, 18-20) cover front matter, related work, the tail of Sec. 3 (user profile construction and retrieval), and results/references, but not the interaction-graph construction subsection (referenced as building 'persistent entity nodes' on p. 5) that would state whether nodes/edges are appended, merged, or edited on write. 'Persistent entity nodes' (p. 5) hints entities may be reused across observations but does not specify the transformation, so no value can be assigned without guessing."},
+    {"axis": "retrieval_policy", "value": "hybrid",
+     "justification": "Sec. 3.3 (p. 8, Eq. 6-7) states a declared two-stage fusion rule: top-k entity/event nodes are selected by cosine similarity of embeddings (similarity_topk), then 'Graph-Constrained Filtering' retains only event nodes connected to a selected entity node in the graph (structured_query), explicitly combined as a stated intersection operation."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Sec. 4 (p. 12) reports controlled comparisons against a baseline (EgoRAG) on a constructed 7-day egocentric task with metrics (Hit@k, retrieval and accuracy performance, Fig. 4; history-length breakdown, Table 2 referenced p. 12). No deployment, real users, or fielded use is reported in the given pages, so this is lab-based investigation, not evaluation in a real setting."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "p. 12: performance is reported against a baseline over a fixed multi-day egocentric task with quantitative metrics (Hit@k=7, accuracy/retrieval curves in Fig. 4, and a history-length grouped Table 2), i.e. a fixed task suite with scored comparison rather than a single manipulated variable or a mere runnable demo."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "p. 2 states 'we propose EgoSelf, a framework that progressively builds personalized understanding from first-person experiences,' comprising the graph memory, an attached user profile module, and a habit-learning task (p. 5) — an architecture organizing multiple components, not a single technique or artifact argued for on its own."}
+  ]
+}

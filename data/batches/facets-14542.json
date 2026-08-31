@@ -1,0 +1,40 @@
+{
+  "paper_id": 14542,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "MERIT stores oracle-verified corrections and observed unsuccessful directions in an external JSONL memory only at episode finalization, and that memory is retrieved by a hybrid lexical-dense retriever to condition repair generation on later, separate Text-to-SQL queries — a run-time write followed by cross-episode read that conditions future agent behaviour (Sec. 3/Fig. 1, p. 4; “Entries are indexed only after episode finalization,” p. 13). The paper is dated 2026, in English, and the agent is Qwen2.5-7B-Instruct acting as the semantic parser/repair generator (p. 1), so I2–I4 hold and none of E1–E7 apply: the store is externalised and agent-written (not E2/E3), memory is the paper's central contribution rather than incidental (not E5), it is an original study rather than a survey (not E4), and the manuscript runs to at least 15 pages with appendices (not E7).",
+  "secondary_substrates": ["prompt_resident"],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "vector_store",
+      "justification": "Retrieval candidates are ranked primarily by dense similarity from a FAISS IndexFlatIP index over BAAI/bge-large-en-v1.5 embeddings of the stored memory entries, with BM25 as a secondary lexical channel (Table 7, p. 14; “Dense relevance is the inner product of the normalized query and memory vectors,” p. 13). The underlying entries are persisted as positive/negative JSONL files (p. 13–14), which is recorded as the secondary substrate (prompt_resident is used instead for the separate in-episode local history — see secondary_substrates)."
+    },
+    {
+      "axis": "write_policy",
+      "value": "append_only",
+      "justification": "Each finalized episode contributes at most one new entry (one positive or one negative) built directly from the final oracle-confirmed or final observed transition; no synthesis or summarization is applied and prior entries are never rewritten: “memory is updated only upon finalization ... M<(t+1) = M<t ∪ {xt}” (p. 4), and “Entries are indexed only after episode finalization” (p. 13)."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "hybrid",
+      "justification": "Full MERIT combines dense and BM25 scores with a stated fusion rule, r(x,u) = 0.75·dense + 0.25·BM25, after independent min-max normalization within each polarity pool (p. 13; also p. 14 Table 7, ‘Main ranking 0.75·s_dense + 0.25·s_BM25’). This is a declared combination of two ranking channels, matching the hybrid definition rather than a single similarity_topk or structured_query pass."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "The system is tested on the public Spider and BIRD benchmarks against baselines and ablations with a single frozen backbone (Qwen2.5-7B-Instruct), and the authors themselves flag that this is a controlled benchmark setting rather than a deployed one: “This is appropriate for controlled benchmark evaluation, but it is stronger than the feedback available in many deployed databases” (Limitations, p. 8). No real users or fielded deployment are reported, so this is coded validation, not evaluation."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "Evidence is execution accuracy on the fixed Spider and BIRD task suites (66.34%→69.79% and 47.35%→48.44%, abstract, p. 1), with ablations (No Type Filter, No Dense Rerank, Random Same Type) reported as point differences against full MERIT over those same benchmarks (p. 8). The core evidence type is fixed-suite scoring rather than a standalone controlled lab manipulation, so benchmark_evaluation is coded as primary."
+    },
+    {
+      "axis": "contribution",
+      "value": "method",
+      "justification": "The contribution list on p. 2 centers on formulating causal episodic memory for repair and proposing the error-guided hybrid retrieval technique (“We propose error-guided hybrid retrieval that organizes repair experience by outcome and failure type...”); the controlled evaluation is listed as the third, supporting contribution, not an artefact being argued for."
+    }
+  ]
+}

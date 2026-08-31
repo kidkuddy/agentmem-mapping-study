@@ -1,0 +1,40 @@
+{
+  "paper_id": 14166,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The record's contribution is a benchmark (dataset + evaluation framework) whose entire subject is memory mechanisms of MLLM agents that write state at run time and retrieve it across multi-session conversations to condition future behaviour: the abstract (p. 1) describes 'multi-session conversations ... where information accumulates and evolves over time,' and the paper benchmarks thirteen such memory systems (p. 20, Table 7: e.g. MemGPT, A-Mem, MemoryOS, Reflexion, Generative Agent, NGM, AUGUSTUS), each of which persists and retrieves state across sessions. 2026 postdate satisfies I2, the text is English (I3), and pages were retrievable (I4). No exclusion criterion applies: memory is externalised and agent-written, not parametric (E2, contradicted by p. 20's MemEngine-based storage/retrieval); the dataset spans dynamically evolving multi-session dialogue rather than a fixed corpus never written to (E3); this is a primary empirical study introducing a new dataset (p. 2, 'New Scenario & Dataset'), not a literature survey/review/mapping study (E4); memory is the entire object of study, not incidental (E5); the agents are MLLM-based (E6 does not apply); and the paper is 36 pages with substantive tables and analysis (E7 does not apply).",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": null,
+      "justification": "Not decidable from the given pages. The record's own contribution (p. 2: 'New Scenario & Dataset' and 'Evaluation Framework') is a benchmark dataset and evaluation harness, not a proposed memory mechanism. The thirteen systems it benchmarks (p. 20, Table 7: Full Memory-Text, FIFO, NaiveRAG, Gen. Agent, Reflexion, MemGPT, A-Mem, MemoryOS, Full Memory-Multimodal, MuRAG, UniversalRAG, NGM, AUGUSTUS) span heterogeneous substrates (prompt-resident full history, vector stores, graph store for NGM) that are the objects of evaluation, not the paper's own contribution, so no single substrate is what this record argues for."
+    },
+    {
+      "axis": "write_policy",
+      "value": null,
+      "justification": "Not decidable. The pages given (p. 2 contributions list; p. 20 benchmark settings and Table 7) describe the evaluation harness (built on the MemEngine framework) used to run thirteen different memory systems with their own, differing write policies; the paper does not specify one write transformation as its own contribution."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": null,
+      "justification": "Not decidable. Page 20 states a uniform retrieval size (K=10) is applied across benchmarked systems for fair comparison, and p. 25 studies retrieval size K as a parameter, but these are evaluation-protocol controls over other systems' retrieval mechanisms (similarity top-k, graph traversal, etc. per Table 7), not a single retrieval policy the paper itself proposes."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "The study benchmarks thirteen memory systems on a constructed dataset under controlled, uniform settings (fixed backbone, temperature 0, K=10 default; p. 20) and reports scores in lab conditions (Table 8, p. 26; parameter study, p. 25; case studies, pp. 34-35). No deployed system, real users, or field setting is reported in any of the given pages, so this is validation rather than evaluation in the Wieringa/Petersen sense."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "Thirteen memory systems are run over a fixed multi-session multimodal task suite across defined categories (FR, VS, TTL, TR, VR, MR, KR) and scored with F1, BLEU-1, EM, and LLM-Judge metrics (Table 8, p. 26), with benchmark settings and a fixed evaluation pipeline described on p. 20 — the defining pattern of benchmark_evaluation rather than a controlled experiment with a manipulated condition."
+    },
+    {
+      "axis": "contribution",
+      "value": "dataset",
+      "justification": "The first item in the contributions list (p. 2) is 'New Scenario & Dataset: ... build a customized conversational dataset,' and the title itself frames the paper as 'Benchmarking Multimodal Long-Term Conversational Memory' — the dataset/benchmark is what the paper argues for, matching the guide's description of dataset as covering 'memory benchmarks and corpora.'"
+    }
+  ]
+}

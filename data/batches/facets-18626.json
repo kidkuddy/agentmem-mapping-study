@@ -1,0 +1,40 @@
+{
+  "paper_id": 18626,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The agent's memory Mem = (s, a, r) is written and read across turns to condition future behaviour: Fig. 1 (p. 2) shows the agent storing state, action, and reward in its memory and 'using this accumulated information to improve future performance,' and Table I (p. 2) defines Mem as 'the agent's memory... storing previously encountered states, actions, and rewards.' The paper's contribution operates directly on that memory: Section IV's unlearning execution (p. 4) states 'we begin by removing the memory associated with the unlearning states... from the agent's memory Mem' (repeated for trajectory- and environment-level unlearning), which is a policy over what persists in that store, not an architectural change. This is the eviction/compaction boundary the guide calls in-scope, not out-of-scope. No exclusion applies: an externalised, agent-written store exists (not E2); the agent writes to and deletes from it, so it is not a fixed corpus (not E3); this is a primary empirical study, not a survey (not E4); memory is the paper's central object, not incidental (not E5); it is explicitly an LLM-based agent (not E6); and the extraction spans 18 pages with substantive method/results/discussion content (not E7).",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "prompt_resident",
+      "justification": "p. 4 states the agent's policy is π_θ(a|s;x) where 'x is the input prompt encoding relevant contextual information such as history, goals, memory, and constraints' — memory is folded directly into the prompt fed to the LLM. No vector index, graph, relational schema, filesystem, or KV-cache is mentioned anywhere in pp. 1, 2, 4, 12, 13, 16, 17, so there is no evidence of a queried external store."
+    },
+    {
+      "axis": "write_policy",
+      "value": "edit_in_place",
+      "justification": "p. 4, Unlearning Execution: for state unlearning 'we begin by removing the memory associated with the unlearning states, s ∈ S_u, from the agent's memory Mem'; the same removal pattern is repeated for trajectory unlearning ('removing the memory entries associated with the target trajectory from Mem') and environment unlearning ('removing from the agent's memory, Mem, all information related to the states of the target environment'). These are deletions of existing entries, not appends, summaries, or reflections."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "always_in_context",
+      "justification": "Consistent with the prompt_resident substrate: p. 4 describes memory as part of the input prompt x that always conditions the policy π_θ(a|s;x) ('x is the input prompt encoding relevant contextual information such as history, goals, memory, and constraints'). No selective query, similarity ranking, or recency window is described in the given pages."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "p. 2 states the contribution includes 'both theoretical analysis and empirical evaluation of the proposed unlearning framework in conventional learning tasks as well as under adversarial settings.' The reported experiments (pp. 12, 16, 17) run on GridWorld, AlfWorld, HotpotQA, and HumanEval — lab benchmarks with GPT/Claude/Llama backbones — with no mention of real users or a fielded deployment in any given page."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "pp. 16–17 (Tables XXXVI–XLII) report the NL-based method against Code-based and Example-based baselines across fixed task suites (GridWorld, AlfWorld, HumanEval) with scored metrics (unlearn efficacy, Unlearn@1, success rate, steps) for GPT, Claude, and Llama backbones."
+    },
+    {
+      "axis": "contribution",
+      "value": "method",
+      "justification": "p. 2's contribution bullets and the tables on pp. 16–17 centre on the NL-based unlearning method (a conversion model trained per Eq. 10, p. 4, to turn unlearning requests into actionable prompts) as the artefact evaluated against baselines; the three-scenario categorisation is a conceptual organisation, not itself something scored in the results."
+    }
+  ]
+}

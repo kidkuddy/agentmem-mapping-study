@@ -1,0 +1,9 @@
+{
+  "paper_id": 14072,
+  "eligible": false,
+  "eligibility_rule": "E1",
+  "eligibility_criteria": ["E1"],
+  "eligibility_reason": "LSTM-MAS is a multi-agent pipeline for processing one long document/query in a single pass, not a mechanism that gives an agent state persisting across turns or sessions. Section III.A defines the task as a single (x, y, q) triple: the long context x is split into blocks and fed sequentially through the agent chain 'to simulate the sequence expansion of LSTM time steps' (p. 3). Algorithm 1 (p. 5) shows the 'long-term memory' bank C0 is initialised empty at the start of each such run and is consumed entirely within that one forward pass, ending in 'return LLM_M(...)' as the final answer to that query -- nothing is written for a later, separate turn or session to retrieve. This is the architecture-level long-context category the paper itself sets out to compete in: the abstract and related work (p. 1-2) frame it against methods that 'reduce the context window' or 'extend the context window' (RAG, positional-encoding tricks, fine-tuning), i.e. it is offered as an alternative way to fit more input into one query, not a policy over what an agent carries forward between separate interactions. No cross-turn or cross-session agent state semantics are described anywhere in the extracted pages.",
+  "secondary_substrates": [],
+  "facets": []
+}

@@ -1,0 +1,22 @@
+{
+  "paper_id": 14516,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "GSW's Operator maps sequential incoming observations (3-sentence chunks of a document) to intermediate semantic structures at run time, and the Reconciler integrates these into a persistent workspace enforcing temporal/spatial/logical coherence (p. 1, p. 26). This workspace is not the fixed source corpus itself but derived, agent-written state: at query time a resolution module retrieves entity-specific summaries from that workspace to answer questions, i.e. the written state conditions later behaviour (p. 2, p. 20, Fig. 11). This is the 'run-time writes added to an otherwise classical RAG pipeline' case the guide names as in-scope, not E3 (fixed corpus never written to) — the corpus is read, but the retrieved object is the agent-constructed workspace representation, not raw corpus text.",
+  "secondary_substrates": ["vector_store"],
+  "facets": [
+    {"axis": "substrate", "value": "other",
+     "justification": "The workspace holds structured, entity-centric semantic-frame records — e.g. the p. 2 example 'Carter Stewart: Role: A presenter...; Date: ...; Location: ...; Topic: ...; Implements Used: ...' — explicitly distinguished by the paper from 'structured knowledge graphs representations' used by prior work (p. 1). No SQL/tabular schema, no filesystem, no KV-cache is described. Retrieval (p. 20-21) shows entity summaries embedded for cosine-similarity reranking, but the primary persistent object is the slot-filled semantic frame per entity per chapter, not the embedding index itself, so it does not cleanly fit vector_store, graph_store or relational_db as defined — coded other: structured semantic-frame representation. Vector use at retrieval time is captured in secondary_substrates."},
+    {"axis": "write_policy", "value": "summarize_compress",
+     "justification": "Each document is split into short 3-sentence contexts before being passed to the Operator to generate the semantic representation (p. 26), and the resulting entity summaries retrieved in Fig. 11 (p. 20) are condensed narrative summaries (e.g. 'Entity: Carter Stewart - Summary: On January 3, 2026, at Yankee Stadium...') built from the fuller source text. The Operator+Reconciler pipeline condenses sequential input into a coherent persistent representation (p. 1), matching a running-summary/compaction transformation rather than a verbatim append."},
+    {"axis": "retrieval_policy", "value": "hybrid",
+     "justification": "Figure 11's caption (p. 20) gives an explicit two-stage fusion rule: NER on the query plus string matching locates the relevant GSW chapter instances and entity summaries (a structured match), and these are then re-ranked 'based on their semantic similarity to the input query—a score calculated using cosine similarity between their embeddings and the query's embedding' before being passed to the answering LLM (p. 20-21)."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "GSW is assessed on the Episodic Memory Benchmark (EpBench-200 and EpBench-2000) against RAG baselines (Embedding RAG, GraphRAG, HippoRAG2, LightRAG) with F1/precision/recall tables and bootstrap error bars (p. 21, p. 23), plus a controlled human-annotator preference study against SRL baselines (p. 26-27, Table 15). All evidence is benchmark/lab comparison; no deployed system or real users outside the authors' own experiment is reported in the given pages."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Table 12 (p. 23) reports precision/recall/F1 for GSW and four baselines across cue-complexity buckets on the fixed EpBench-2000 task suite, and p. 21 describes the shared QA benchmark evaluation protocol (bootstrap resampling, fixed top-k, common answering LLM) used for the main results."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The paper states 'we propose the Generative Semantic Workspace (GSW), a neuro-inspired generative memory framework' (abstract, p. 1) and 'we introduce the Generative Semantic Workspace (GSW), a unifying computational framework for modeling world knowledge' (p. 1-2), comprising the Operator, Reconciler and persistent workspace as an architecture; code is released but the paper argues for the framework itself, not the artefact as such."}
+  ]
+}

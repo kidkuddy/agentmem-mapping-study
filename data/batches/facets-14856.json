@@ -1,0 +1,22 @@
+{
+  "paper_id": 14856,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "PREMem writes memory at run time (LLMextract turns each conversation session into memory fragments, and LLMreason synthesizes cross-session reasoning fragments into a persistent pool R, updated session-by-session; p. 4-5) and later reads that store to condition its own future responses (\"we retrieve the most relevant items from our total memory store M ∪ R\" and compose them into the context for LLMresponse, p. 5). This is a personalized-dialogue system whose memory is externalized (embeddings, clusters, a persistent memory pool), not a fixed corpus and not parametric-only, so E2/E3 do not apply. It is a full EMNLP 2025 findings paper (p. 1), in English, well over four pages, with memory as the paper's entire claimed contribution (contributions list, p. 2), so E4/E5/E7 do not apply, and there is no hardware/inference-cache framing (E1 does not apply).",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "vector_store",
+     "justification": "Memory fragments and reasoning fragments are embedded with femb and clustered by cosine similarity of centroids (Section 3.2.1, p. 4); at inference, retrieval is top-k over embedded vectors e ∈ (E ∪ E') of the total memory store M ∪ R (Section 3.3, p. 5; Algorithm 1 line 22, p. 18)."},
+    {"axis": "write_policy", "value": "reflect_synthesize",
+     "justification": "The paper's central contribution is that LLMreason generates new reasoning memory fragments describing evolution patterns (extension, accumulation, specification, transformation, connection) between clusters across sessions — content not present in any single source fragment (Section 3.2.2, p. 5; contribution list item 2, p. 2: \"shifts complex cross-session synthesis from response time to memory construction\")."},
+    {"axis": "retrieval_policy", "value": "similarity_topk",
+     "justification": "\"we retrieve the most relevant items from our total memory store M ∪ R and select the top-k items based on the similarity between embedded vectors\" (Section 3.3, p. 5), confirmed by Algorithm 1's TopK_k(M ∪ R; sim(femb(·), e_q)) (p. 18)."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Evaluated on the LoCoMo and LongMemEval public QA benchmarks across multiple model families/sizes with baseline comparisons (Section 4.1, p. 5); no deployment, real users, or fielded setting is reported in the given pages."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Two fixed QA benchmarks (LoCoMo, LongMemEval) with defined question-type categories (Table 1, p. 5) and standardized metrics (BLEU-1, ROUGE-1, ROUGE-L, METEOR, BERTScore, LLM-as-judge; Section 4.1, p. 5) are run across model sizes and reported as scores."},
+    {"axis": "contribution", "value": "method",
+     "justification": "Contribution list on p. 2 names the pre-storage reasoning method and the memory-evolution-pattern framework as the contribution; code/dataset release is mentioned in the abstract (p. 1) but is not what the paper argues for."}
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "paper_id": 14693,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 3 (p. 4) defines a builder B that constructs a procedural memory mp from an agent's own task trajectory tau and reward r ('a memory mp is constructed by a builder B'), accumulated into a memory library across tasks (Eq. 3). A retriever then recalls the most similar stored memory for a new task via cosine similarity (Eq. 4-5, p. 4), and the abstract (p. 1) and Section 4.3 (p. 6) describe an update mechanism that adds, corrects and deprecates entries as new tasks are completed. The agent writes this store from its own experience at run time and later retrieves it to condition behaviour on new, similar tasks -- satisfying I1. Published 2025 (I2), in English (I3), and full text was retrievable (I4).",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "vector_store",
+      "justification": "Section 3 (p. 4): retrieval is defined as argmax cosine similarity over embeddings phi(t_new) and phi(t_i) of stored memory keys (Eq. 4-5). Page 8 explicitly frames this as 'vector-based storage and retrieval' that 'can be scaled both in total capacity and in the number of memories retrieved.'"
+    },
+    {
+      "axis": "write_policy",
+      "value": "reflect_synthesize",
+      "justification": "Abstract (p. 1) states Memp 'distills past agent trajectories into both fine-grained, step-by-step instructions and higher-level, script-like abstractions,' not a verbatim copy of the trajectory. The worked example on p. 4 (Figure 2) shows a stored memory value ('I've successfully solved this task. Next time when I meet new similar tasks, I know that I should first do ..., and then do ...') that is generated guidance absent from any single trajectory step. Table 1 (p. 6) shows this highest-abstraction 'Proceduralization' granularity outperforming the more literal 'Trajectory' and 'Script' variants across both benchmarks."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "similarity_topk",
+      "justification": "Section 3 (p. 4), Eq. 4-5: the retrieved memory is arg max over cosine similarity between the embedded new task and embedded stored keys. Table 2 (p. 6) compares key-construction strategies (Query, AveFact, Random Sample) that are all ranked by cosine similarity, and Figure 5(b) (p. 8) varies the 'Number of Memory Retrieved,' consistent with a top-k similarity scheme."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "Evaluation is confined to two public benchmarks, TravelPlanner and ALFWorld, with baseline and ablation comparisons (Table 1 and Table 2, p. 6; Figure 5, p. 8). No deployment, field use, or real end users are reported in the pages given (front matter p. 1-2, results p. 6/8, conclusion p. 8, appendix p. 12-13) -- this is a lab-controlled benchmark study, coded conservatively as validation rather than evaluation."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "Table 1 (p. 6) reports scores (#CS, #HC, Steps for TravelPlanner; Dev/Test/Steps for ALFWorld) across three backbone models and four memory conditions; Table 2 (p. 6) reports a further benchmark comparison of retrieval-key strategies. Fixed task suites with baselines and quantitative scores, not a manipulated controlled condition or a single demonstration."
+    },
+    {
+      "axis": "contribution",
+      "value": "framework",
+      "justification": "Conclusion (p. 8): 'We introduce Memp, a task-agnostic framework that elevates procedural memory to a core optimization target in LLM-based agents.' Figure 2 (p. 4) lays out the Build/Retrieve/Update architecture that organizes the whole system, which is what the paper argues for rather than a single algorithmic technique."
+    }
+  ]
+}

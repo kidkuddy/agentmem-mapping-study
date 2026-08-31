@@ -1,0 +1,8 @@
+{
+  "paper_id": 19291,
+  "eligible": false,
+  "eligibility_rule": "E3",
+  "eligibility_criteria": ["E3"],
+  "eligibility_reason": "AgentIR's contribution is entirely on the retrieval side of the pipeline: a workload-adaptive fusion/cascade router and a time-partitioned index over records that are ingested from the agent's own conversation trace (p. 3: 'Modern LLM agents ... produce memory traces comprising user messages, assistant responses, tool calls ... Each record is annotated with timestamps, session identifiers, agent identifiers, and tool types'). Nothing in the given pages describes an agentic write decision -- what gets stored, synthesised, or evicted -- as part of the contribution; the record stream is logged wholesale, not authored by the agent choosing what to persist. The paper explicitly disclaims the write side as someone else's layer: 'AgentIR's contribution is orthogonal and complementary ... the retrieval substrate itself should be agent-aware ... not just the memory-management layer above it. A production deployment can combine, e.g., Mem0's write-batching policy with AgentIR's retrieval substrate' (p. 17). The evaluation throughout (Tables/figures on pp. 2-3, 17-18) reports nDCG@10, Recall@k, Hit@k and latency over BEIR/LongMemEval/LoCoMo as fixed IR benchmarks, i.e. retrieval quality/speed over a growing but agent-independent log, not evidence of a memory mechanism that conditions the agent's own future behaviour. This matches E3: retrieval infrastructure over a corpus the agent itself never decides to write to; the paper's own framing (p. 17) confirms the write/memory-management layer is out of scope for its contribution.",
+  "facets": []
+}

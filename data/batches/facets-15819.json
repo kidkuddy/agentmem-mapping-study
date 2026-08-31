@@ -1,0 +1,22 @@
+{
+  "paper_id": 15819,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Abstract and Figure 1 (p.1) describe a Navigable Memory Store of user-specific pages (e.g., a 'Peanut Allergy' page with summary/related_pages/structured_facts) that the agent navigates and reads to condition its own response ('You had a peanut allergy last time in Beijing... Remember to be careful about your diet during the trip'). Related Work (p.2) positions MemCog against Mem0, MemGPT and A-Mem as prior write-and-retrieve agent memory systems it extends, not a fixed corpus it only queries. The appendix navigation trace (p.27) shows memory pages carrying user-specific, timestamped facts (e.g., 'As of 2023-05-27, the user struggles with being too self-conscious...'), consistent with content written from conversation history and later retrieved to shape agent behaviour. Record metadata gives year 2026 and English text, and pages were retrievable (I2-I4).",
+  "secondary_substrates": ["graph_store"],
+  "facets": [
+    {"axis": "substrate", "value": "filesystem",
+     "justification": "p.1 Figure 1 and pp.26-27 show the memory store organized as markdown notes under directory-like paths (e.g., 'user/assistant/topic/index.md', 'user/assistant/topic/bicycle commute.md', 'user/assistant/topic/podcasts.md') with note fields such as aliases, tags, category and detail — matching notes/markdown/documents used as memory. The associative links between pages (related_pages, Follow_Links) form a graph layer on top of these files, recorded as secondary_substrates: graph_store."},
+    {"axis": "write_policy", "value": null,
+     "justification": "The pages given (front matter pp.1-2, benchmark-construction/evaluation appendix pp.14,16-17, and the navigation-trace appendix pp.26-27) do not include the method section describing how the Navigable Memory Store is built or updated. Pages 26-27 show an already-populated store used to demonstrate retrieval, not the write/construction process, so the transformation applied when a memory unit is written cannot be determined from what was extracted."},
+    {"axis": "retrieval_policy", "value": "agent_directed",
+     "justification": "p.1 Figure 1 shows the agent issuing its own sequence of navigation actions (Browse_Dimension, List_Dimension, Read_Page, Follow_Links) rather than a single ranked query. p.27: 'the agent exercises full autonomy over its navigation decisions. At each step, the agent determines which dimension to enter, whether to drill deeper into a specific page, and whether to follow cross-dimensional associative links to related content.'"},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Abstract (p.1) and the contributions list (p.2) report results on public QA benchmarks (LoCoMo, LongMemEval) and the authors' own constructed ProactiveMemBench, comparing MemCog against baselines. No deployed system, real users, or field setting is described in the given pages, so this is a lab-investigated technique rather than a fielded evaluation; coded conservatively as validation."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "p.1 abstract reports fixed benchmark scores (92.98 on LoCoMo, 95.8 on LongMemEval) against baselines. Appendix B (pp.14,16-17) details ProactiveMemBench's fixed question set (100 generated questions across difficulty levels) and its Recall@k and Precision judge-prompt scoring rubrics used to produce comparable scores across systems."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "The contributions list (p.2) presents MemCog as an architecture combining three designed components — the Navigable Memory Store, the Cross-Dimensional Navigation Interface, and the Proactive Reasoning Protocol — i.e., a way of organizing the memory system, not a single technique. ProactiveMemBench is named as a secondary contribution (p.2), not the paper's primary argued artefact."}
+  ]
+}

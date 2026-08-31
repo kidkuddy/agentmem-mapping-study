@@ -1,0 +1,22 @@
+{
+  "paper_id": 13915,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "TiM's Stage-1 has the LLM agent recall relevant thoughts from an external Memory Cache M before answering, and Stage-2 has it post-think and insert the newly self-generated reasoning thoughts into M, which persists across conversation turns and later conditions responses to new questions (Section 3.1.2, p. 4; abstract, p. 1). The store is agent-written at run time (post-thinking after each Q-R pair), not a fixed corpus, so I1 holds and E2/E3 do not apply. Published venue text, 2023 (p. 1), English, and full text was retrievable (10 pages), so I2-I4 hold and E7 does not apply. Memory is the paper's sole contribution, not incidental (contributions list, p. 2), so E5 does not apply, and it is an LLM-based agent system, not hardware/cache optimisation or a secondary study, so E1, E4, E6 do not apply.",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "vector_store",
+     "justification": "Memory Cache M is described as a hash table of (hash-index, thought) pairs, where each thought's d-dimension embedding vector is mapped via Locality-Sensitive Hashing so nearby embeddings collide to the same bucket, replacing pairwise similarity calculation for retrieval (Section 3.1.1/3.2.1, Eq. 1, p. 4). This is an embedding-based approximate-similarity store over agent-written items, coded vector_store rather than other since retrieval is fundamentally over embedding proximity."},
+    {"axis": "write_policy", "value": "edit_in_place",
+     "justification": "The paper's second listed contribution is a set of 'basic principles to organize the thoughts in memory based on well-established operations (i.e., insert, forget, and merge operations), allowing for dynamic updates and evolution of the thoughts' (p. 2), and Section 3.2.1 states M 'supports varying operations as shown in Table 1' (p. 4). Figure 8 (p. 8) shows a worked 'Insert, Forget, Merge Operations' example where thoughts under a hash index are merged, so entries already stored are corrected/merged/deleted as new information arrives, not merely appended."},
+    {"axis": "retrieval_policy", "value": "similarity_topk",
+     "justification": "Recall is over the LSH hash index computed from embedding similarity (Eq. 1, p. 4), and evaluation explicitly reports top-k recall: Table 2's caption states 'Top-5 thoughts are recalled from the memory cache' (p. 7), and Section 4.3.2/Figure 6 sweeps retrieval accuracy over different values of k, with top-10 reaching 0.973 accuracy (p. 7)."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Evaluation is against a baseline (SiliconFriend) across three constructed/benchmark datasets (KdConv, GVD, and a manually-constructed Real-world Medical Dataset of 1,800 conversations) using a blinded human-evaluation protocol over predefined metrics (Section 4.1, p. 6; Table 2, p. 7). Even the medical dataset is a held-out test set scored by human evaluators, not a fielded deployment with measured real-world consequences. Section 4.4's 'Industry Application' (pp. 7-8) shows a single qualitative TiM-LLM conversation example (Figure 7) rather than a systematic study of a deployed system, so the conservative call is validation, not evaluation."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Three datasets, a named baseline, and reported metrics (Retrieval Accuracy, Response Correctness, Contextual Coherence) in Table 2, plus a retrieval-time comparison in Table 3 (p. 7)."},
+    {"axis": "contribution", "value": "method",
+     "justification": "The contributions list (p. 2) names 'a novel human-like long-term memory mechanism called TiM' as the core offering, together with organizing principles (insert/forget/merge) and an LSH-based retrieval technique; this is a memory mechanism/algorithm rather than a released tool or a multi-component system architecture being argued for in its own right."}
+  ]
+}

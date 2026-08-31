@@ -1,0 +1,22 @@
+{
+  "paper_id": 13980,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 3.2 defines a persistent 'experience memory' table (task, observation, action, Q value) that the agent writes to at run time via an RL update rule, and Section 3.3 shows the agent retrieving similar past records to condition its next action; the store persists across episodes and even across different task goals (p. 2, p. 4).",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "relational_db",
+     "justification": "Section 3.2, p. 4: 'the experience memory is designed as a table storing the task information, observation, action, and the corresponding Q value estimation,' with Figure 3 depicting the record schema (task/obs., action, Q value)."},
+    {"axis": "write_policy", "value": "edit_in_place",
+     "justification": "Section 3.2, p. 5, Eq. 2-3: a record is inserted only if (g, ot, at) is not yet present; if it already exists, its stored Q value is updated in place via the Q-learning rule Q(g,ot,at) ← (1-α)Q(g,ot,at) + αQ'(g,ot,at) — this update rule is RLEM's central mechanism (title, p. 1) and what Section 4's ablations (p. 10) probe."},
+    {"axis": "retrieval_policy", "value": "similarity_topk",
+     "justification": "Section 3.3, p. 5: a similarity function scores (g, ot) against stored (gi, oi) pairs and 'the m records with the highest similarities are retrieved to form the exemplars in the prompt.'"},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Evaluated on two public RL task sets, WebShop and WikiHow, against fixed-exemplar and prior-SOTA baselines with success-rate comparisons and ablations (p. 1, p. 2); no deployment, real users, or fielded setting is reported anywhere in the given pages, including the Limitations section (p. 10)."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Abstract and p. 2: 'Extensive experiments are conducted on two RL task sets... average results... exceed the prior SOTA by 4% and 2%'; p. 10 reports further ablation tables (Table 8) on the same fixed task suites."},
+    {"axis": "contribution", "value": "framework",
+     "justification": "Contribution list, p. 2: '1) A new agent framework is proposed as REMEMBERER for LLM to learn from the experiences of past episodes... 2) We introduce RLEM, which updates experience memory...' — the paper's own framing centers on REMEMBERER as an agent architecture (LLM + experience memory + RL update pipeline, Figure 2, p. 4), with RLEM as the mechanism inside it."}
+  ]
+}

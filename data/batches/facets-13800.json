@@ -1,0 +1,40 @@
+{
+  "paper_id": 13800,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "MSCE writes L1 trace memory, L2 policy memory, and L3 environmental cognition at run time after each episode (Algorithm 2, 'Upon episode finalization: ... Write traces with V = pending', p. 18) and retrieves that same governed memory hierarchy in later episodes to condition future behaviour ('At inference time, MSCE retrieves memory in three tiers', p. 18); the agent itself authors the store rather than reading a fixed corpus (Section 4.4, p. 6). Published 2026, English, full text available (27 pages) — I2, I3, I4 hold. No exclusion criterion applies: memory writing/retrieval is the paper's central contribution (not E5), an externalised store is written at run time (not E2 or E3), it is an LLM-based agent system (not E6), and it is well over four pages with a full experiments section (not E7).",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "multi_store",
+      "justification": "The contribution list names a three-level hierarchy — 'L1 trace memory stores grounded step-level evidence. L2 policy memory induces recurring procedural patterns... L3 environmental cognition memory abstracts declarative knowledge' (p. 2) — plus a crystallized skill store, and Appendix B.9 states the retrieval mechanism explicitly as tiering: 'At inference time, MSCE retrieves memory in three tiers' with skills tried first, L3 providing priors, and fallback to L1 traces (p. 6, p. 18). The combination/routing across these tiers is itself the paper's framework contribution, not an incidental detail."
+    },
+    {
+      "axis": "write_policy",
+      "value": "reflect_synthesize",
+      "justification": "L3 environmental cognition is produced by an LLM call over a cohort of policies and traces that is not any single source item ('d ← LLM(Πenv , C, T )', Algorithm 1, p. 17), and skills are crystallized by an LLM from an L2 policy plus evidence into a new callable procedure (Appendix E.5 skill-drafting prompt, p. 25). Step values are also produced via 'reflection-weighted value backfilling', propagating self-reflections ρ into computed trace values V (Eq. 2, p. 6) — generated content not present in the raw trace."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "hybrid",
+      "justification": "Appendix B.9 (p. 18) states a declared multi-signal combination for both tiers used at inference: skill retrieval is 'ranked by trigger relevance, reliability η, and source-policy gain', and trace retrieval 'combines exact cues such as error signatures with semantic similarity over compact state summaries', with high-value traces prioritized — an explicit fusion of exact/structured matching, similarity search, and a value-based ranking rule."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "Evidence is 'Experiments on EvoAgentBench and LoCoMo' comparing MSCE against 'state-of-the-art skill-augmented and memory-driven agent baselines' (Abstract, p. 1; contributions list, p. 2). This is a controlled lab comparison on public benchmarks, not a fielded system with real users or deployment consequences, so it is coded validation rather than evaluation."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "The stated evidence is comprehensive evaluation over two fixed benchmark suites, EvoAgentBench and LoCoMo, against multiple baselines with reported performance gains (contributions list, p. 2: 'Comprehensive evaluations on EvoAgentBench and LoCoMo show that MSCE achieves state-of-the-art performance'). No manipulated experimental condition against a held control beyond the benchmark/baseline comparison is described in the pages given."
+    },
+    {
+      "axis": "contribution",
+      "value": "framework",
+      "justification": "The first item of the contributions list on p. 2 names the contribution as a framework: 'We propose MSCE, a training-free memory–skill co-evolution framework that organizes long-horizon agent experience into grounded traces, procedural policies, and declarative environmental cognition.' Code is released (p. 1, GitHub link), but the paper argues for the architecture/organisation itself rather than the artefact."
+    }
+  ]
+}

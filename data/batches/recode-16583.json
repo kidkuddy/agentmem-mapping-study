@@ -1,0 +1,40 @@
+{
+  "paper_id": 16583,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "Section 2.2 (p.4) defines the execute-reflect-reuse loop: a reflector module writes distilled experience back into an explicit, model-agnostic memory M = (Mtext, Mcode) after each task rollout ('Mk = Reflect(Mk-1, tau(k))'), and later tasks retrieve entries from that same store via embedding top-k plus LLM-based selection (Section 3.4, p.8) to condition the frozen policy's future behaviour, satisfying I1. The arXiv header dates the work 23 Jun 2026 (p.1), satisfying I2. The paper is in English (I3) and pages were extracted and read (I4).",
+  "secondary_substrates": [],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "multi_store",
+      "justification": "Section 3.1 (p.4): 'Metis maintains a hierarchical experience memory M = (Mtext, Mcode), consisting of a structured text memory store and a code memory library.' The paper's contribution is explicitly how the two stores relate: recurring text plans are selectively promoted into the code store (Pattern-Aware Code Generation, p.4), and retrieval/selection is performed jointly across both stores with a dependency-closure mechanism tying them together (Section 3.4-3.5, p.8). This is a deliberate combination-as-contribution, not an incidental second store."
+    },
+    {
+      "axis": "write_policy",
+      "value": "reflect_synthesize",
+      "justification": "Section 3.1 (p.4): Differentiated Text Reflection 'distills completed trajectories into reusable textual experience' as execution plans, environment facts, and common pitfalls — content abstracted from, not copied verbatim out of, any single trajectory step. Pattern-Aware Code Generation likewise 'invokes a codifier using the plan and related task queries, but not the raw trajectories' to generate new tool code (p.4), i.e. higher-level content synthesized from stored memories rather than appended raw items."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "hybrid",
+      "justification": "Section 3.4, Memory Manager (p.8): 'Metis first performs embedding-based top-k retrieval over both text memory entries and code tools ... A lightweight LLM-based Memory Manager then jointly selects useful text memories and tools for the task.' This is a declared two-stage fusion rule (similarity top-k candidate pool, then LLM-based selection over that pool), matching the hybrid definition rather than a single unranked retrieval path."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "Section 4 (p.9): Metis is compared against baselines (No Memory, ACE, SkillX) on AppWorld, a public simulated interactive-agent benchmark, under a controlled train-then-test protocol with fixed random seeds and held-out splits. The text says AppWorld tasks 'mirror deployment scenarios' (p.9), but no real users, fielded system, or external stakes are reported — it is a benchmark comparison in the lab, so coded validation, the conservative choice given the ambiguity the mirroring language introduces."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "Section 4.1 (p.9): fixed AppWorld benchmark with multiple baselines (No Memory, ACE, SkillX) run under an identical executor/protocol, scored on accuracy, execution tokens/steps, and cost (also Figure 4/5 tables, p.17-18). The earlier text-vs-code profiling analysis (p.1-2) is a controlled comparison but motivates the design rather than being the evaluated contribution; the benchmark comparison against baselines is what Metis itself is measured against."
+    },
+    {
+      "axis": "contribution",
+      "value": "framework",
+      "justification": "Abstract (p.1) and Section 3.1 (p.4): Metis is introduced as 'a self-evolving agent system built on a hierarchical dual-representation memory,' organized into four named components (Differentiated Text Reflection, Pattern-Aware Code Generation, Memory Manager, Reflection Harness) that together define an architecture for organizing memory, rather than a single algorithmic technique."
+    }
+  ]
+}

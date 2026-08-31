@@ -1,0 +1,41 @@
+{
+  "paper_id": 13677,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The contribution is a controller (MemCon) that decides, task by task, when to write to and read from an agent's own experience store: it wraps the retrieve/store entry points of a memory backend and issues RETRIEVE, PLAN_INJECT, RE-RETRIEVE, CONSOLIDATE, and FORGET actions whose effects condition the agent's behaviour on later tasks (p. 2, p. 4 Fig. 1). The policy itself 'persists to disk between tasks' and is 'updated via reverse-discounted credit assignment from binary task success' (p. 2), i.e. state written at run time is read back across sessions to shape future action selection. Preprint dated 2026 on the title page (I2); written in English (I3); full text was retrievable, evidenced by the extracted pages (I4). Not excluded: memory here is not incidental (it is the entire subject of the abstract and contributions, p. 1-2), the paper is a primary empirical study, not a survey (E4 does not hold), and the system is explicitly an LLM agent framework evaluated across three agent runners and three LLM backbones (p. 2, p. 7), so E6 does not hold. The paper explicitly disclaims being 'a new memory store' (p. 2), which raised the E1/E3 question, but the guide's own boundary resolves it: deciding what is retrieved, injected, consolidated, or forgotten is a policy over what persists, not an architecture-only change, and the backend it controls (e.g. G-Memory in the reported results, p. 7, p. 15) is itself written to at run time rather than a fixed corpus."
+  ,
+  "secondary_substrates": ["graph_store", "vector_store", "filesystem"],
+  "facets": [
+    {
+      "axis": "substrate",
+      "value": "other",
+      "justification": "The paper states directly: 'MemCon is not a new memory store. It is a thin wrapper that intercepts the abstract retrieve and store entry points of any existing memory backend and decides how to call them... The same wrapper applies unchanged to flat vector stores, skill libraries, summarisation-based memories, latent-token memories, and graph-structured memories' (p. 2). The contribution therefore has no single owned substrate among the listed categories; it is substrate-agnostic by design. For the reported main results the wrapper is plugged into one fixed backend, G-Memory, described as combining vector retrieval, a task graph with k-hop traversal, and insight rules (p. 15, A.3 item 9; also used in the Section 4 evaluation, p. 7), which is recorded under secondary_substrates rather than coded as primary since it is a pre-existing baseline system MemCon controls, not what MemCon itself contributes."
+    },
+    {
+      "axis": "write_policy",
+      "value": "agent_tool_invoked",
+      "justification": "The action space explicitly includes CONSOLIDATE and FORGET as discrete controller-selected actions: 'C ONSOLIDATE and F ORGET call any maintenance hooks the backend exposes (e.g., merging or pruning derived rules) and silently no-op on backends that do not implement them' (p. 4). The contribution is precisely the decision of when to trigger a write/maintenance action; the paper leaves the actual transformation (merge vs. prune logic) to whichever backend is plugged in and does not specify it generally, matching the guide's reservation of agent_tool_invoked for cases where agent control over the write is the contribution and the transformation itself is unspecified."
+    },
+    {
+      "axis": "retrieval_policy",
+      "value": "agent_directed",
+      "justification": "The controller 'adaptively decides when, what, and how much to retrieve, when to inject a distilled plan, and when to consolidate or forget' (p. 2), selecting a memory action a = (op, θ) including RETRIEVE (with top_k/hop parameters), RE-RETRIEVE (an alternative-query reformulation), and PLAN_INJECT via a UCB policy over a learned Q-table (p. 4, Actions A). This is the agent's own controller choosing what to look for and when, rather than a fixed similarity or recency rule applied uniformly."
+    },
+    {
+      "axis": "research_type",
+      "value": "validation",
+      "justification": "Evaluated on 6 public benchmarks (ALFWorld, PDDL Planning, ScienceWorld, TriviaQA, WebWalkerQA, GAIA) against 9 re-implemented memory baselines and a no-memory ablation, across 3 agent frameworks and 3 LLM backbones (p. 2, p. 7 Sec. 4.1). No real users, fielded deployment, or external stakes are reported; results are reported as 'a single deployment run per configuration, no seed averaging' (p. 7) meaning one execution pass per benchmark configuration, not a real-world deployment. This is a controlled, lab-run comparison, so validation rather than evaluation."
+    },
+    {
+      "axis": "research_method",
+      "value": "benchmark_evaluation",
+      "justification": "Section 4.2 reports 'Table 1 reports S/A on the GPT-4.1-mini backbone' with per-backbone tables for the other two backbones, comparing MemCon against nine baselines over the fixed six-benchmark suite (p. 7) - a fixed task suite with scores reported per system, the defining pattern of benchmark_evaluation."
+    },
+    {
+      "axis": "contribution",
+      "value": "method",
+      "justification": "Contributions list item 2 (p. 2): 'We propose an online contextual bandit policy with UCB exploration, warm-start priors, and reverse-discounted credit assignment that converges within tens of tasks using zero pretraining and zero extra LLM calls, together with augmented memory operations.' This is an algorithmic technique (the MDP formulation plus the bandit learning rule); code is released (p. 1 GitHub link) but the paper argues for the algorithm itself, not the released artefact as the contribution."
+    }
+  ]
+}

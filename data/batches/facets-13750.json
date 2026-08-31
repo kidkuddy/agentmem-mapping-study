@@ -1,0 +1,22 @@
+{
+  "paper_id": 13750,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The agent writes run-time state and reads it back to condition later behaviour: interactions are appended to a subconscious vector store, and when a recurrence threshold is met the system promotes them into episodic and semantic memory that is later retrieved to answer questions (pp. 2, 4). Year 2026 satisfies I2 (arXiv timestamp 15 May 2026, p. 1), text is English (I3), and full text was retrievable (I4). No exclusion applies: this is not a hardware/cache paper (E1 n/a), an externalised store is written and read, not parametric-only (E2 n/a), the store is agent-written rather than fixed (E3 n/a), it is a novel-method paper, not a survey (E4 n/a), memory consolidation is the paper's entire contribution (E5 n/a), the system is explicitly an LLM-based agent (E6 n/a), and the paper is a full 25-page article, not abstract-only (E7 n/a).",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "vector_store",
+     "justification": "Section 3.2 (p. 4): the subconscious memory store S_sub is 'implemented as a vector database to support efficient semantic retrieval'; the episodic store is likewise queried by embedding similarity ('retrieve the nearest neighbor episode E* ... v_E* = Φ(E*)', p. 4). All memory tiers described in the extracted pages are embedding/similarity-based, so this is coded as a single vector_store rather than multi_store — no other physical substrate type (graph, relational, filesystem, kv-cache) is used for RecMem's own memory."},
+    {"axis": "write_policy", "value": "summarize_compress",
+     "justification": "On recurrence, 'LLMs are utilized to extract episodic summaries and semantic facts from these interactions' (p. 2); episodic memory 'captures event-level structure across multiple turns' and semantic memory 'distills them into a semantic memory to avoid information loss' (p. 2, p. 4) — raw interactions are condensed into compact narrative/fact form, not merely appended or freely synthesised into unrelated new insights."},
+    {"axis": "retrieval_policy", "value": "similarity_topk",
+     "justification": "The subconscious store is built 'to support efficient semantic retrieval' and stored units enable 'efficient similarity-based retrieval in future turns' (p. 4, p. 13); the consolidation step itself retrieves 'the set N_i containing the top-k units ranked by cosine similarity' (p. 4). No structured query, recency window, or declared multi-signal fusion rule for RecMem's own retrieval is described in the extracted pages."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "RecMem is 'empirically evaluate[d] ... on two challenging long-term memory benchmarks (i.e., LoCoMo ... and LongMemEval-S)' against three baseline systems, reporting accuracy and token-cost comparisons (p. 2). No deployment, real users, or fielded setting is reported in the extracted pages, so this is lab-based benchmark validation, coded conservatively as validation rather than evaluation."},
+    {"axis": "research_method", "value": "benchmark_evaluation",
+     "justification": "Results are reported as accuracy and memory-construction token cost on named benchmarks (LoCoMo, LongMemEval-S) against three SOTA baselines (MemoryOS, A-Mem, Mem0), per Figure 1(c)-(d) (p. 2)."},
+    {"axis": "contribution", "value": "method",
+     "justification": "The contributions list (p. 2) centres on 'recurrence-based consolidation' as a technique for deciding when to run LLM-based memory extraction; code is released (p. 1, GitHub link) but the paper argues for the consolidation technique itself, not the artefact."}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+ "paper_id": 15882,
+ "eligible": true,
+ "eligibility_rule": "I1",
+ "eligibility_criteria": [],
+ "eligibility_reason": "The underlying M3-Agent framework writes a memory graph (text, face and voice nodes plus edges) at run time as it processes streaming video segments, and later queries that graph to answer questions about earlier content (Section 3.1, p. 3). StreamMeCo's own contribution is a policy over what survives in that store — EMsampling and EWpruning evict redundant nodes under a target compression ratio — and a time-decay retrieval mechanism (TMR) that re-enters compressed memories into context across time segments (Abstract, p. 1; contributions list, p. 2; Sections 4.2–4.3, pp. 4–5). This is the compaction/eviction boundary the guide names as in-scope rather than E1's context-length framing.",
+ "secondary_substrates": [],
+ "facets": [
+  {"axis": "substrate", "value": "graph_store",
+   "justification": "Abstract (p. 1): compression is done 'based on the connectivity of the memory graph', with edge-free sampling for isolated nodes and edge-aware pruning for connected nodes. Section 3.1 (p. 3) describes the memory graph as text, face and voice nodes joined by edges that the agent writes at run time."},
+  {"axis": "write_policy", "value": "summarize_compress",
+   "justification": "Section 4.2 (p. 4) and the contributions list (p. 2): EMsampling and EWpruning are explicitly framed as compressing the memory graph on overflow — selecting representative isolated nodes via minmax sampling and pruning connected nodes by a fused importance/similarity score — evicting redundant nodes while retaining coverage. This is a compaction pass over existing content, not new synthesized content and not simple appending."},
+  {"axis": "retrieval_policy", "value": "hybrid",
+   "justification": "Section 4.3 (p. 5), Eqs. 4–6: the Time-decay Memory Retrieval mechanism aggregates embedding similarity between the query and text nodes per time segment (Eq. 5's Ēj), then applies a stated exponential time-decay fusion (Ej' = Ēj · e^{-λ(t-j)}) to reweight recency against similarity before selecting the top-ranked nodes per segment (Eq. 6). The combination rule is explicit, satisfying the declared-fusion bar for hybrid."},
+  {"axis": "research_type", "value": "validation",
+   "justification": "Section 5.1 (p. 5): evaluated on three public benchmark datasets (M3-Bench-robot, M3-Bench-web, Video-MME-Long) against baselines, with ablations reported (Table 5, p. 27) and cross-framework comparisons (Table 6, p. 28). No deployed system, real users, or fielded setting is reported in the pages given, so this is lab validation rather than evaluation."},
+  {"axis": "research_method", "value": "benchmark_evaluation",
+   "justification": "Section 5.1 (p. 5) runs the method over three fixed benchmark datasets and reports accuracy scores against baselines (Table 6, p. 28) plus a component ablation table (Table 5, p. 27); this is a benchmark suite with reported scores, not a manipulated controlled condition or a bare demonstration."},
+  {"axis": "contribution", "value": "method",
+   "justification": "The contributions list on p. 2 names two compression modules (EMsampling, EWpruning) and the TMR retrieval mechanism as the paper's contribution; a GitHub link is given in the abstract (p. 1) but the artefact is presented as an implementation of the method rather than the argued contribution itself."}
+ ]
+}

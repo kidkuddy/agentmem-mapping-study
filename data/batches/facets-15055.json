@@ -1,0 +1,22 @@
+{
+  "paper_id": 15055,
+  "eligible": true,
+  "eligibility_rule": "I1",
+  "eligibility_criteria": [],
+  "eligibility_reason": "The paper's central object of study is the self-modification loop in production coding agents (Claude Code, Codex, OpenClaw) whereby the agent writes facts, preferences and rules into persistent workspace files (CLAUDE.md, core/behaviors.md, knowledge/*.md) at run time, and those files are loaded again in later sessions to condition the agent's future behaviour (Section 2.3, p. 2: 'This self-modification loop is the mechanism that enables cross-session learning'; workspace design, p. 3; baseline behaviors.md, p. 15: 'Self-Modification Is Default Behavior... persist it to the appropriate project file in the same turn'). This is not a fixed corpus the agent never writes to (rules out E3), memory is not incidental to the contribution but is the paper's entire subject (rules out E5), and it is a primary empirical study, not a survey (rules out E4). 16 pages, English, 2026.",
+  "secondary_substrates": [],
+  "facets": [
+    {"axis": "substrate", "value": "filesystem",
+     "justification": "The studied memory is a directory of plain-text markdown files the agent reads and writes: workspace/CLAUDE.md, core/behaviors.md, core/identity.md, coding/CLAUDE.md, knowledge/*.md (Section 3.2 workspace layout, p. 3; baseline files reproduced in the appendix, pp. 12 and 14)."},
+    {"axis": "write_policy", "value": "edit_in_place",
+     "justification": "p. 15, 'Self-Modification Is Default Behavior' and 'Evolve Your Own Instructions': the agent both appends new facts and updates/corrects already-existing authoritative documents ('update the authoritative document so future sessions use it... This applies to CLAUDE.md, core/behaviors.md, and knowledge/*.md alike'), so entries are edited/merged, not just appended."},
+    {"axis": "retrieval_policy", "value": "always_in_context",
+     "justification": "The paper's headline attack surface is the auto-loaded files: p. 14 baseline behaviors.md states 'Read this file at the start of every conversation alongside identity.md and any relevant domain files,' and p. 2 refers to 'auto-loaded context files.' The conclusion (p. 10) singles out these session-start-loaded files (CLAUDE.md, AGENTS.md, universal behavior files) as the high-impact case. Some knowledge files are instead read on demand by the agent (p. 14: 'if a question depends on state that's in a knowledge file, read the file before answering'), but no fusion rule between the two is stated, so the dominant, evaluation-emphasized mechanism is coded here rather than 'hybrid'."},
+    {"axis": "research_type", "value": "validation",
+     "justification": "Experiments run in a sandboxed synthetic workspace the authors built for a fictional user, not a real deployment: Limitations (p. 10) states 'Our experiments were conducted in a synthetic workspace, which may not accurately capture the full complexity of a real-world user workflow,' and lists 'expanding the analysis to real-world environments' as future work. No real users or external stakes are reported, so this is validation, not evaluation."},
+    {"axis": "research_method", "value": "controlled_experiment",
+     "justification": "The authors manipulate independent conditions -- adversarial goal, system, model, and session design (single probe, two probes of the same attack, two probes of different attacks) -- and measure attack success/persistence as the outcome (Section 3, p. 2: 'we study three adversarial goals... We evaluate these attacks under three session designs to assess the compounding effect')."},
+    {"axis": "contribution", "value": "method",
+     "justification": "The paper's contribution is an evaluation methodology for cross-session memory prompt injection -- a synthetic workspace, three adversarial goals, and three session designs (Section 3 'Methods', pp. 2-3) -- used to produce the empirical findings, rather than a named tool, dataset release, or model."}
+  ]
+}

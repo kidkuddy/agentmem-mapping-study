@@ -1,0 +1,8 @@
+{
+  "paper_id": 13796,
+  "eligible": false,
+  "eligibility_rule": "E5",
+  "eligibility_criteria": ["E5"],
+  "eligibility_reason": "The paper's own contribution list (p. 2) names four things: (1) identifying Memory Control Flow Attacks (MCFA) as a security threat, (2) a taxonomy of control-flow deviation types, (3) the MEMFLOW automated evaluation/attack framework, and (4) a large-scale evaluation of MCFA against GPT-5 mini, Claude Sonnet 4.5 and Gemini 2.5 Flash. None of these is a memory write/retrieve mechanism. The agent memory that is read and written (Definition 1's Φret/Φupd, and the 'Naive vs. RBMS' Persistent Memory architectures described as the 'Victim System' in Appendix A.1, p. 13) is treated only as the pre-existing, generic attack surface MEMFLOW configures and probes ('Agent Runner ... defines execution settings for agent models, memory mechanisms, and tool frameworks', p. 2) — it is not proposed, designed, or argued for by this paper. Memory is central to the threat model but is not part of the claimed contribution itself, which is the attack/evaluation methodology, so this falls under E5.",
+  "facets": []
+}
