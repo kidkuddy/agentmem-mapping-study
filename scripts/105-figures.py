@@ -20,7 +20,7 @@ HERE = pathlib.Path(__file__).parent
 # scripts stay in ../scripts. DATA is the only path that differs from
 # the layout these scripts were executed in.
 DATA = (HERE / ".." / "data").resolve()
-OUT = (DATA / ".." / ".." / "docs" / "manuscript-agentmem").resolve()
+OUT = (HERE / ".." / "figures").resolve()
 M = json.loads((DATA / "map.json").read_text())
 F = json.loads((DATA / "facts.json").read_text())
 

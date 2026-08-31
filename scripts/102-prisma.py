@@ -23,7 +23,7 @@ HERE = pathlib.Path(__file__).parent
 # the layout these scripts were executed in.
 DATA = (HERE / ".." / "data").resolve()
 F = json.loads((DATA / "facts.json").read_text())
-OUT = (DATA / ".." / ".." / "docs" / "manuscript-agentmem").resolve()
+OUT = (HERE / ".." / "figures").resolve()
 OUT.mkdir(parents=True, exist_ok=True)
 
 excl = {k[4:]: v for k, v in F.items()
